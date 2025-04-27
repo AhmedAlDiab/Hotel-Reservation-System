@@ -27,7 +27,10 @@ namespace Hotel_Reservation_System
                 {
                     userID = value;
                 }
-                // No else needed; if invalid, the value simply isn't set
+                else
+                {
+                    userID = 0;
+                }                
             }
         }
 
