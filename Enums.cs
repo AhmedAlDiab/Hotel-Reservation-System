@@ -35,7 +35,7 @@ namespace Hotel_Reservation_System
         BunkBed,
         MurphyBed
     }
-    // Enum representing the type of the bed
+    // Enum representing the type of MealPlan
     public enum EMealPlan
     {
         RoomOnly,
