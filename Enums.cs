@@ -35,4 +35,14 @@ namespace Hotel_Reservation_System
         BunkBed,
         MurphyBed
     }
+    // Enum representing the type of the bed
+    public enum EMealPlan
+    {
+        RoomOnly,
+        BreakfastOnly,
+        HalfBoard,
+        FullBoard,
+        AllInclusive,
+        UltraAllInclusive
+    }
 }
