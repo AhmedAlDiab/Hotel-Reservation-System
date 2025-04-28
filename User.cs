@@ -69,6 +69,7 @@ namespace Hotel_Reservation_System
         }
 
         // Property for Email with validation (cannot be null or empty)
+        // TODO: Implement checking validation after GUI input
         public string Email
         {
             get { return email; }
