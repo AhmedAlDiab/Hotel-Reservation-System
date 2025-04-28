@@ -21,7 +21,7 @@ namespace Hotel_Reservation_System
         // Properties to access Data members
         public int ReservationID
         {
-            get { return reservationID }
+            get { return reservationID; }
             set
             {
                 if (value > 0)
@@ -33,12 +33,94 @@ namespace Hotel_Reservation_System
 
         public Customer PCustomer
         {
-            get { return customer}
+            get { return customer;}
             set
             {
-                customer.UserID
+                customer.UserID = value.UserID;
+                customer.Fullname = value.Fullname;
+                customer.PhoneNumber = value.PhoneNumber;
+                customer.Email = value.Email;
+                customer.Username = value.Username;
+                customer.Password = value.Password;
+                customer.PreferredRoomType = value.PreferredRoomType;
             }
         }
 
+        public Room PRoom
+        {
+            get { return room; }
+            set
+            {
+                room.RoomID = value.RoomID;
+                room.Bedtype = value.Bedtype;
+                room.ISAvailable = value.ISAvailable;
+                room.Capacity = value.Capacity;
+                /*room.Roomtype = value.Roomtype;
+                room.PricePerNight = value.PricePerNight;
+                room.eMealPlan = value.eMealPlan;*/
+            }
+        }
+
+        public DateTime CheckInDate
+        {
+            get { return checkInDate; }
+            set
+            {
+                checkInDate = value; // Validtion required!
+            }
+        }
+
+        public DateTime CheckOutDate
+        {
+            get { return checkOutDate; }
+            set
+            {
+                checkOutDate = value;// Validtion required!
+            }
+        }
+
+        public double TotalCost
+        {
+            get { return totalCost; }
+            set
+            {
+                if (value > 0)
+                {
+                    totalCost = value;
+                }
+                else
+                {
+                    throw new AggregateException("Total cost is less than 0");
+                }
+            }
+        }
+
+        public EReservationStatus ReservationStatus
+        {
+            get { return reservationStatus; }
+            set
+            {
+                reservationStatus = value;
+            }
+        }
+        // Constructors With + Without
+        public Reservation() {}
+
+        public Reservation(int reservationId, Customer customer, Room room, DateTime checkInDate, DateTime checkOutDate,
+            double totalCost, EReservationStatus reservationStatus)
+        {
+            ReservationID = reservationId;
+            PCustomer = customer;
+            PRoom = room;
+            CheckInDate = checkInDate;
+            CheckOutDate = checkOutDate;
+            TotalCost = totalCost;
+            ReservationStatus = reservationStatus;
+        }
+
+        public void BookRoom(int roomId)
+        {
+            // todo Implement needed
+        }
     }
 }
