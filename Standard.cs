@@ -8,14 +8,23 @@ namespace Hotel_Reservation_System
 {
     public class Standard : Room
     {
-        public override double Calculatetotalcost(float cost)
+        public Standard()
         {
-            throw new NotImplementedException();
+            
+        }
+        public Standard(int roomID, EBedType bedType, bool isAvailable, int capacity) : base(roomID, bedType, isAvailable, capacity)
+        {
+            
+        }
+        public override double Calculatetotalcost(int nonight)
+        {
+            return nonight * PricePerNight * Capacity;
+
         }
 
         public override void DisplayRoomServices()
         {
-            throw new NotImplementedException();
+            base.DisplayRoomInfo();
         }
     }
 }

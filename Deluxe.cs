@@ -8,14 +8,36 @@ namespace Hotel_Reservation_System
 {
     public class Deluxe : Room
     {
-        public override double Calculatetotalcost(float cost)
+        private double discount;
+        public double Discount
         {
-            throw new NotImplementedException();
+            get { return discount; }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentException("invalid");
+                else
+                    discount = value;
+            }
+        }
+        public Deluxe() {
+            discount = 0;
+        }
+        public Deluxe(int roomID, EBedType bedType, bool isAvailable, int capacity,double discount) :base(roomID, bedType, isAvailable, capacity) 
+        {
+            Discount = discount;
+        }
+
+
+        public override double Calculatetotalcost(int nonight)
+        {
+            return nonight * PricePerNight*Capacity;
         }
 
         public override void DisplayRoomServices()
         {
-            throw new NotImplementedException();
+            base.DisplayRoomInfo();
+            Console.WriteLine("Internet and private pool");
         }
     }
 }

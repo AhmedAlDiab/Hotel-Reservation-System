@@ -21,12 +21,9 @@ namespace Hotel_Reservation_System
         private EMealPlan MealPlan;
         public EMealPlan eMealPlan 
         { get { return MealPlan; }
-            set { if(value== EMealPlan.AllInclusive||value== EMealPlan.UltraAllInclusive||
-                    value== EMealPlan.RoomOnly||value== EMealPlan.BreakfastOnly||
-                    value== EMealPlan.HalfBoard||value== EMealPlan.FullBoard)
+            set { 
                      MealPlan = value;
-else
-                    throw new ArgumentException("Invalid Meal plan.");
+
             }
         }
         public double PricePerNight
@@ -72,22 +69,7 @@ else
             get { return bedtype; }
             set
             {
-                if (value == EBedType.Single ||
-                    value == EBedType.Double ||
-                    value == EBedType.Queen ||
-                    value == EBedType.King ||
-                    value == EBedType.Twin ||
-                    value == EBedType.TwinDouble ||
-                    value == EBedType.SofaBed ||
-                    value == EBedType.BunkBed ||
-                    value == EBedType.MurphyBed)
-                {
-                    bedtype = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Invalid bed type.");
-                }
+                bedtype = value;
             }
         }
         public ERoomType Roomtype
@@ -95,13 +77,12 @@ else
             get { return roomtype; }
             set
             {
-                if (value == ERoomType.Deluxe || value == ERoomType.Standard)
+                
                     roomtype = value;
-                else
-                    throw new ArgumentException("Invalid Room type ");
+               
             }
         }
-        public abstract double Calculatetotalcost(float cost);
+        public abstract double Calculatetotalcost(int nonight);
         public abstract void DisplayRoomServices();
         public Room(int roomID,EBedType bedType, bool isAvailable,int capacity)
         {
