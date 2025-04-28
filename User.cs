@@ -122,7 +122,16 @@ namespace Hotel_Reservation_System
         }
 
         // Default constructor
-        public User() { }
+        public User() 
+        {
+            // Initialize fields to default values
+            userID = 0;
+            fullname = "Null";
+            phoneNumber = "Null";
+            email = "Null";
+            username = "Null";
+            password = "Null";
+        }
 
         // Parameterized constructor to initialize all fields
         public User(int userID, string fullname, string phoneNumber, string email, string username, string password)

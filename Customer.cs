@@ -9,8 +9,8 @@ namespace Hotel_Reservation_System
     // The Customer class inherits from the User class.
     public class Customer : User
     {
-        // Private field to store the customer's preferred type of room.
-        // implement private list<Reservation> reservationHistory = new List<Reservation>();
+        // Private field to store the customer's Reservation History.
+        private List<Reservation> reservationHistory;
 
         // Private field to store the customer's preferred type of room.
         private ERoomType preferredRoomType;
@@ -19,9 +19,8 @@ namespace Hotel_Reservation_System
             get { return preferredRoomType; }
             set { preferredRoomType = value; }
         }
-        // implement public list<Reservation> ReservationHistory property
-        /*
-         public List<Reservation> ReservationHistory
+        
+        public List<Reservation> ReservationHistory
         {
             get { return reservationHistory; }
             set
@@ -32,9 +31,14 @@ namespace Hotel_Reservation_System
                     reservationHistory = new List<Reservation>(); // Avoid setting to null to maintain data integrity.
             }
         }
-         */
+         
         // Default constructor for Customer.
-        public Customer() { }
+        public Customer() : base()
+        {
+            // Initialize the preferred room type to a default value.
+            PreferredRoomType = ERoomType.Standard;
+            ReservationHistory = new List<Reservation>(); // Initialize the reservation history to an empty list.
+        }
         // Parameterized constructor to initialize a Customer with user details and preferred room type.
         public Customer(int userID, string fullname, string phoneNumber, string email, string username, string password,/*list<Reservation> reservationHistory,*/ERoomType preferredRoomType) : base(userID, fullname, phoneNumber, email, username, password)
         {
