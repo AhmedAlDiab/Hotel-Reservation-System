@@ -9,10 +9,14 @@ namespace Hotel_Reservation_System
     // The Customer class inherits from the User class.
     public class Customer : User
     {
-        // Private field to store the customer's Reservation History.
+        /// <summary>
+        /// Private field to store the customer's Reservation History.
+        /// </summary>
         private List<Reservation> reservationHistory;
 
-        // Private field to store the customer's preferred type of room.
+        /// <summary>
+        /// Private field to store the customer's preferred type of room.
+        /// </summary>
         private ERoomType preferredRoomType;
         public ERoomType PreferredRoomType
         {
@@ -32,14 +36,26 @@ namespace Hotel_Reservation_System
             }
         }
          
-        // Default constructor for Customer.
+        /// <summary>
+        /// Default constructor for Customer.
+        /// </summary>
         public Customer() : base()
         {
             // Initialize the preferred room type to a default value.
             PreferredRoomType = ERoomType.Standard;
-            ReservationHistory = new List<Reservation>(); // Initialize the reservation history to an empty list.
+            // Initialize the reservation history to an empty list.
+            ReservationHistory = new List<Reservation>(); 
         }
-        // Parameterized constructor to initialize a Customer with user details and preferred room type.
+        /// <summary>
+        /// Parameterized constructor to initialize a Customer with user details and preferred room type.
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="fullname"></param>
+        /// <param name="phoneNumber"></param>
+        /// <param name="email"></param>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <param name="preferredRoomType"></param>
         public Customer(int userID, string fullname, string phoneNumber, string email, string username, string password,/*list<Reservation> reservationHistory,*/ERoomType preferredRoomType) : base(userID, fullname, phoneNumber, email, username, password)
         {
             // ReservationHistory = reservationHistory // maybe we do not need to add ReservationHistory to the contractor;

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Hotel_Reservation_System
 {
-    // Abstract base class representing a user in the hotel reservation system
+    /// <summary>
+    /// Abstract base class representing a user in the hotel reservation system
+    /// </summary>
     public abstract class User
     {
         // Private fields for encapsulation
@@ -17,7 +19,9 @@ namespace Hotel_Reservation_System
         private string username;
         private string password;
 
-        // Property for UserID with basic validation (must be positive)
+        /// <summary>
+        /// Property for UserID with basic validation (must be positive)
+        /// </summary>
         public int UserID
         {
             get { return userID; }
@@ -34,7 +38,9 @@ namespace Hotel_Reservation_System
             }
         }
 
-        // Property for Fullname with validation (cannot be null or empty)
+        /// <summary>
+        /// Property for Fullname with validation (cannot be null or empty)
+        /// </summary>
         public string Fullname
         {
             get { return fullname; }
@@ -51,7 +57,9 @@ namespace Hotel_Reservation_System
             }
         }
 
-        // Property for PhoneNumber with validation (cannot be null or empty)
+        /// <summary>
+        /// Property for PhoneNumber with validation (cannot be null or empty)
+        /// </summary>
         public string PhoneNumber
         {
             get { return phoneNumber; }
@@ -68,7 +76,9 @@ namespace Hotel_Reservation_System
             }
         }
 
-        // Property for Email with validation (cannot be null or empty)
+        /// <summary>
+        /// Property for Email with validation (cannot be null or empty)
+        /// </summary>
         // TODO: Implement checking validation after GUI input
         public string Email
         {
@@ -86,7 +96,9 @@ namespace Hotel_Reservation_System
             }
         }
 
-        // Property for Username with validation (cannot be null or empty)
+        /// <summary>
+        /// Property for Username with validation (cannot be null or empty)
+        /// </summary>
         // TODO: Implement checking against the database for uniqueness
         public string Username
         {
@@ -104,7 +116,9 @@ namespace Hotel_Reservation_System
             }
         }
 
-        // Property for Password with validation (minimum 6 characters)
+        /// <summary>
+        /// Property for Password with validation (minimum 6 characters)
+        /// </summary>
         public string Password
         {
             get { return password; }
@@ -121,7 +135,9 @@ namespace Hotel_Reservation_System
             }
         }
 
-        // Default constructor
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public User() 
         {
             // Initialize fields to default values
@@ -133,7 +149,15 @@ namespace Hotel_Reservation_System
             password = "Null";
         }
 
-        // Parameterized constructor to initialize all fields
+        /// <summary>
+        /// Parameterized constructor to initialize all fields
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="fullname"></param>
+        /// <param name="phoneNumber"></param>
+        /// <param name="email"></param>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
         public User(int userID, string fullname, string phoneNumber, string email, string username, string password)
         {
             UserID = userID;
@@ -144,7 +168,9 @@ namespace Hotel_Reservation_System
             Password = password;
         }
 
-        // Placeholder method to display user information
+        /// <summary>
+        /// Placeholder method to display user information
+        /// </summary>
         // TODO: Implement GUI-based user info display
         public void DisplayUserInfo()
         {

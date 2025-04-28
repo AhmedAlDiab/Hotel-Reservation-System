@@ -20,8 +20,13 @@ namespace Hotel_Reservation_System
         {
             // Implementation for removing a room
         }
-        // Default constructor
-        public Staff() : base(){ }        
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public Staff() : base(){ }    
+        /// <summary>
+        /// Constructor with parameters
+        /// </summary>
         public Staff(int userID, string fullname, string phoneNumber, string email, string username, string password) : base(userID, fullname, phoneNumber, email, username, password){}
     }
 }
