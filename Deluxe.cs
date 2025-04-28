@@ -20,7 +20,8 @@ namespace Hotel_Reservation_System
                     discount = value;
             }
         }
-        public Deluxe() {
+        public Deluxe() 
+        {
             discount = 0;
         }
         public Deluxe(int roomID, EBedType bedType, bool isAvailable, int capacity, double pricePerNight, EMealPlan MealPlan, ERoomType roomtype, double discount) :base(roomID, bedType, isAvailable, capacity,pricePerNight,MealPlan,roomtype) 
@@ -31,13 +32,12 @@ namespace Hotel_Reservation_System
 
         public override double Calculatetotalcost(int nonight)
         {
-            
             return nonight * PricePerNight-Discount* nonight * PricePerNight;
         }
 
         public override void DisplayRoomServices()
-        {            // not complete yet
-
+        {            
+            // not complete yet
             base.DisplayRoomInfo();
             Console.WriteLine("Internet and private pool");
         }

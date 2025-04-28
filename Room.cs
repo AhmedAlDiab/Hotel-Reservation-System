@@ -20,16 +20,13 @@ namespace Hotel_Reservation_System
         private double pricePerNight;
         private EMealPlan MealPlan;
         public EMealPlan eMealPlan 
-        { get { return MealPlan; }
-            set { 
-                     MealPlan = value;
-
-            }
+        { 
+            get { return MealPlan; }
+            set { MealPlan = value; }
         }
         public double PricePerNight
         {
             get {  return pricePerNight; }
-
             set
             {
                 if (value < 0)
@@ -38,49 +35,42 @@ namespace Hotel_Reservation_System
                     pricePerNight = value;
             } 
         }
-
-        public int RoomID { get { return roomID; }
-
-            set { if(value<0)
-                {
-                    throw new ArgumentOutOfRangeException("You must write room id");
-                }
-            else
-                    { roomID = value; }
-                    }
+        public int RoomID 
+        { 
+            get { return roomID; }
+            set 
+            { 
+                if(value<0)                
+                    throw new ArgumentOutOfRangeException("You must write room id");                
+                else
+                    roomID = value;
+            }
         }
-        public bool ISAvailable { get { return isAvailable; } set { isAvailable = value; } }
+        public bool ISAvailable 
+        { 
+            get { return isAvailable; } 
+            set { isAvailable = value; } 
+        }
         public int Capacity
         {
             get { return capacity; }
-
             set
             {
-                if (value < 0)
-                {
-                    throw new ArgumentOutOfRangeException("You must write capacity");
-                }
+                if (value < 0)                
+                    throw new ArgumentOutOfRangeException("You must write capacity");                
                 else
-                { capacity = value; }
+                    capacity = value;
             }
         }
         public EBedType Bedtype
         {
             get { return bedtype; }
-            set
-            {
-                bedtype = value;
-            }
+            set { bedtype = value; }
         }
         public ERoomType Roomtype
         {
             get { return roomtype; }
-            set
-            {
-                
-                    roomtype = value;
-               
-            }
+            set { roomtype = value; }
         }
         public abstract double Calculatetotalcost(int nonight);
         public abstract void DisplayRoomServices();
@@ -99,11 +89,10 @@ namespace Hotel_Reservation_System
             RoomID= 0;
             ISAvailable= false;
             Capacity= 0;
-           PricePerNight = 0;
+            PricePerNight = 0;
             Bedtype = EBedType.Single;
             eMealPlan = EMealPlan.RoomOnly;
             Roomtype = ERoomType.Standard;
-
         }
         public virtual void DisplayRoomInfo()
         {
@@ -112,13 +101,7 @@ namespace Hotel_Reservation_System
             Console.WriteLine($"Room Type : {Roomtype}");
             Console.WriteLine($"Bed type : {Bedtype}");
             Console.WriteLine($"Capacity : {Capacity}");
-
-
         }
-
-
-
     }
-
-    }
+}
 
