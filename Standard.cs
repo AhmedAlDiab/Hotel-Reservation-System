@@ -18,12 +18,14 @@ namespace Hotel_Reservation_System
         }
         public override double Calculatetotalcost(int nonight)
         {
-            return nonight * PricePerNight * Capacity;
+            return nonight * PricePerNight ;
 
         }
 
         public override void DisplayRoomServices()
         {
+            // not complete yet
+
             base.DisplayRoomInfo();
         }
     }

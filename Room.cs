@@ -84,12 +84,15 @@ namespace Hotel_Reservation_System
         }
         public abstract double Calculatetotalcost(int nonight);
         public abstract void DisplayRoomServices();
-        public Room(int roomID,EBedType bedType, bool isAvailable,int capacity)
+        public Room(int roomID,EBedType bedType, bool isAvailable,int capacity, double pricePerNight, EMealPlan MealPlan, ERoomType roomtype)
         {
             RoomID = roomID;
             ISAvailable = isAvailable;
             Capacity = capacity;
             Bedtype= bedType;
+            eMealPlan = MealPlan;
+            Roomtype = roomtype;
+            PricePerNight = pricePerNight;
         }
         public Room()
         {
@@ -98,6 +101,9 @@ namespace Hotel_Reservation_System
             Capacity= 0;
            PricePerNight = 0;
             Bedtype = EBedType.Single;
+            eMealPlan = EMealPlan.RoomOnly;
+            Roomtype = ERoomType.Standard;
+
         }
         public virtual void DisplayRoomInfo()
         {
@@ -113,5 +119,6 @@ namespace Hotel_Reservation_System
 
 
     }
+
     }
 

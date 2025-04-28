@@ -23,7 +23,7 @@ namespace Hotel_Reservation_System
         public Deluxe() {
             discount = 0;
         }
-        public Deluxe(int roomID, EBedType bedType, bool isAvailable, int capacity,double discount) :base(roomID, bedType, isAvailable, capacity) 
+        public Deluxe(int roomID, EBedType bedType, bool isAvailable, int capacity, double pricePerNight, EMealPlan MealPlan, ERoomType roomtype, double discount) :base(roomID, bedType, isAvailable, capacity,pricePerNight,MealPlan,roomtype) 
         {
             Discount = discount;
         }
@@ -31,11 +31,13 @@ namespace Hotel_Reservation_System
 
         public override double Calculatetotalcost(int nonight)
         {
-            return nonight * PricePerNight*Capacity;
+            
+            return nonight * PricePerNight-Discount* nonight * PricePerNight;
         }
 
         public override void DisplayRoomServices()
-        {
+        {            // not complete yet
+
             base.DisplayRoomInfo();
             Console.WriteLine("Internet and private pool");
         }
