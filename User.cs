@@ -18,7 +18,7 @@ namespace Hotel_Reservation_System
         private string email;
         private string username;
         private string password;
-
+        private bool isAdmin;
         /// <summary>
         /// Property for UserID with basic validation (must be positive)
         /// </summary>
@@ -37,7 +37,6 @@ namespace Hotel_Reservation_System
                 }                
             }
         }
-
         /// <summary>
         /// Property for Fullname with validation (cannot be null or empty)
         /// </summary>
@@ -56,7 +55,6 @@ namespace Hotel_Reservation_System
                 }
             }
         }
-
         /// <summary>
         /// Property for PhoneNumber with validation (cannot be null or empty)
         /// </summary>
@@ -75,7 +73,6 @@ namespace Hotel_Reservation_System
                 }
             }
         }
-
         /// <summary>
         /// Property for Email with validation (cannot be null or empty)
         /// </summary>
@@ -95,7 +92,6 @@ namespace Hotel_Reservation_System
                 }
             }
         }
-
         /// <summary>
         /// Property for Username with validation (cannot be null or empty)
         /// </summary>
@@ -115,7 +111,6 @@ namespace Hotel_Reservation_System
                 }
             }
         }
-
         /// <summary>
         /// Property for Password with validation (minimum 6 characters)
         /// </summary>
@@ -134,7 +129,11 @@ namespace Hotel_Reservation_System
                 }
             }
         }
-
+        public bool IsAdmin
+        {
+            get { return isAdmin; }
+            set { isAdmin = value; }
+        }
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -165,7 +164,7 @@ namespace Hotel_Reservation_System
             PhoneNumber = phoneNumber;
             Email = email;
             Username = username;
-            Password = password;
+            Password = password;            
         }
 
         /// <summary>

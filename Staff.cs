@@ -23,10 +23,16 @@ namespace Hotel_Reservation_System
         /// <summary>
         /// Default constructor
         /// </summary>
-        public Staff() : base(){ }    
+        public Staff() : base()
+        {
+            IsAdmin = true; // Staff members are considered admins
+        }    
         /// <summary>
         /// Constructor with parameters
         /// </summary>
-        public Staff(int userID, string fullname, string phoneNumber, string email, string username, string password) : base(userID, fullname, phoneNumber, email, username, password){}
+        public Staff(int userID, string fullname, string phoneNumber, string email, string username, string password) : base(userID, fullname, phoneNumber, email, username, password)
+        {
+            IsAdmin = true; // Staff members are considered admins
+        }
     }
 }

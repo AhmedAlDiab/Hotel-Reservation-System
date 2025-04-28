@@ -45,6 +45,7 @@ namespace Hotel_Reservation_System
             PreferredRoomType = ERoomType.Standard;
             // Initialize the reservation history to an empty list.
             ReservationHistory = new List<Reservation>(); 
+            IsAdmin = false; // Customers are not admins by default.
         }
         /// <summary>
         /// Parameterized constructor to initialize a Customer with user details and preferred room type.
@@ -60,6 +61,7 @@ namespace Hotel_Reservation_System
         {
             // ReservationHistory = reservationHistory // maybe we do not need to add ReservationHistory to the contractor;
             PreferredRoomType = preferredRoomType;
+            IsAdmin = false; // Customers are not admins by default.
         }
     }
 }
