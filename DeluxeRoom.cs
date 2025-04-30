@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hotel_Reservation_System
 {
-    public class Deluxe : Room
+    public class DeluxeRoom : Room
     {
         private double discount;
         public double Discount
@@ -20,11 +20,11 @@ namespace Hotel_Reservation_System
                     discount = value;
             }
         }
-        public Deluxe() 
+        public DeluxeRoom() 
         {
             discount = 0;
         }
-        public Deluxe(int roomID, EBedType bedType, bool isAvailable, int capacity, double pricePerNight, EMealPlan MealPlan, ERoomType roomtype, double discount) :base(roomID, bedType, isAvailable, capacity,pricePerNight,MealPlan,roomtype) 
+        public DeluxeRoom(int roomID, EBedType bedType, bool isAvailable, int capacity, double pricePerNight, EMealPlan MealPlan, ERoomType roomtype, double discount) :base(roomID, bedType, isAvailable, capacity,pricePerNight,MealPlan,roomtype) 
         {
             Discount = discount;
         }

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Hotel_Reservation_System
 {
-    public class Standard : Room
+    public class StandardRoom : Room
     {
-        public Standard() {}
-        public Standard(int roomID, EBedType bedType, bool isAvailable, int capacity, double pricePerNight, EMealPlan MealPlan, ERoomType roomtype) : 
+        public StandardRoom() {}
+        public StandardRoom(int roomID, EBedType bedType, bool isAvailable, int capacity, double pricePerNight, EMealPlan MealPlan, ERoomType roomtype) : 
         base(roomID, bedType, isAvailable, capacity, pricePerNight, MealPlan, roomtype) 
         {
 
