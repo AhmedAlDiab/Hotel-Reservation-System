@@ -40,7 +40,7 @@ namespace Hotel_Reservation_System
             set
             {
                 
-                //Sooooooon
+                //We will Check Out This Validation
 
                 //if(value <= DateTime.Now)
                    paymentDate = value;
@@ -89,7 +89,7 @@ namespace Hotel_Reservation_System
         {
             paymentID=0;
             paymentMethod=EPaymentMethod.Cash;
-            paymentDate=DateTime.Now.AddYears(-200);
+            paymentDate=DateTime.Now;
             totalAmount=0;
         }
 
