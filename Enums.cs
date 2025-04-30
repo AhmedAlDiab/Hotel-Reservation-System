@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 
 namespace Hotel_Reservation_System
 {
-    // Enum representing the type of room
+    /// <summary>
+    /// Enum representing the type of room
+    /// </summary>
     public enum ERoomType
     {
         Standard,
         Deluxe
     }
-    // Enum representing the status of a reservation
+    /// <summary>
+    /// Enum representing the status of a reservation
+    /// </summary>
     public enum EReservationStatus
     {
         Pending,
@@ -22,7 +26,9 @@ namespace Hotel_Reservation_System
         Cancelled,
         NoShow
     }
-    // Enum representing the type of the bed
+    /// <summary>
+    /// Enum representing the type of the bed
+    /// </summary>
     public enum EBedType
     {
         Single,
@@ -35,7 +41,9 @@ namespace Hotel_Reservation_System
         BunkBed,
         MurphyBed
     }
-    // Enum representing the type of MealPlan
+    /// <summary>
+    /// Enum representing the type of MealPlan
+    /// </summary>
     public enum EMealPlan
     {
         RoomOnly,
@@ -44,5 +52,13 @@ namespace Hotel_Reservation_System
         FullBoard,
         AllInclusive,
         UltraAllInclusive
+    }
+    /// <summary>
+    /// Enum representing the payment method.
+    /// </summary>
+    public enum EPaymentMethod
+    {
+        Cash,
+        CreditCard
     }
 }
