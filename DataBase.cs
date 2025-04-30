@@ -52,111 +52,168 @@ namespace Hotel_Reservation_System
         /// <param name="isAdmin"></param>
         /// <param name="connectionString"></param>
         /// <returns></returns>
-        public static bool AddUser(int userID, string fullname, string phoneNumber, string email, string username, string password, bool isAdmin, string connectionString)
+        public static bool AddUser(string fullname, string phoneNumber, string email,
+                          string username, string password, bool isAdmin,
+                          string connectionString)
         {
+            // Check if username already exists
             if (CheckUsername(username, connectionString))
             {
-                Console.Write("Username already exists. Please choose a different username, ");
+                Console.WriteLine("Username already exists. Please choose a different username.");
                 return false;
             }
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+
+            try
             {
-                string query = @"INSERT INTO Users 
-                             (userID, fullname, phoneNumber, email, username, password, isAdmin)
-                             VALUES 
-                             (@userID, @fullname, @phoneNumber, @email, @username, @password, @isAdmin)";
-
-                using (MySqlCommand command = new MySqlCommand(query, connection))
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    command.Parameters.AddWithValue("@userID", userID);
-                    command.Parameters.AddWithValue("@fullname", fullname);
-                    command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
-                    command.Parameters.AddWithValue("@email", email);
-                    command.Parameters.AddWithValue("@username", username);
-                    command.Parameters.AddWithValue("@password", password);
-                    command.Parameters.AddWithValue("@isAdmin", isAdmin ? 1 : 0);
+                    // Modified query to exclude userID from columns and values
+                    string query = @"INSERT INTO Users 
+                         (fullname, phoneNumber, email, username, password, isAdmin)
+                         VALUES 
+                         (@fullname, @phoneNumber, @email, @username, @password, @isAdmin)";
 
-                    connection.Open();
-                    int rowsAffected = command.ExecuteNonQuery();
-                    return rowsAffected > 0;
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        // Removed the userID parameter
+                        command.Parameters.AddWithValue("@fullname", fullname);
+                        command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
+                        command.Parameters.AddWithValue("@email", email);
+                        command.Parameters.AddWithValue("@username", username);
+                        command.Parameters.AddWithValue("@password", password);
+                        command.Parameters.AddWithValue("@isAdmin", isAdmin ? 1 : 0);
+
+                        connection.Open();
+                        int rowsAffected = command.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error adding user: {ex.Message}");
+                return false;
             }
         }
 
-        public static bool AddReservation(int reservationID, int customerID, int roomID,
-        DateTime checkInDate, DateTime checkOutDate, double totalCost,
-        EReservationStatus status, string connectionString)
+        public static bool AddReservation(int customerID, int roomID,
+                                DateTime checkInDate, DateTime checkOutDate,
+                                double totalCost, EReservationStatus status,
+                                string connectionString)
         {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            try
             {
-                string query = @"INSERT INTO Reservations 
-                (reservationID, customerID, roomID, checkInDate, checkOutDate, totalCost, reservationStatus)
-                VALUES 
-                (@reservationID, @customerID, @roomID, @checkInDate, @checkOutDate, @totalCost, @reservationStatus)";
-
-                using (MySqlCommand command = new MySqlCommand(query, connection))
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    command.Parameters.AddWithValue("@reservationID", reservationID);
-                    command.Parameters.AddWithValue("@customerID", customerID);
-                    command.Parameters.AddWithValue("@roomID", roomID);
-                    command.Parameters.AddWithValue("@checkInDate", checkInDate);
-                    command.Parameters.AddWithValue("@checkOutDate", checkOutDate);
-                    command.Parameters.AddWithValue("@totalCost", totalCost);
-                    command.Parameters.AddWithValue("@reservationStatus", (int)status); // Cast enum to int
+                    // Removed reservationID from columns and values since it's auto-incremented
+                    string query = @"INSERT INTO Reservations 
+                          (customerID, roomID, checkInDate, checkOutDate, totalCost, reservationStatus)
+                          VALUES 
+                          (@customerID, @roomID, @checkInDate, @checkOutDate, @totalCost, @reservationStatus)";
 
-                    connection.Open();
-                    int rowsAffected = command.ExecuteNonQuery();
-                    return rowsAffected > 0;
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        // Removed reservationID parameter
+                        command.Parameters.AddWithValue("@customerID", customerID);
+                        command.Parameters.AddWithValue("@roomID", roomID);
+                        command.Parameters.AddWithValue("@checkInDate", checkInDate);
+                        command.Parameters.AddWithValue("@checkOutDate", checkOutDate);
+                        command.Parameters.AddWithValue("@totalCost", totalCost);
+                        command.Parameters.AddWithValue("@reservationStatus", (int)status);
+
+                        connection.Open();
+                        int rowsAffected = command.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
                 }
             }
-        }
-        public static bool AddRoom(int roomID, ERoomType roomType, double pricePerNight, bool isAvailable,
-        int capacity, EBedType bedType, EMealPlan mealPlans, string connectionString)
-        {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            catch (MySqlException ex)
             {
-                string query = @"INSERT INTO Rooms 
-                (roomID, roomType, pricePerNight, isAvailable, capacity, bedType, mealPlans)
-                VALUES 
-                (@roomID, @roomType, @pricePerNight, @isAvailable, @capacity, @bedType, @mealPlans)";
-
-                using (MySqlCommand command = new MySqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@roomID", roomID);
-                    command.Parameters.AddWithValue("@roomType", (int)roomType);
-                    command.Parameters.AddWithValue("@pricePerNight", pricePerNight);
-                    command.Parameters.AddWithValue("@isAvailable", isAvailable ? 1 : 0); // bool to int
-                    command.Parameters.AddWithValue("@capacity", capacity);
-                    command.Parameters.AddWithValue("@bedType", (int)bedType);
-                    command.Parameters.AddWithValue("@mealPlans", (int)mealPlans);
-
-                    connection.Open();
-                    int rowsAffected = command.ExecuteNonQuery();
-                    return rowsAffected > 0;
-                }
+                Console.WriteLine($"Database error adding reservation: {ex.Message}");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error adding reservation: {ex.Message}");
+                return false;
             }
         }
-        public static bool AddPayment(int paymentID, DateTime paymentDate, double totalAmount,
-        EPaymentMethod method, string connectionString)
+        public static bool AddRoom(ERoomType roomType, double pricePerNight, bool isAvailable,
+                         int capacity, EBedType bedType, EMealPlan mealPlans,
+                         string connectionString)
         {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            try
             {
-                string query = @"INSERT INTO Payments 
-                (paymentID, paymentDate, totalAmount, paymentMethod)
-                VALUES 
-                (@paymentID, @paymentDate, @totalAmount, @paymentMethod)";
-
-                using (MySqlCommand command = new MySqlCommand(query, connection))
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    command.Parameters.AddWithValue("@paymentID", paymentID);
-                    command.Parameters.AddWithValue("@paymentDate", paymentDate);
-                    command.Parameters.AddWithValue("@totalAmount", totalAmount);
-                    command.Parameters.AddWithValue("@paymentMethod", (int)method); // Enum as int
+                    // Removed roomID from columns and values since it's auto-incremented
+                    string query = @"INSERT INTO Rooms 
+                          (roomType, pricePerNight, isAvailable, capacity, bedType, mealPlans)
+                          VALUES 
+                          (@roomType, @pricePerNight, @isAvailable, @capacity, @bedType, @mealPlans)";
 
-                    connection.Open();
-                    int rowsAffected = command.ExecuteNonQuery();
-                    return rowsAffected > 0;
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        // Removed roomID parameter
+                        command.Parameters.AddWithValue("@roomType", (int)roomType);
+                        command.Parameters.AddWithValue("@pricePerNight", pricePerNight);
+                        command.Parameters.AddWithValue("@isAvailable", isAvailable ? 1 : 0);
+                        command.Parameters.AddWithValue("@capacity", capacity);
+                        command.Parameters.AddWithValue("@bedType", (int)bedType);
+                        command.Parameters.AddWithValue("@mealPlans", (int)mealPlans);
+
+                        connection.Open();
+                        int rowsAffected = command.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
                 }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Database error adding room: {ex.Message}");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error adding room: {ex.Message}");
+                return false;
+            }
+        }
+        public static bool AddPayment(DateTime paymentDate, double totalAmount,
+                            EPaymentMethod method, string connectionString)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    // Removed paymentID from columns and values
+                    string query = @"INSERT INTO Payments 
+                          (paymentDate, totalAmount, paymentMethod)
+                          VALUES 
+                          (@paymentDate, @totalAmount, @paymentMethod)";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        // Removed paymentID parameter
+                        command.Parameters.AddWithValue("@paymentDate", paymentDate);
+                        command.Parameters.AddWithValue("@totalAmount", totalAmount);
+                        command.Parameters.AddWithValue("@paymentMethod", (int)method);
+
+                        connection.Open();
+                        int rowsAffected = command.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Database error adding payment: {ex.Message}");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error adding payment: {ex.Message}");
+                return false;
             }
         }
         public static List<User> GetAllUsers(string connectionString)
