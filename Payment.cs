@@ -12,6 +12,7 @@ namespace Hotel_Reservation_System
         private int paymentID;
         private DateTime paymentDate;
         private double totalAmount;
+        private EPaymentMethod paymentMethod;
 
         //Set & Get Property of "paymentID"
         public int PaymentID
@@ -70,23 +71,38 @@ namespace Hotel_Reservation_System
             }
         }
 
+        //Set & Get Property for paymentMethod
+        public EPaymentMethod PaymentMethod
+        {
+            set
+            {
+                paymentMethod = value;
+            }
+            get
+            {
+                return paymentMethod;
+            }
+        }
+
         //Default Constructor
         public Payment()
         {
             paymentID=0;
+            paymentMethod=EPaymentMethod.Cash;
             paymentDate=DateTime.Now.AddYears(-200);
             totalAmount=0;
         }
 
         //Parameterized Constructor To Intialize All Fields 
-        public Payment(int paymentID, DateTime paymentDate, double totalAmount)
+        public Payment(int paymentID,EPaymentMethod paymentMethod, DateTime paymentDate, double totalAmount)
         {
             PaymentID = paymentID;
+            PaymentMethod = paymentMethod;
             PaymentDate = paymentDate;
             TotalAmount = totalAmount;
         }
 
         //Process Payment Abstract Method That Change Reservation Status
-        public abstract void ProcessPayment(EReservationStatus ReservationStatus);
+        public abstract void ProcessPayment(ref EReservationStatus ReservationStatus);
     }
 }

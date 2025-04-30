@@ -15,12 +15,12 @@ namespace Hotel_Reservation_System
         }
 
         //Parameterized Constructor
-        public CashPayment(int paymentID, DateTime paymentDate, double totalAmount) : base(paymentID, paymentDate, totalAmount)
+        public CashPayment(int paymentID,EPaymentMethod paymentMethod, DateTime paymentDate, double totalAmount) : base(paymentID,paymentMethod, paymentDate, totalAmount)
         {
         }
 
         //Process Payment Method To Change Reservation Status From Pending to Confirmed After Payment
-        public override void ProcessPayment(EReservationStatus ReservationStatus)
+        public override void ProcessPayment(ref EReservationStatus ReservationStatus)
         {
             if (ReservationStatus == EReservationStatus.Pending)
             {
