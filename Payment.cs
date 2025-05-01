@@ -122,6 +122,7 @@ namespace Hotel_Reservation_System
             PaymentMethod = paymentMethod;
             PaymentDate = paymentDate;
             TotalAmount = totalAmount;
+
         }
 
         //Process Payment Abstract Method That Change Reservation Status
