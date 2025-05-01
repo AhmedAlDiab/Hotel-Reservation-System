@@ -10,6 +10,7 @@ namespace Hotel_Reservation_System
     {
         //fields
         private int paymentID;
+        private int reservationID;
         private DateTime paymentDate;
         private double totalAmount;
         private EPaymentMethod paymentMethod;
@@ -31,6 +32,25 @@ namespace Hotel_Reservation_System
             get
             {
                 return paymentID;
+            }
+        }
+        //Set & Get Property of "reservationID"
+        public int ReservationID
+        {
+            set
+            {
+                if (value > 0)
+                    reservationID = value;
+                else
+                {
+                    reservationID = 0;
+                    //throw new ArgumentException("Reservation ID Must be Greater than Zero");
+
+                }
+            }
+            get
+            {
+                return reservationID;
             }
         }
 
@@ -88,15 +108,17 @@ namespace Hotel_Reservation_System
         public Payment()
         {
             paymentID=0;
+            reservationID=0;
             paymentMethod=EPaymentMethod.Cash;
             paymentDate=DateTime.Now;
             totalAmount=0;
         }
 
         //Parameterized Constructor To Intialize All Fields 
-        public Payment(int paymentID,EPaymentMethod paymentMethod, DateTime paymentDate, double totalAmount)
+        public Payment(int paymentID,int reservationID,EPaymentMethod paymentMethod, DateTime paymentDate, double totalAmount)
         {
             PaymentID = paymentID;
+            ReservationID = reservationID;
             PaymentMethod = paymentMethod;
             PaymentDate = paymentDate;
             TotalAmount = totalAmount;
