@@ -39,7 +39,7 @@ namespace Hotel_Reservation_System
         }
 
         //Parameterized Constructor 
-        public CreditCardPayment(int paymentID,EPaymentMethod paymentMethod, DateTime paymentDate, double totalAmount, double tax) : base(paymentID,paymentMethod, paymentDate, totalAmount)
+        public CreditCardPayment(int paymentID,int reservationID, EPaymentMethod paymentMethod, DateTime paymentDate, double totalAmount, double tax) : base(paymentID,reservationID, paymentMethod, paymentDate, totalAmount)
         {
             Tax = tax;
         }

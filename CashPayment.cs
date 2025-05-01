@@ -15,7 +15,7 @@ namespace Hotel_Reservation_System
         }
 
         //Parameterized Constructor
-        public CashPayment(int paymentID,EPaymentMethod paymentMethod, DateTime paymentDate, double totalAmount) : base(paymentID,paymentMethod, paymentDate, totalAmount)
+        public CashPayment(int paymentID,int reservationID,EPaymentMethod paymentMethod, DateTime paymentDate, double totalAmount) : base(paymentID,reservationID,paymentMethod, paymentDate, totalAmount)
         {
         }
 
