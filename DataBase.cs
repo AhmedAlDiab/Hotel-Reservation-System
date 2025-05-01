@@ -225,23 +225,22 @@ namespace Hotel_Reservation_System
         /// <param name="method"></param>
         /// <param name="connectionString"></param>
         /// <returns></returns>
-        public static bool AddPayment(DateTime paymentDate, double totalAmount,
-                            EPaymentMethod method, string connectionString)
+        public static bool AddPayment(DateTime paymentDate, int reservationID, double totalAmount,
+                    EPaymentMethod method, string connectionString)
         {
             try
             {
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    // Removed paymentID from columns and values
                     string query = @"INSERT INTO Payments 
-                          (paymentDate, totalAmount, paymentMethod)
-                          VALUES 
-                          (@paymentDate, @totalAmount, @paymentMethod)";
+                  (paymentDate, reservationID, totalAmount, paymentMethod)
+                  VALUES 
+                  (@paymentDate, @reservationID, @totalAmount, @paymentMethod)";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
-                        // Removed paymentID parameter
                         command.Parameters.AddWithValue("@paymentDate", paymentDate);
+                        command.Parameters.AddWithValue("@reservationID", reservationID);
                         command.Parameters.AddWithValue("@totalAmount", totalAmount);
                         command.Parameters.AddWithValue("@paymentMethod", (int)method);
 
@@ -541,6 +540,7 @@ namespace Hotel_Reservation_System
                 SELECT 
                     paymentID,
                     paymentDate,
+                    reservationID,
                     totalAmount,
                     PaymentMethod,
                     tax
@@ -557,6 +557,7 @@ namespace Hotel_Reservation_System
                                 {
                                     int paymentId = reader.GetInt32("paymentID");
                                     DateTime paymentDate = reader.GetDateTime("paymentDate");
+                                    int reservationId = reader.GetInt32("reservationID");
                                     double totalAmount = reader.GetDouble("totalAmount");
                                     EPaymentMethod paymentMethod = (EPaymentMethod)reader.GetInt32("PaymentMethod");
 
@@ -567,19 +568,21 @@ namespace Hotel_Reservation_System
                                         case EPaymentMethod.Cash:
                                             payment = new CashPayment(
                                                 paymentId,
+                                                reservationId,
                                                 paymentMethod,
                                                 paymentDate,
-                                                totalAmount);
+                                                totalAmount);  // Added reservationId to constructor
                                             break;
 
                                         case EPaymentMethod.CreditCard:
                                             double tax = reader.GetDouble("tax");
                                             payment = new CreditCardPayment(
                                                 paymentId,
+                                                reservationId,
                                                 paymentMethod,
                                                 paymentDate,
                                                 totalAmount,
-                                                tax);
+                                                tax);  // Added reservationId to constructor
                                             break;
 
                                         default:
