@@ -10,7 +10,18 @@ namespace Hotel_Reservation_System
 {
     public static class DataBase
     {
+        /// <summary>
+        ///  Connection string to connect to the database Add it when it is needed
+        /// </summary>
         public static string connectionString;
+        /// <summary>
+        /// Connect to the database used once when the program starts
+        /// </summary>
+        /// <param name="Hostname"></param>
+        /// <param name="Databasename"></param>
+        /// <param name="Username"></param>
+        /// <param name="Password"></param>
+        /// <param name="Port"></param>
         public static void ConnectToDataBase(string Hostname, string Databasename, string Username, string Password, string Port)
         {
             connectionString = $"Server={Hostname};Database={Databasename};User ID={Username};Password={Password};Port={Port};";
@@ -27,6 +38,12 @@ namespace Hotel_Reservation_System
                 }
             }
         }
+        /// <summary>
+        /// is called when we add a new user
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="connectionString"></param>
+        /// <returns></returns>
         static bool CheckUsername(string username, string connectionString)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -95,7 +112,17 @@ namespace Hotel_Reservation_System
                 return false;
             }
         }
-
+        /// <summary>
+        /// adds a new reservation to the database
+        /// </summary>
+        /// <param name="customerID"></param>
+        /// <param name="roomID"></param>
+        /// <param name="checkInDate"></param>
+        /// <param name="checkOutDate"></param>
+        /// <param name="totalCost"></param>
+        /// <param name="status"></param>
+        /// <param name="connectionString"></param>
+        /// <returns></returns>
         public static bool AddReservation(int customerID, int roomID,
                                 DateTime checkInDate, DateTime checkOutDate,
                                 double totalCost, EReservationStatus status,
@@ -138,6 +165,17 @@ namespace Hotel_Reservation_System
                 return false;
             }
         }
+        /// <summary>
+        /// add a new room to the database
+        /// </summary>
+        /// <param name="roomType"></param>
+        /// <param name="pricePerNight"></param>
+        /// <param name="isAvailable"></param>
+        /// <param name="capacity"></param>
+        /// <param name="bedType"></param>
+        /// <param name="mealPlans"></param>
+        /// <param name="connectionString"></param>
+        /// <returns></returns>
         public static bool AddRoom(ERoomType roomType, double pricePerNight, bool isAvailable,
                          int capacity, EBedType bedType, EMealPlan mealPlans,
                          string connectionString)
@@ -179,6 +217,14 @@ namespace Hotel_Reservation_System
                 return false;
             }
         }
+        /// <summary>
+        /// add a new payment to the database
+        /// </summary>
+        /// <param name="paymentDate"></param>
+        /// <param name="totalAmount"></param>
+        /// <param name="method"></param>
+        /// <param name="connectionString"></param>
+        /// <returns></returns>
         public static bool AddPayment(DateTime paymentDate, double totalAmount,
                             EPaymentMethod method, string connectionString)
         {
@@ -216,6 +262,11 @@ namespace Hotel_Reservation_System
                 return false;
             }
         }
+        /// <summary>
+        /// get all users from the database and return them as a list
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <returns></returns>
         public static List<User> GetAllUsers(string connectionString)
         {
             List<User> users = new List<User>();
@@ -251,6 +302,12 @@ namespace Hotel_Reservation_System
 
             return users;
         }
+        /// <summary>
+        /// get all rooms from the database and return them as a list
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
         public static List<Room> GetAllRooms(string connectionString)
         {
             List<Room> rooms = new List<Room>();
@@ -279,11 +336,11 @@ namespace Hotel_Reservation_System
                             switch (roomType)
                             {
                                 case ERoomType.Standard:
-                                    room = new StandardRoom(roomID,bedType, isAvailable ,capacity, pricePerNight, mealPlan,roomType);
+                                    room = new StandardRoom(roomID, bedType, isAvailable, capacity, pricePerNight, mealPlan, roomType);
                                     break;
                                 case ERoomType.Deluxe:
-                                    room = new DeluxeRoom(roomID, bedType, isAvailable, capacity, pricePerNight, mealPlan, roomType,discountForDeluxe);
-                                    break;                                
+                                    room = new DeluxeRoom(roomID, bedType, isAvailable, capacity, pricePerNight, mealPlan, roomType, discountForDeluxe);
+                                    break;
                                 default:
                                     throw new InvalidOperationException("Unknown room type.");
                             }
@@ -296,6 +353,11 @@ namespace Hotel_Reservation_System
 
             return rooms;
         }
+        /// <summary>
+        /// get all reservations from the database and return them as a list
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <returns></returns>
         public static List<Reservation> GetAllReservations(string connectionString)
         {
             var reservations = new List<Reservation>();
@@ -462,6 +524,11 @@ namespace Hotel_Reservation_System
 
             return reservations;
         }
+        /// <summary>
+        /// get all payments from the database and return them as a list
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <returns></returns>
         public static List<Payment> GetAllPayments(string connectionString)
         {
             var payments = new List<Payment>();
