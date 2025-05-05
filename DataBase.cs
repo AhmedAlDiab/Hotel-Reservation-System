@@ -571,7 +571,7 @@ namespace Hotel_Reservation_System
                                                 reservationId,
                                                 paymentMethod,
                                                 paymentDate,
-                                                totalAmount);  // Added reservationId to constructor
+                                                totalAmount);
                                             break;
 
                                         case EPaymentMethod.CreditCard:
@@ -582,7 +582,7 @@ namespace Hotel_Reservation_System
                                                 paymentMethod,
                                                 paymentDate,
                                                 totalAmount,
-                                                tax);  // Added reservationId to constructor
+                                                tax);
                                             break;
 
                                         default:
