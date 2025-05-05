@@ -16,6 +16,7 @@ namespace Hotel_Reservation_System
         }
         public override double Calculatetotalcost(int nonight)
         {
+            
             return nonight * PricePerNight ;
         }
 

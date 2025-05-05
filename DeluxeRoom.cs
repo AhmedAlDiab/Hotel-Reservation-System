@@ -17,7 +17,7 @@ namespace Hotel_Reservation_System
                 if (value < 0)
                     throw new ArgumentException("invalid");
                 else
-                    discount = value;
+                    discount = value/100;
             }
         }
         public DeluxeRoom() 
