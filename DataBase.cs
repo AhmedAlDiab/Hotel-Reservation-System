@@ -608,5 +608,68 @@ namespace Hotel_Reservation_System
 
             return payments;
         }
+        public static bool DeleteUserByID(int userId, string connectionString)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    string query = @"DELETE FROM Users WHERE userID = @userId";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@userId", userId);
+
+                        connection.Open();
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        // Return true if exactly one row was deleted
+                        // false means you are cooked (didn't delete anything or deleted more than one row affected)
+                        return rowsAffected == 1;
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Database error deleting user: {ex.Message}");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting user: {ex.Message}");
+                return false;
+            }
+        }
+        public static bool DeleteRoomByID(int roomId, string connectionString)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    string query = "DELETE FROM Rooms WHERE roomID = @roomId";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@roomId", roomId);
+
+                        connection.Open();
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        // Returns true if any rows were affected (room existed and was deleted)
+                        return rowsAffected > 0;
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"Database error deleting room: {ex.Message}");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting room: {ex.Message}");
+                return false;
+            }
+        }
     }
 }
