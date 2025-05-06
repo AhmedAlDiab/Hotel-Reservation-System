@@ -7,18 +7,29 @@ using System.Threading.Tasks;
 namespace Hotel_Reservation_System
 {
     public class Staff : User
-    {
-        public void AddStanderdRoom()
+    {              
+        /// <summary>
+        /// A method to add a new room and then save it to the database
+        /// </summary>
+        /// <param name="roomType"></param>
+        /// <param name="pricePerNight"></param>
+        /// <param name="isAvailable"></param>
+        /// <param name="capacity"></param>
+        /// <param name="bedType"></param>
+        /// <param name="mealPlan"></param>
+        public void AddRoom(ERoomType roomType,double pricePerNight,bool isAvailable,int capacity,EBedType bedType,EMealPlan mealPlan)
         {                
-            // Implementation for adding a standard room
-        }
-        public void AddDeluxeRoom()
+            DataBase.AddRoom(roomType,pricePerNight,isAvailable,capacity,bedType,mealPlan,DataBase.connectionString);
+            Data.GetData();
+        }        
+        /// <summary>
+        /// A method to delete a room from the database
+        /// </summary>
+        /// <param name="roomID"></param>
+        public void RemoveRoom(int roomID)
         {
-            // Implementation for adding a deluxe room
-        }
-        public void RemoveRoom()
-        {
-            // Implementation for removing a room
+            DataBase.DeleteRoomByID(roomID,DataBase.connectionString);
+            Data.GetData();
         }
         /// <summary>
         /// Default constructor

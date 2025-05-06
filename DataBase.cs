@@ -173,11 +173,11 @@ namespace Hotel_Reservation_System
         /// <param name="isAvailable"></param>
         /// <param name="capacity"></param>
         /// <param name="bedType"></param>
-        /// <param name="mealPlans"></param>
+        /// <param name="mealPlan"></param>
         /// <param name="connectionString"></param>
         /// <returns></returns>
         public static bool AddRoom(ERoomType roomType, double pricePerNight, bool isAvailable,
-                         int capacity, EBedType bedType, EMealPlan mealPlans,
+                         int capacity, EBedType bedType, EMealPlan mealPlan,
                          string connectionString)
         {
             try
@@ -198,7 +198,7 @@ namespace Hotel_Reservation_System
                         command.Parameters.AddWithValue("@isAvailable", isAvailable ? 1 : 0);
                         command.Parameters.AddWithValue("@capacity", capacity);
                         command.Parameters.AddWithValue("@bedType", (int)bedType);
-                        command.Parameters.AddWithValue("@mealPlans", (int)mealPlans);
+                        command.Parameters.AddWithValue("@mealPlans", (int)mealPlan);
 
                         connection.Open();
                         int rowsAffected = command.ExecuteNonQuery();
