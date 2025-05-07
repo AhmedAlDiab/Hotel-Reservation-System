@@ -40,6 +40,28 @@ namespace Hotel_Reservation_System
             }
         }
         /// <summary>
+        /// Used to check if the user is present in the database
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <param name="connectionString"></param>
+        /// <returns></returns>
+        static bool LogIn(string username, string password, string connectionString)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                string query = "SELECT 1 FROM Users WHERE username = @username AND password = @password";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@password", password);
+
+                connection.Open();
+                var result = command.ExecuteScalar();
+                return result != null;
+            }
+        }
+
+        /// <summary>
         /// is called when we add a new user
         /// </summary>
         /// <param name="username"></param>
