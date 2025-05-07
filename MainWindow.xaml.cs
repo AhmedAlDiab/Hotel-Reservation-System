@@ -32,7 +32,13 @@ namespace Hotel_Reservation_System
             string password = passwordtxt.Password;
             string database = DBNametxt.Text;
             string port = porttxt.Text;
-            DataBase.ConnectToDataBase(host, database, username, password, port);
+            if (DataBase.ConnectToDataBase(host, database, username, password, port) == true)
+            { 
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.Show();
+                this.Close();
+            }
+           
         }
     }
 }
