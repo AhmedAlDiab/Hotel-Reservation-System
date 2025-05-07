@@ -68,7 +68,7 @@ namespace Hotel_Reservation_System
         /// <param name="username"></param>
         /// <param name="connectionString"></param>
         /// <returns></returns>
-        static bool CheckUsername(string username, string connectionString)
+        public static bool CheckUsername(string username, string connectionString)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {

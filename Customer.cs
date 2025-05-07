@@ -57,9 +57,8 @@ namespace Hotel_Reservation_System
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <param name="preferredRoomType"></param>
-        public Customer(int userID, string fullname, string phoneNumber, string email, string username, string password,/*list<Reservation> reservationHistory,*/ERoomType preferredRoomType) : base(userID, fullname, phoneNumber, email, username, password)
-        {
-            // ReservationHistory = reservationHistory // maybe we do not need to add ReservationHistory to the contractor;
+        public Customer(int userID, string fullname, string phoneNumber, string email, string username, string password,ERoomType preferredRoomType) : base(userID, fullname, phoneNumber, email, username, password)
+        {            
             PreferredRoomType = preferredRoomType;
             IsAdmin = false; // Customers are not admins by default.
         }
