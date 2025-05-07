@@ -57,5 +57,13 @@ namespace Hotel_Reservation_System
             }
 
         }
+
+        private void Lregister_Click(object sender, RoutedEventArgs e)
+        {
+            var registerWindow = new RegisterWindow();
+            this.Hide();
+            registerWindow.ShowDialog();
+            this.Close();
+        }
     }
 }

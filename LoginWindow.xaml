@@ -54,7 +54,9 @@
                 </Button>
                 <StackPanel Orientation="Horizontal" Margin="0 40 0 10"  HorizontalAlignment="Center" >
                     <Label Content="Don't have an account?" FontSize="20" ></Label>
-                    <Button Content="Register" FontSize="20" Background="White" BorderBrush="White" Foreground="Brown" Cursor="Hand">
+                    <Button Content="Register" FontSize="20" Background="White" BorderBrush="White" 
+                            x:Name="Lregister" Click="Lregister_Click"
+                            Foreground="Brown" Cursor="Hand">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
 
