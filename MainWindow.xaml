@@ -9,7 +9,7 @@
     <Grid>
         <!-- background -->
         <Grid.Background>
-            <ImageBrush ImageSource="C:\Users\LOQ\OneDrive\Desktop\Hotel\Screenshot 2025-05-06 224636.png"/>
+            <ImageBrush ImageSource="/Image/connectTOdata.png"/>
         </Grid.Background>
         
         <TextBlock HorizontalAlignment="Left" Margin="307,122,0,0" TextWrapping="Wrap" Text="Host Name:" VerticalAlignment="Top" FontSize="12" FontWeight="Heavy" Foreground="#4A4A4A"/>
