@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="Hotel_Reservation_System.Room_Manegment"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Hotel_Reservation_System"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+
+            <Grid.Background>
+            <ImageBrush ImageSource="C:\Users\LOQ\OneDrive\Desktop\Hotel\Screenshot 2025-05-06 231106.png"/>
+        </Grid.Background>
+        <TextBlock Margin="317,70,254,0" TextWrapping="Wrap" Text="    Room Manegment " VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Foreground="#D4AF37" FontFamily="Elephant"/>
+        <DataGrid x:Name="roomGrid" AutoGenerateColumns="False" Height="250" Margin="199,101,136,99">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header=" Room ID" Binding="{Binding RoomID}" Width="60" />
+                <DataGridTextColumn Header=" Room Type" Binding="{Binding Roomtype}" Width="80" />
+                <DataGridTextColumn Header="Bed Type" Binding="{Binding Bedtype}" Width="60" />
+                <DataGridTextColumn Header=" Price" Binding="{Binding PricePerNight}" Width="50" />
+                <DataGridTextColumn Header="Availability" Binding="{Binding ISAvailable}" Width="70" />
+                <DataGridTextColumn Header="  Capacity" Binding="{Binding Capacity}" Width="80" />
+                <DataGridTextColumn Header=" Discount" Binding="{Binding Discount}" Width="80" />
+
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Add Room" HorizontalAlignment="Left" Margin="92,167,0,0" VerticalAlignment="Top" FontSize="15" FontWeight="Heavy" Foreground="Gold" Click="Button_Click" />
+
+
+    </Grid>
+</UserControl>

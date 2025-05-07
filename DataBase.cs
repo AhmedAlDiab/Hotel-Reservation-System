@@ -31,6 +31,7 @@ namespace Hotel_Reservation_System
                 {
                     connection.Open();
                     Console.WriteLine("Connection successful!");
+                    
                 }
                 catch (MySqlException ex)
                 {

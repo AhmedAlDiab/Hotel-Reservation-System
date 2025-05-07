@@ -10,7 +10,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="C:\Users\LOQ\OneDrive\Desktop\Hotel\Screenshot 2025-05-06 225926.png"/>
         </Grid.Background>
-        <Button Content="Staff Manegment" HorizontalAlignment="Center" Margin="0,198,0,0" VerticalAlignment="Top"  Foreground="Gold" FontWeight="Bold" BorderThickness="2.5" FontSize="19" FontFamily="Elephant" Background="White" BorderBrush="#D4AF37" Height="38" Width="196"/>
+        <Button Content="Staff Manegment" HorizontalAlignment="Center" Margin="0,198,0,0" VerticalAlignment="Top"  Foreground="Gold" FontWeight="Bold" BorderThickness="2.5" FontSize="19" FontFamily="Elephant" Background="White" BorderBrush="#D4AF37" Height="38" Width="196" Click="Button_Click"/>
         <Button Content="Room Manegment" HorizontalAlignment="Center" Margin="0,271,0,0" VerticalAlignment="Top"  Foreground="Gold" FontWeight="Bold" BorderThickness="2.5" FontSize="19" FontFamily="Elephant" Background="White" BorderBrush="#D4AF37" Height="38" Width="196"/>
         <TextBlock Margin="340,118,340,0" TextWrapping="Wrap" Text=" Staff Page" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Foreground="#D4AF37" FontFamily="Elephant"/>
 

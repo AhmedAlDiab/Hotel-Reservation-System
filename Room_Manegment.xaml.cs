@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,19 +17,26 @@ using System.Windows.Shapes;
 namespace Hotel_Reservation_System
 {
     /// <summary>
-    /// Interaction logic for STAFF.xaml
+    /// Interaction logic for Room_Manegment.xaml
     /// </summary>
-    public partial class STAFF : UserControl
+    public partial class Room_Manegment : UserControl
     {
-        
-        public STAFF()
+        ObservableCollection<Room> rooms = new ObservableCollection<Room> {
+            new StandardRoom(), new DeluxeRoom()
+        };
+        public Room_Manegment()
         {
             InitializeComponent();
+            roomGrid.ItemsSource = rooms;
+        }
+
+        private void roomGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
         }
     }
 }

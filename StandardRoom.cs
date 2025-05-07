@@ -22,7 +22,6 @@ namespace Hotel_Reservation_System
 
         public override void DisplayRoomServices()
         {
-            // not complete yet
             base.DisplayRoomInfo();
         }
     }

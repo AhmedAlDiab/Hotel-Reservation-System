@@ -11,6 +11,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="C:\Users\LOQ\OneDrive\Desktop\Hotel\Screenshot 2025-05-06 224636.png"/>
         </Grid.Background>
+        
         <TextBlock HorizontalAlignment="Left" Margin="307,122,0,0" TextWrapping="Wrap" Text="Host Name:" VerticalAlignment="Top" FontSize="12" FontWeight="Heavy" Foreground="#4A4A4A"/>
         <TextBox x:Name="Usernametxt" HorizontalAlignment="Center" Margin="0,142,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="188"   />
 
@@ -29,6 +30,7 @@
         <Button Content="Connect" HorizontalAlignment="Left" Margin="342,319,0,0" VerticalAlignment="Top" Foreground="Gold" FontWeight="Bold" BorderThickness="2.5" FontSize="19" FontFamily="Elephant" Background="White" BorderBrush="#D4AF37" Width="100" Click="Button_Click"/>
 
 
+      
 
 
     </Grid>

@@ -39,7 +39,7 @@ namespace Hotel_Reservation_System
         {            
             // not complete yet
             base.DisplayRoomInfo();
-            Console.WriteLine("Internet and private pool");
+           
         }
     }
 }

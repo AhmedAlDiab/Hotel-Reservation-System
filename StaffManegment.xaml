@@ -19,7 +19,7 @@ AlternatingRowBackground="#FAF5EF"
    IsReadOnly="False"
    CanUserDeleteRows="True"
    SelectionMode="Single"
-   ItemsSource="{Binding GetStaff}" Margin="254,117,237,117" SelectionChanged="staffmaneg_SelectionChanged">
+   ItemsSource="{Binding GetStaff}" Margin="254,117,237,117">
             <DataGrid.Resources>
                 <Style TargetType="DataGridRow">
                     <Setter Property="Background" Value="LightBlue"/>

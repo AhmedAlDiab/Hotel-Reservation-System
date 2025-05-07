@@ -96,11 +96,7 @@ namespace Hotel_Reservation_System
         }
         public virtual void DisplayRoomInfo()
         {
-            Console.WriteLine($"Room ID : {RoomID}");
-            Console.WriteLine($" Avability of Room : {isAvailable}");
-            Console.WriteLine($"Room Type : {Roomtype}");
-            Console.WriteLine($"Bed type : {Bedtype}");
-            Console.WriteLine($"Capacity : {Capacity}");
+            
         }
     }
 }
