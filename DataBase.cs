@@ -22,7 +22,7 @@ namespace Hotel_Reservation_System
         /// <param name="Username"></param>
         /// <param name="Password"></param>
         /// <param name="Port"></param>
-        public static void ConnectToDataBase(string Hostname, string Databasename, string Username, string Password, string Port)
+        public static bool ConnectToDataBase(string Hostname, string Databasename, string Username, string Password, string Port)
         {
             connectionString = $"Server={Hostname};Database={Databasename};User ID={Username};Password={Password};Port={Port};";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -30,12 +30,11 @@ namespace Hotel_Reservation_System
                 try
                 {
                     connection.Open();
-                    Console.WriteLine("Connection successful!");
-                    
+                    return true;
                 }
                 catch (MySqlException ex)
                 {
-                    Console.WriteLine($"Error: {ex.Message}");
+                    return false;
                 }
             }
         }
