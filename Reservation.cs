@@ -55,9 +55,9 @@ namespace Hotel_Reservation_System
                 room.Bedtype = value.Bedtype;
                 room.ISAvailable = value.ISAvailable;
                 room.Capacity = value.Capacity;
-                /*room.Roomtype = value.Roomtype;
+                room.Roomtype = value.Roomtype;
                 room.PricePerNight = value.PricePerNight;
-                room.eMealPlan = value.eMealPlan;*/
+                room.eMealPlan = value.eMealPlan;
             }
         }
 
