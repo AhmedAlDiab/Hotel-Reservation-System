@@ -19,6 +19,7 @@ namespace Hotel_Reservation_System
         private string username;
         private string password;
         private bool isAdmin;
+
         /// <summary>
         /// Property for UserID with basic validation (must be positive)
         /// </summary>
@@ -37,6 +38,7 @@ namespace Hotel_Reservation_System
                 }                
             }
         }
+
         /// <summary>
         /// Property for Fullname with validation (cannot be null or empty)
         /// </summary>
@@ -55,6 +57,7 @@ namespace Hotel_Reservation_System
                 }
             }
         }
+
         /// <summary>
         /// Property for PhoneNumber with validation (cannot be null or empty)
         /// </summary>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using System.Windows;
 
 namespace Hotel_Reservation_System
 {
@@ -22,7 +23,7 @@ namespace Hotel_Reservation_System
         /// <param name="Username"></param>
         /// <param name="Password"></param>
         /// <param name="Port"></param>
-        public static void ConnectToDataBase(string Hostname, string Databasename, string Username, string Password, string Port)
+        public static bool ConnectToDataBase(string Hostname, string Databasename, string Username, string Password, string Port)
         {
             connectionString = $"Server={Hostname};Database={Databasename};User ID={Username};Password={Password};Port={Port};";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -30,12 +31,12 @@ namespace Hotel_Reservation_System
                 try
                 {
                     connection.Open();
-                    Console.WriteLine("Connection successful!");
-                    
+                    return true;
                 }
-                catch (MySqlException ex)
-                {
-                    Console.WriteLine($"Error: {ex.Message}");
+                catch
+                {                    
+                    MessageBox.Show("Error connecting to the database. Please check your connection settings.","DataBase Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                    return false;                    
                 }
             }
         }
@@ -67,7 +68,7 @@ namespace Hotel_Reservation_System
         /// <param name="username"></param>
         /// <param name="connectionString"></param>
         /// <returns></returns>
-        static bool CheckUsername(string username, string connectionString)
+        public static bool CheckUsername(string username, string connectionString)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -98,8 +99,8 @@ namespace Hotel_Reservation_System
         {
             // Check if username already exists
             if (CheckUsername(username, connectionString))
-            {
-                Console.WriteLine("Username already exists. Please choose a different username.");
+            {            
+                MessageBox.Show("Username already exists. Please choose a different username.", "Log In Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
@@ -130,8 +131,8 @@ namespace Hotel_Reservation_System
                 }
             }
             catch (Exception ex)
-            {
-                Console.WriteLine($"Error adding user: {ex.Message}");
+            {        
+                MessageBox.Show($"Error adding user: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
         }
@@ -178,13 +179,13 @@ namespace Hotel_Reservation_System
                 }
             }
             catch (MySqlException ex)
-            {
-                Console.WriteLine($"Database error adding reservation: {ex.Message}");
+            {                
+                MessageBox.Show($"Database error adding reservation: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
             catch (Exception ex)
-            {
-                Console.WriteLine($"Error adding reservation: {ex.Message}");
+            {                
+                MessageBox.Show($"Error adding reservation: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
         }
@@ -231,12 +232,12 @@ namespace Hotel_Reservation_System
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine($"Database error adding room: {ex.Message}");
+                MessageBox.Show($"Database error adding room: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error adding room: {ex.Message}");
+                MessageBox.Show($"Error adding room: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
         }
@@ -275,12 +276,12 @@ namespace Hotel_Reservation_System
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine($"Database error adding payment: {ex.Message}");
+                MessageBox.Show($"Database error adding payment: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error adding payment: {ex.Message}");
+                MessageBox.Show($"Error adding payment: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
         }
@@ -531,17 +532,20 @@ namespace Hotel_Reservation_System
                                 }
                                 catch (Exception ex)
                                 {
-                                    Console.WriteLine($"Error processing reservation row: {ex.Message}");
+                                    MessageBox.Show($"Error processing reservation row: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
                                 }
                             }
                         }
                     }
                 }
             }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show($"Database error getting reservations: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error getting reservations: {ex.Message}");
-                throw;
+                MessageBox.Show($"Error getting reservations: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);                
             }
 
             return reservations;
@@ -616,7 +620,7 @@ namespace Hotel_Reservation_System
                                 }
                                 catch (Exception ex)
                                 {
-                                    Console.WriteLine($"Error processing payment row: {ex.Message}");
+                                    MessageBox.Show($"Error processing payment row: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
                                 }
                             }
                         }
@@ -625,8 +629,7 @@ namespace Hotel_Reservation_System
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error getting payments: {ex.Message}");
-                throw;
+                MessageBox.Show($"Error getting payments: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             return payments;
@@ -654,12 +657,12 @@ namespace Hotel_Reservation_System
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine($"Database error deleting user: {ex.Message}");
+                MessageBox.Show($"Database error deleting user: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error deleting user: {ex.Message}");
+                MessageBox.Show($"Error deleting user: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
         }
@@ -685,12 +688,12 @@ namespace Hotel_Reservation_System
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine($"Database error deleting room: {ex.Message}");
+                MessageBox.Show($"Database error deleting room: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error deleting room: {ex.Message}");
+                MessageBox.Show($"Error deleting room: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
         }
