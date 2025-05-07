@@ -32,7 +32,7 @@ namespace Hotel_Reservation_System
                     connection.Open();
                     return true;
                 }
-                catch (MySqlException ex)
+                catch
                 {
                     return false;
                 }
