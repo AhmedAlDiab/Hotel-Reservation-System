@@ -46,7 +46,7 @@ namespace Hotel_Reservation_System
         /// <param name="password"></param>
         /// <param name="connectionString"></param>
         /// <returns></returns>
-        static bool LogIn(string username, string password, string connectionString)
+        public static bool LogIn(string username, string password, string connectionString)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
