@@ -49,7 +49,7 @@ namespace Hotel_Reservation_System
             string confirmPassword = ConfirmPassword.Password.Trim();
             string email = Email.Text.Trim();
             string phoneNumber = PhoneNumber.Text.Trim();
-            bool isAdmin = false;
+            bool isAdmin = false; // update later
             if (string.IsNullOrEmpty(fullname) || string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(phoneNumber))
             {
                 MessageBox.Show("Please fill in all fields." , "Input Error" , MessageBoxButton.OK, MessageBoxImage.Error);
