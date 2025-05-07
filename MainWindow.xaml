@@ -8,9 +8,9 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <!-- background -->
-        <Grid.Background>
-            <ImageBrush ImageSource="/Image/connectTOdata.png"/>
-        </Grid.Background>
+		<Grid.Background>
+			<ImageBrush ImageSource="/Image/connectTOdata.png"/>
+		</Grid.Background>
         
         <TextBlock HorizontalAlignment="Left" Margin="307,122,0,0" TextWrapping="Wrap" Text="Host Name:" VerticalAlignment="Top" FontSize="12" FontWeight="Heavy" Foreground="#4A4A4A"/>
         <TextBox x:Name="Usernametxt" HorizontalAlignment="Center" Margin="0,142,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="188"   />

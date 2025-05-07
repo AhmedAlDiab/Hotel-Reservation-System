@@ -10,11 +10,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Image\connectTOdata.png" />
+    <None Remove="Image\main.jpg" />
+    <None Remove="Image\staff.png" />
+    <None Remove="Image\staff_mangent.png" />
+    <None Remove="Image\Wallpaper.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MySql.Data" Version="9.3.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Image\" />
+    <Resource Include="Image\connectTOdata.png" />
+    <Resource Include="Image\main.jpg" />
+    <Resource Include="Image\staff.png" />
+    <Resource Include="Image\staff_mangent.png" />
+    <Resource Include="Image\Wallpaper.jpg" />
   </ItemGroup>
 
 </Project>
