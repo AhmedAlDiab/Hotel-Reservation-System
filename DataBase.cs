@@ -174,9 +174,11 @@ namespace Hotel_Reservation_System
                         command.Parameters.AddWithValue("@reservationStatus", (int)status);
 
                         connection.Open();
+
                         int rowsAffected = command.ExecuteNonQuery();
                         return rowsAffected > 0;
                     }
+
                 }
             }
             catch (MySqlException ex)

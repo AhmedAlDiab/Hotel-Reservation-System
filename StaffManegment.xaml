@@ -6,44 +6,22 @@
              xmlns:local="clr-namespace:Hotel_Reservation_System"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Width="900">
         <Grid.Background>
             <ImageBrush ImageSource="/Image/staff_mangent.png"/>
         </Grid.Background>
-        <TextBlock Margin="317,70,254,0" TextWrapping="Wrap" Text="Staff Manegment" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Foreground="#D4AF37" FontFamily="Elephant"/>
+        <TextBlock Margin="317,70,254,0" TextWrapping="Wrap" Text="Staff Manegment" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Foreground="#D4AF37" FontFamily="Elephant" OpacityMask="#FFD4AF37" />
 
-        <DataGrid x:Name="staffmaneg" Height="200" Background="#FFFFFF" GridLinesVisibility="All"
+        <DataGrid x:Name="staffmaneg" Height="201" Width="450" Background="#FFD4AF37" GridLinesVisibility="All"
 AlternatingRowBackground="#FAF5EF"
    AutoGenerateColumns="True"
    CanUserAddRows="True"
    IsReadOnly="False"
    CanUserDeleteRows="True"
    SelectionMode="Single"
-   ItemsSource="{Binding GetStaff}" Margin="254,117,237,117">
-            <DataGrid.Resources>
-                <Style TargetType="DataGridRow">
-                    <Setter Property="Background" Value="LightBlue"/>
-                    <Setter Property="BorderBrush" Value="DarkBlue"/>
-                    <Setter Property="BorderThickness" Value="1"/>
-                </Style>
-            </DataGrid.Resources>
-            <DataGrid.ColumnHeaderStyle>
-                <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="Background" Value="Black"/>
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="FontSize" Value="14"/>
-                </Style>
-            </DataGrid.ColumnHeaderStyle>
-            <DataGrid.CellStyle>
-                <Style TargetType="DataGridCell">
-                    <Setter Property="BorderBrush" Value="Gray"/>
-                    <Setter Property="BorderThickness" Value="0.5"/>
-                </Style>
-            </DataGrid.CellStyle>
-
-
-
-
+                 
+   ItemsSource="{Binding VMstaffs}" SelectedItem="{Binding VMselectitem}" Margin="117,124,333,124" SelectionChanged="staffmaneg_SelectionChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Grid.IsSharedSizeScope="True">
+            
         </DataGrid>
         <Button Content="Remove" HorizontalAlignment="Left" Margin="594,151,0,0" VerticalAlignment="Top" FontSize="15" FontWeight="Heavy" Foreground="Gold" Width="90" Click="Remove" Height="42">
 
@@ -60,6 +38,16 @@ AlternatingRowBackground="#FAF5EF"
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border  CornerRadius="2" BorderBrush="#D4AF37" BorderThickness="2.5" Margin="0,0,0,5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button Content="Back" HorizontalAlignment="Left" Margin="50,54,0,0" VerticalAlignment="Top" FontSize="15" FontWeight="Heavy" Foreground="Gold" Width="90" Click="Back" Height="42">
+
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border  CornerRadius="2" BorderBrush="#D4AF37" BorderThickness="2.5" Margin="0,0,7,7">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                 </ControlTemplate>

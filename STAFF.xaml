@@ -1,20 +1,20 @@
-﻿<UserControl x:Class="Hotel_Reservation_System.STAFF"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Hotel_Reservation_System"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+﻿<Window x:Class="Hotel_Reservation_System.STAFF"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hotel_Reservation_System"
+        mc:Ignorable="d"
+        Title="STAFF" Height="450" Width="800">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Image/staff.png"/>
         </Grid.Background>
-        <Button Content="Staff Manegment" HorizontalAlignment="Center" Margin="0,198,0,0" VerticalAlignment="Top"  Foreground="Gold" FontWeight="Bold" BorderThickness="2.5" FontSize="19" FontFamily="Elephant" Background="White" BorderBrush="#D4AF37" Height="38" Width="196" Click="Button_Click"/>
-        <Button Content="Room Manegment" HorizontalAlignment="Center" Margin="0,271,0,0" VerticalAlignment="Top"  Foreground="Gold" FontWeight="Bold" BorderThickness="2.5" FontSize="19" FontFamily="Elephant" Background="White" BorderBrush="#D4AF37" Height="38" Width="196"/>
+        <Button Content="Staff Manegment" HorizontalAlignment="Center" Margin="0,198,0,0" VerticalAlignment="Top"  Foreground="Gold" FontWeight="Bold" BorderThickness="2.5" FontSize="19" FontFamily="Elephant" Background="White" BorderBrush="#D4AF37" Height="38" Width="196" Click="Button_Click" />
+        <Button Content="Room Manegment" HorizontalAlignment="Center" Margin="0,271,0,0" VerticalAlignment="Top"  Foreground="Gold" FontWeight="Bold" BorderThickness="2.5" FontSize="19" FontFamily="Elephant" Background="White" BorderBrush="#D4AF37" Height="38" Width="196" Click="Button_Click_1"/>
         <TextBlock Margin="340,118,340,0" TextWrapping="Wrap" Text=" Staff Page" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Foreground="#D4AF37" FontFamily="Elephant"/>
-
+        <Frame x:Name="contant" Navigated="contant_Navigated" ></Frame>
 
 
     </Grid>
-</UserControl>
+</Window>
