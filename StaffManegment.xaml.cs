@@ -45,6 +45,7 @@ namespace Hotel_Reservation_System
             staffmaneg.SelectedItem = newstaff;
             staffmaneg.ScrollIntoView(newstaff);
             staffmaneg.BeginEdit();
+            DataBase.AddUser(newstaff.Fullname,newstaff.PhoneNumber,newstaff.Email,newstaff.Username,newstaff.Password,newstaff.IsAdmin,DataBase.connectionString);
         }
 
       
