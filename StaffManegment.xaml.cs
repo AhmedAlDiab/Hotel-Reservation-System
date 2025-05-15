@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -21,35 +22,43 @@ namespace Hotel_Reservation_System
     /// </summary>
     public partial class StaffManegment : UserControl
     {
-        public ObservableCollection<Staff> GetStaff { get; set; }
+        ObservableCollection<Staff> staffs {  get; set; }= new ObservableCollection<Staff>();
         public StaffManegment()
         {
             InitializeComponent();
-            GetStaff = new ObservableCollection<Staff>();
-            this.DataContext = this;
+            staffmaneg.ItemsSource = staffs;
         }
 
         private void Remove(object sender, RoutedEventArgs e)
         {
-            if (staffmaneg.SelectedItem is Staff selectStaff)
-                GetStaff.Remove(selectStaff);
+            if (staffmaneg.SelectedItem is Staff selected)
+            {
+                staffs.Remove(selected);
+            }
         }
 
         private void add(object sender, RoutedEventArgs e)
         {
-            try
-            {
+           var newstaff= new Staff();
+            
+            staffs.Add(newstaff);
+            staffmaneg.SelectedItem = newstaff;
+            staffmaneg.ScrollIntoView(newstaff);
+            staffmaneg.BeginEdit();
+        }
 
-                Staff newstaff = new Staff { Fullname = "", PhoneNumber = "", Email = "", Username = "", Password = "" };
-                GetStaff.Add(newstaff);
-                staffmaneg.SelectedItem = newstaff;
-                staffmaneg.ScrollIntoView(newstaff);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+      
 
-            }
+        private void Back(object sender, RoutedEventArgs e)
+        {
+            STAFF staff = new STAFF();
+            staff.Show();
+            Window.GetWindow(this).Close();
+        }
+
+        private void staffmaneg_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

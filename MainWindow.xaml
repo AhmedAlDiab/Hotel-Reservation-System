@@ -9,10 +9,10 @@
     <Grid>
         <!-- background -->
 		<Grid.Background>
-			<ImageBrush ImageSource="/Image/connectTOdata.png"/>
+			<ImageBrush ImageSource="/Image/connectTOdata.png" Stretch="UniformToFill"/>
 		</Grid.Background>
         
-        <TextBlock HorizontalAlignment="Left" Margin="307,122,0,0" TextWrapping="Wrap" Text="Host Name:" VerticalAlignment="Top" FontSize="12" FontWeight="Heavy" Foreground="#4A4A4A"/>
+        <TextBlock  HorizontalAlignment="Left" Margin="308,122,0,0" TextWrapping="Wrap" Text="Host Name:" VerticalAlignment="Top" FontSize="12" FontWeight="Heavy" Foreground="#4A4A4A"/>
         <TextBox x:Name="Usernametxt" HorizontalAlignment="Center" Margin="0,142,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="188"   />
 
         <TextBlock HorizontalAlignment="Left" Margin="306,160,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" FontSize="12" FontWeight="Heavy" Foreground="#4A4A4A"/>
