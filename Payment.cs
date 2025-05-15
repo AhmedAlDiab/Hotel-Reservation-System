@@ -59,16 +59,7 @@ namespace Hotel_Reservation_System
         {
             set
             {
-
-                if (value <= DateTime.Now.AddSeconds(6) && value <= DateTime.Now.AddSeconds(-6))
-                {
-                    paymentDate = value;
-                }
-                else
-                {
-                    paymentDate = DateTime.Now;
-                }
-                   
+                   paymentDate = value;
             }
             get
             {
