@@ -59,11 +59,16 @@ namespace Hotel_Reservation_System
         {
             set
             {
-                
-                //We will Check Out This Validation
 
-                //if(value <= DateTime.Now)
-                   paymentDate = value;
+                if (value <= DateTime.Now.AddSeconds(10) && value <= DateTime.Now.AddSeconds(-10))
+                {
+                    paymentDate = value;
+                }
+                else
+                {
+                    paymentDate = DateTime.Now;
+                }
+                   
             }
             get
             {
