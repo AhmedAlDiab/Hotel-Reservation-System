@@ -31,6 +31,7 @@ namespace Hotel_Reservation_System
                 try
                 {
                     connection.Open();
+                    Data.GetData();
                     return true;
                 }
                 catch
@@ -696,6 +697,264 @@ namespace Hotel_Reservation_System
                 MessageBox.Show($"Error deleting room: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
+        }
+        /// <summary>
+        /// you can use this method to update the user data,
+        /// the id should be the one in the database, the other parameters is data will be set to the database        
+        /// </summary>
+        /// <param name="userId">the one in the database</param>
+        /// <param name="NewfullName"></param>
+        /// <param name="NewphoneNumber"></param>
+        /// <param name="Newemail"></param>
+        /// <param name="Newusername"></param>
+        /// <param name="Newpassword"></param>
+        /// <param name="NewisAdmin"></param>
+        /// <param name="connectionString"></param>
+        /// <returns></returns>
+        public static bool UpdateUserByID(int userId, string NewfullName, string NewphoneNumber,
+                            string Newemail, string Newusername, string Newpassword,
+                            bool NewisAdmin, string connectionString)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    string query = @"
+                UPDATE Users 
+                SET 
+                    fullName = @fullName,
+                    phoneNumber = @phoneNumber,
+                    email = @email,
+                    username = @username,
+                    password = @password,
+                    isAdmin = @isAdmin
+                WHERE userID = @userId";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@userId", userId);
+                        command.Parameters.AddWithValue("@fullName", NewfullName);
+                        command.Parameters.AddWithValue("@phoneNumber", NewphoneNumber);
+                        command.Parameters.AddWithValue("@email", Newemail);
+                        command.Parameters.AddWithValue("@username", Newusername);
+                        command.Parameters.AddWithValue("@password", Newpassword);
+                        command.Parameters.AddWithValue("@isAdmin", NewisAdmin ? 1 : 0);
+
+                        connection.Open();
+                        int rowsAffected = command.ExecuteNonQuery();
+                        // Returns true if exactly one row was updated
+                        return rowsAffected == 1; 
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show($"Database error updating user: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error updating user: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+        }
+        public static bool UpdateRoomByID(int roomId, ERoomType NewroomType, double NewpricePerNight,
+                            bool NewisAvailable, int Newcapacity, EBedType NewbedType,
+                            EMealPlan NewmealPlan, string connectionString)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    string query = @"
+                UPDATE Rooms 
+                SET 
+                    roomType = @roomType,
+                    pricePerNight = @pricePerNight,
+                    isAvailable = @isAvailable,
+                    capacity = @capacity,
+                    bedType = @bedType,
+                    mealPlans = @mealPlans
+                WHERE roomID = @roomId";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@roomId", roomId);
+                        command.Parameters.AddWithValue("@roomType", (int)NewroomType);
+                        command.Parameters.AddWithValue("@pricePerNight", NewpricePerNight);
+                        command.Parameters.AddWithValue("@isAvailable", NewisAvailable ? 1 : 0);
+                        command.Parameters.AddWithValue("@capacity", Newcapacity);
+                        command.Parameters.AddWithValue("@bedType", (int)NewbedType);
+                        command.Parameters.AddWithValue("@mealPlans", (int)NewmealPlan);
+
+                        connection.Open();
+                        int rowsAffected = command.ExecuteNonQuery();
+                        // Returns true if exactly one row was updated
+                        return rowsAffected == 1; 
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show($"Database error updating room: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error updating room: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+        }
+        public static bool UpdateReservationByID(int reservationId, int NewcustomerId, int NewroomId,
+                                   DateTime NewcheckInDate, DateTime NewcheckOutDate,
+                                   double NewtotalCost, EReservationStatus Newstatus,
+                                   string connectionString)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    string query = @"
+                UPDATE Reservations 
+                SET 
+                    customerID = @customerId,
+                    roomID = @roomId,
+                    checkInDate = @checkInDate,
+                    checkOutDate = @checkOutDate,
+                    totalCost = @totalCost,
+                    reservationStatus = @status
+                WHERE reservationID = @reservationId";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@reservationId", reservationId);
+                        command.Parameters.AddWithValue("@customerId", NewcustomerId);
+                        command.Parameters.AddWithValue("@roomId", NewroomId);
+                        command.Parameters.AddWithValue("@checkInDate", NewcheckInDate);
+                        command.Parameters.AddWithValue("@checkOutDate", NewcheckOutDate);
+                        command.Parameters.AddWithValue("@totalCost", NewtotalCost);
+                        command.Parameters.AddWithValue("@status", (int)Newstatus);
+
+                        connection.Open();
+                        int rowsAffected = command.ExecuteNonQuery();
+                        return rowsAffected == 1; // Returns true if exactly one row was updated
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show($"Database error updating reservation: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error updating reservation: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);  
+                return false;
+            }
+        }
+        public static List<StandardRoom> GetAvailableStandardRooms(string connectionString)
+        {
+            var availableRooms = new List<StandardRoom>();
+
+            try
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    string query = @"
+                SELECT 
+                    roomID,
+                    pricePerNight,
+                    isAvailable,
+                    capacity,
+                    bedType,
+                    mealPlans
+                FROM Rooms
+                WHERE roomType = @roomType 
+                AND isAvailable = true";
+
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@roomType", (int)ERoomType.Standard);
+
+                        connection.Open();
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var room = new StandardRoom(
+                                    reader.GetInt32("roomID"),
+                                    (EBedType)reader.GetInt32("bedType"),
+                                    reader.GetBoolean("isAvailable"),
+                                    reader.GetInt32("capacity"),
+                                    reader.GetDouble("pricePerNight"),
+                                    (EMealPlan)reader.GetInt32("mealPlans"),
+                                    ERoomType.Standard
+                                );
+                                availableRooms.Add(room);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error retrieving available standard rooms: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return availableRooms;
+        }
+        public static List<DeluxeRoom> GetAvailableDeluxeRooms(string connectionString)
+        {
+            var availableRooms = new List<DeluxeRoom>();
+
+            try
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    string query = @"
+                SELECT 
+                    roomID,
+                    pricePerNight,
+                    isAvailable,
+                    capacity,
+                    bedType,
+                    mealPlans,
+                    discount
+                FROM Rooms
+                WHERE roomType = @roomType 
+                AND isAvailable = true";
+
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@roomType", (int)ERoomType.Deluxe);
+
+                        connection.Open();
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var room = new DeluxeRoom(
+                                    reader.GetInt32("roomID"),
+                                    (EBedType)reader.GetInt32("bedType"),
+                                    reader.GetBoolean("isAvailable"),
+                                    reader.GetInt32("capacity"),
+                                    reader.GetDouble("pricePerNight"),
+                                    (EMealPlan)reader.GetInt32("mealPlans"),
+                                    ERoomType.Deluxe,
+                                    reader.GetDouble("discount")
+                                );
+                                availableRooms.Add(room);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error retrieving available deluxe rooms: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return availableRooms;
         }
     }
 }
