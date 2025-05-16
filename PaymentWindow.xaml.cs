@@ -33,10 +33,10 @@ namespace Hotel_Reservation_System
             string cvv = Cvv.Text.Trim();
 
             // Remove Comment Please:
-            //string selectedCardType = (CreditCardType.SelectedItem as ComboBoxItem)?.Content.ToString();
+            string selectedCardType = (CreditCardType.SelectedItem as ComboBoxItem)?.Content.ToString();
 
-            // Remove Comment Please:
-            //string selectedExpireDate = ExpireDate.SelectedItem?.ToString();
+            //Remove Comment Please:
+            string selectedExpireDate = ExpireDate.SelectedItem?.ToString();
 
             // Checker
             bool isValid = true;
