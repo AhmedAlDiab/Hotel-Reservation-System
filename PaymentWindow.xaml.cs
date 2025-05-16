@@ -23,6 +23,8 @@ namespace Hotel_Reservation_System
         {
             InitializeComponent();
         }
+
+        //ComboBox of ExpireDate Display Options From 06/25 To 06/35
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             int startYear = 2025;
@@ -35,8 +37,8 @@ namespace Hotel_Reservation_System
                     if (year == 2025 && month < 6)
                         continue; // Skip months before June 2025
 
-                    string formattedMonth = month.ToString("D2"); // e.g., 01, 02, ..., 12
-                    string formattedYear = year.ToString().Substring(2); // e.g., 25, 26, ..., 50
+                    string formattedMonth = month.ToString("D2"); // Ex: 01, 02, ..., 12
+                    string formattedYear = year.ToString().Substring(2); // Ex: 25, 26, ..., 35
                     ExpireDate.Items.Add($"{formattedMonth}/{formattedYear}");
                 }
             }
