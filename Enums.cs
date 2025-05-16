@@ -61,4 +61,5 @@ namespace Hotel_Reservation_System
         Cash,
         CreditCard
     }
+   
 }

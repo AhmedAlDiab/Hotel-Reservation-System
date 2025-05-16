@@ -21,10 +21,14 @@ namespace Hotel_Reservation_System
     /// </summary>
     public partial class Room_Manegment : UserControl
     {
-
+        private viewmodel ViewModel
+        {
+            get { return (viewmodel)this.DataContext; }
+        }
         public Room_Manegment()
         {
             InitializeComponent();
+            this.DataContext = new viewmodel();
 
         }
 
@@ -33,22 +37,7 @@ namespace Hotel_Reservation_System
 
         }
 
-        private void AddStandard_Click(object sender, RoutedEventArgs e)
-        {
-          
 
-        }
 
-        private void AddDeluxe_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-          
-              
-            
-        }
     }
 }

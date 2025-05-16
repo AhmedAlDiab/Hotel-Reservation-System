@@ -39,13 +39,20 @@ namespace Hotel_Reservation_System
 
         private void add(object sender, RoutedEventArgs e)
         {
-           var newstaff= new Staff();
-            
-            staffs.Add(newstaff);
-            staffmaneg.SelectedItem = newstaff;
-            staffmaneg.ScrollIntoView(newstaff);
-            staffmaneg.BeginEdit();
-            DataBase.AddUser(newstaff.Fullname,newstaff.PhoneNumber,newstaff.Email,newstaff.Username,newstaff.Password,newstaff.IsAdmin,DataBase.connectionString);
+            try
+            {
+                var newstaff = new Staff();
+
+                staffs.Add(newstaff);
+                staffmaneg.SelectedItem = newstaff;
+                staffmaneg.ScrollIntoView(newstaff);
+                staffmaneg.BeginEdit();
+                DataBase.AddUser(newstaff.Fullname, newstaff.PhoneNumber, newstaff.Email, newstaff.Username, newstaff.Password, newstaff.IsAdmin, DataBase.connectionString);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fill cells");
+            }
         }
 
       
