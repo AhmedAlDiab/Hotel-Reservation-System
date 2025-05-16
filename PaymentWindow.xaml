@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hotel_Reservation_System"
         mc:Ignorable="d"
-        Title="PaymentWindow" Height="450" Width="800">
+        Title="PaymentWindow" Height="450" Width="800"
+        Loaded="Window_Loaded">
 
     <Grid>
         <Grid.Background>
@@ -17,14 +18,19 @@
                 <DropShadowEffect Opacity="0.4" Color="#FF231D07" Direction="310" ShadowDepth="4" BlurRadius="10"/>
             </Label.Effect>
         </Label>
-        <TextBlock HorizontalAlignment="Center" Height="21" Margin="0,67,0,0" TextWrapping="Wrap" Text="Credit Card Number  :" VerticalAlignment="Top" Width="198" FontWeight="Bold" TextAlignment="Center"/>
-        <TextBox x:Name="CreditCardNumber" BorderThickness="0.7" BorderBrush="Black" HorizontalAlignment="Center" Margin="0,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Height="21"/>
-        <TextBlock HorizontalAlignment="Center" Height="21" Margin="0,123,0,0" TextWrapping="Wrap" Text="Credit Card Type :" VerticalAlignment="Top" Width="102" FontWeight="Bold" RenderTransformOrigin="0.63,0.373"/>
-        <TextBox x:Name="CreditCardType" BorderThickness="0.7" BorderBrush="Black" HorizontalAlignment="Center" Margin="0,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" Height="21"/>
-        <TextBlock HorizontalAlignment="Center" Height="16" TextWrapping="Wrap" Text="Expire Date (MM/YY) :" VerticalAlignment="Top" Width="130" FontWeight="Bold" Margin="0,183,0,0"/>
-        <TextBox x:Name="ExpireDate" BorderThickness="0.7" BorderBrush="Black" HorizontalAlignment="Center" Margin="0,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="128" Height="20"/>
-        <TextBlock HorizontalAlignment="Center" Height="18" Margin="0,229,0,0" TextWrapping="Wrap" Text="CVV :" VerticalAlignment="Top" Width="34" FontWeight="Bold" RenderTransformOrigin="0.506,-0.235"/>
-        <TextBox x:Name="CVV" BorderThickness="0.7" BorderBrush="Black" HorizontalAlignment="Center" Margin="0,247,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62" Height="21"/>
+        <TextBlock HorizontalAlignment="Center" Height="21" Margin="0,62,0,0" TextWrapping="Wrap" Text="Credit Card Number  :" VerticalAlignment="Top" Width="198" FontWeight="Bold" TextAlignment="Center"/>
+        <TextBox x:Name="CreditCardNumber"  BorderThickness="0.7" BorderBrush="Black" HorizontalAlignment="Center" Margin="0,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Height="21" TextAlignment="Center"/>
+        <TextBlock HorizontalAlignment="Center" Height="21" Margin="0,118,0,0" TextWrapping="Wrap" Text="Credit Card Type :" VerticalAlignment="Top" Width="102" FontWeight="Bold" RenderTransformOrigin="0.63,0.373"/>
+        <ComboBox x:Name="CreditCardType" HorizontalAlignment="Center" Margin="0,139,0,0" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="22">
+            <ComboBoxItem  Content="Visa"/>
+            <ComboBoxItem  Content="Master Card"/>
+            <ComboBoxItem  Content="American Express"/>
+            <ComboBoxItem  Content="Meeza"/>
+        </ComboBox>
+        <TextBlock HorizontalAlignment="Center" Height="16" TextWrapping="Wrap" Text="Expire Date (MM/YY) :" VerticalAlignment="Top" Width="130" FontWeight="Bold" Margin="0,176,0,0"/>
+        <ComboBox x:Name="ExpireDate"  HorizontalAlignment="Center" Margin="0,195,0,0" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="22"></ComboBox>
+        <TextBlock HorizontalAlignment="Center" Height="18" Margin="0,224,0,0" TextWrapping="Wrap" Text="CVV :" VerticalAlignment="Top" Width="34" FontWeight="Bold" RenderTransformOrigin="0.506,-0.235"/>
+        <TextBox x:Name="CVV" BorderThickness="0.7" BorderBrush="Black" HorizontalAlignment="Center" Margin="0,242,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62" Height="21" RenderTransformOrigin="0.497,0.202" TextAlignment="Center"/>
         <Button  BorderThickness="2" BorderBrush="Black" Background="#FFF3BE3A" Content="Submit" HorizontalAlignment="Center" Margin="0,325,0,0" VerticalAlignment="Top" Height="27" Width="130" FontSize="15" FontWeight="Bold" RenderTransformOrigin="0.477,1.439" >
             <Button.Effect>
                 <DropShadowEffect Color="#FF5F4B18" Direction="310" Opacity="0.5" ShadowDepth="0" BlurRadius="40"/>
