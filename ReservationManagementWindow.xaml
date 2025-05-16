@@ -1,0 +1,51 @@
+﻿<Window x:Class="Hotel_Reservation_System.ReservationManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hotel_Reservation_System"
+        mc:Ignorable="d"
+        Title="ReservationManagementWindow" Height="793" Width="1536">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Image/main.jpg"/>
+        </Grid.Background>
+        <Rectangle HorizontalAlignment="Center" Height="683" Stroke="Black" VerticalAlignment="Center" Width="1288" Fill="#C8FFFFFF"/>
+        <Label Foreground="Gold"  Content="Reservation Management" Margin="0,47,0,0" FontWeight="Bold" FontSize="43" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Elephant" Width="602" Height="79" HorizontalContentAlignment="Center" BorderBrush="Black">
+            <Label.Effect>
+                <DropShadowEffect Opacity="0.495" ShadowDepth="4.5" Direction="-26" BlurRadius="1" RenderingBias="Performance"/>
+            </Label.Effect>
+        </Label>
+        <DataGrid x:Name="ReservationsList" ColumnHeaderHeight="30" AutoGenerateColumns="False" Margin="403,152,234,119" BorderBrush="#FFA79C4F" Background="#4C3D3D18" FontWeight="Bold" >
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Reservation ID" Width="100" />
+                <DataGridTextColumn Header="Payment ID" Width="87" />
+                <DataGridTextColumn Header="Payment Date" Width="110" />
+                <DataGridTextColumn Header="Payment Method" Width="108"/>
+                <DataGridTextColumn Header="Check In Date" Width="95" />
+                <DataGridTextColumn Header="Check Out Date" Width="105" />
+                <DataGridTextColumn Header="Room Type" Width="85"/>
+                <DataGridTextColumn Header="Capacity" Width="58"/>
+                <DataGridTextColumn Header="Total Price" Width="90"/>
+                <DataGridTextColumn Header="Discount"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Pay Now" BorderThickness="2" BorderBrush="Black" Background="#FFF0D129" HorizontalAlignment="Left" Margin="186,241,0,0" VerticalAlignment="Top" Height="70" Width="162" FontWeight="Bold" FontSize="25">
+            <Button.Effect>
+                <DropShadowEffect Color="#FF5F4B18" Direction="310" Opacity="0.5" ShadowDepth="0" BlurRadius="40"/>
+            </Button.Effect>
+        </Button>
+        <Button Content="Export" BorderThickness="2" BorderBrush="Black" Background="#FFF0D129" HorizontalAlignment="Left" Margin="186,389,0,0" VerticalAlignment="Top" Height="70" Width="162" FontSize="25" FontWeight="Bold">
+            <Button.Effect>
+                <DropShadowEffect Color="#FF5F4B18" Direction="310" Opacity="0.5" ShadowDepth="0" BlurRadius="40"/>
+            </Button.Effect>
+        </Button>
+        <Button Content="Cancel" BorderThickness="2" BorderBrush="Black" Background="#FFF0D129" HorizontalAlignment="Left" Margin="186,539,0,0" VerticalAlignment="Top" Height="70" Width="162" FontSize="25" FontWeight="Bold">
+            <Button.Effect>
+                <DropShadowEffect Color="#FF5F4B18" Direction="310" Opacity="0.5" ShadowDepth="0" BlurRadius="40"/>
+            </Button.Effect>
+        </Button>
+
+    </Grid>
+</Window>
