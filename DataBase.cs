@@ -63,7 +63,7 @@ namespace Hotel_Reservation_System
                 if (result != null)
                 {
                     // Set the active user ID if login is successful
-                    ActiveUser.ID = Convert.ToInt32(result);
+                    ActiveUser.UserID = Convert.ToInt32(result);
                     return true;
                 }
 

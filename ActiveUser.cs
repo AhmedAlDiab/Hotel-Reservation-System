@@ -8,6 +8,7 @@ namespace Hotel_Reservation_System
 {
     public static class ActiveUser
     {
-        public static int ID;
+        public static int UserID;
+        public static int CurrentReservationID;
     }
 }
