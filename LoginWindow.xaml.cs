@@ -48,11 +48,7 @@ namespace Hotel_Reservation_System
                  
                    STAFF sTAFF = new STAFF();
                     sTAFF.Show();
-                    this.Close();
-                    
-                   STAFF sTAFF = new STAFF();
-                    sTAFF.Show();
-                    this.Close();
+                    this.Close();                                       
                     
                 }
                 else
