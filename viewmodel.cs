@@ -23,7 +23,7 @@ namespace Hotel_Reservation_System
             }
         }
 
-        private Room selectedrooom ;
+        private Room selectedrooom;
         public Room SelectedRoom
         {
             get { return selectedrooom; }
@@ -38,15 +38,15 @@ namespace Hotel_Reservation_System
             Rooms = new ObservableCollection<Room>();
         }
 
-        public void AddStandared(int roomID, EBedType bedType, bool isAvailable, int capacity, double pricePerNight, EMealPlan MealPlan, ERoomType roomtype)
+        public void AddStandared()
         {
-            StandardRoom std = new StandardRoom(roomID,bedType,isAvailable,capacity,pricePerNight, MealPlan, roomtype);
+            StandardRoom std = new StandardRoom(1,EBedType.Single,true,2,1000,EMealPlan.RoomOnly,ERoomType.Standard);
            
             Rooms.Add(std);
         }
-        public void AddDeluxe(int roomID, EBedType bedType, bool isAvailable, int capacity, double pricePerNight, EMealPlan MealPlan, ERoomType roomtype,double discount)
+        public void AddDeluxe()
         {
-            DeluxeRoom dlx = new DeluxeRoom(roomID, bedType, isAvailable, capacity, pricePerNight, MealPlan, roomtype,discount);
+            DeluxeRoom dlx = new DeluxeRoom(1, EBedType.Single, true, 2, 1000, EMealPlan.RoomOnly, ERoomType.Deluxe,0.1);
            
             Rooms.Add(dlx);
         }

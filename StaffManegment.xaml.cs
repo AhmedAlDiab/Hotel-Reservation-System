@@ -22,7 +22,7 @@ namespace Hotel_Reservation_System
     /// </summary>
     public partial class StaffManegment : UserControl
     {
-     public static ObservableCollection<Staff> staffs {  get; set; }= new ObservableCollection<Staff>();
+        ObservableCollection<Staff> staffs {  get; set; }= new ObservableCollection<Staff>();
         public StaffManegment()
         {
             InitializeComponent();
@@ -39,11 +39,23 @@ namespace Hotel_Reservation_System
 
         private void add(object sender, RoutedEventArgs e)
         {
-            Contantadd.Navigate(new Uri("ADDUSER.xaml", UriKind.Relative));
+            try
+            {
+                var newstaff = new Staff();
 
+                staffs.Add(newstaff);
+                staffmaneg.SelectedItem = newstaff;
+                staffmaneg.ScrollIntoView(newstaff);
+                staffmaneg.BeginEdit();
+                DataBase.AddUser(newstaff.Fullname, newstaff.PhoneNumber, newstaff.Email, newstaff.Username, newstaff.Password, newstaff.IsAdmin, DataBase.connectionString);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fill cells");
+            }
         }
 
-
+      
 
         private void Back(object sender, RoutedEventArgs e)
         {
@@ -53,11 +65,6 @@ namespace Hotel_Reservation_System
         }
 
         private void staffmaneg_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void Contantadd_Navigated(object sender, NavigationEventArgs e)
         {
 
         }

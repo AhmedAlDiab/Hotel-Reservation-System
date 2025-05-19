@@ -37,19 +37,7 @@ namespace Hotel_Reservation_System
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) // add stand
-        {
-            confirmaddroom.Navigate(new Uri("ADDROOM.xaml", UriKind.Relative));
-        }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            ViewModel.RemoveSelected();
-        }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e) // add delx
-        {
-            confirmaddroom.Navigate(new Uri("ADDROOM.xaml", UriKind.Relative));
-        }
     }
 }
