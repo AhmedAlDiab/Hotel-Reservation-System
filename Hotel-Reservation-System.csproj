@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Image\calenderIcon.png" />
     <None Remove="Image\connectTOdata.png" />
     <None Remove="Image\main.jpg" />
     <None Remove="Image\staff.png" />
@@ -22,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Image\calenderIcon.png" />
     <Resource Include="Image\connectTOdata.png" />
     <Resource Include="Image\main.jpg" />
     <Resource Include="Image\staff.png" />
