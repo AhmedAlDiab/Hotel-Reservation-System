@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Hotel_Reservation_System
@@ -18,17 +17,26 @@ namespace Hotel_Reservation_System
     /// <summary>
     /// Interaction logic for STAFF.xaml
     /// </summary>
-    public partial class STAFF : UserControl
+    public partial class STAFF : Window
     {
-        
         public STAFF()
         {
             InitializeComponent();
         }
 
+        private void contant_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+            contant.Navigate(new Uri("StaffManegment.xaml", UriKind.Relative));
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            contant.Navigate(new Uri("Room_Manegment.xaml", UriKind.Relative));
         }
     }
 }

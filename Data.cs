@@ -17,6 +17,14 @@ namespace Hotel_Reservation_System
         /// </summary>
         public static List<Room> Rooms = new List<Room>();
         /// <summary>
+        /// List of all standard rooms
+        /// </summary>
+        public static List<StandardRoom> AvailableStandardRooms = new List<StandardRoom>();
+        /// <summary>
+        /// List of all Deluxe rooms
+        /// </summary>
+        public static List<DeluxeRoom> AvailableDeluxeRooms = new List<DeluxeRoom>();
+        /// <summary>
         /// List of all reservations
         /// </summary>
         public static List<Reservation> Reservations = new List<Reservation>();
@@ -33,7 +41,9 @@ namespace Hotel_Reservation_System
             Users = DataBase.GetAllUsers(DataBase.connectionString);
             Rooms = DataBase.GetAllRooms(DataBase.connectionString);
             Payments = DataBase.GetAllPayments(DataBase.connectionString);
-            Reservations = DataBase.GetAllReservations(DataBase.connectionString);            
+            Reservations = DataBase.GetAllReservations(DataBase.connectionString);
+            AvailableStandardRooms = DataBase.GetAvailableStandardRooms(DataBase.connectionString);
+            AvailableDeluxeRooms = DataBase.GetAvailableDeluxeRooms(DataBase.connectionString);
         }
     }
 }

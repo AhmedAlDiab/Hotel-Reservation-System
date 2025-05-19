@@ -13,12 +13,19 @@
     <None Remove="Image\calenderIcon.png" />
     <None Remove="Image\connectTOdata.png" />
     <None Remove="Image\main.jpg" />
+    <None Remove="Image\New Background.png" />
     <None Remove="Image\staff.png" />
     <None Remove="Image\staff_mangent.png" />
     <None Remove="Image\Wallpaper.jpg" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="MySql.Data" Version="9.3.0" />
   </ItemGroup>
 
@@ -26,9 +33,14 @@
     <Resource Include="Image\calenderIcon.png" />
     <Resource Include="Image\connectTOdata.png" />
     <Resource Include="Image\main.jpg" />
+    <Resource Include="Image\New Background.png" />
     <Resource Include="Image\staff.png" />
     <Resource Include="Image\staff_mangent.png" />
     <Resource Include="Image\Wallpaper.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModel\" />
   </ItemGroup>
 
 </Project>

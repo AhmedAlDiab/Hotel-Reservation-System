@@ -21,13 +21,11 @@ namespace Hotel_Reservation_System
     /// </summary>
     public partial class Room_Manegment : UserControl
     {
-        ObservableCollection<Room> rooms = new ObservableCollection<Room> {
-            new StandardRoom(), new DeluxeRoom()
-        };
+
         public Room_Manegment()
         {
             InitializeComponent();
-            roomGrid.ItemsSource = rooms;
+
         }
 
         private void roomGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -35,8 +33,22 @@ namespace Hotel_Reservation_System
 
         }
 
+        private void AddStandard_Click(object sender, RoutedEventArgs e)
+        {
+          
+
+        }
+
+        private void AddDeluxe_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+          
+              
+            
         }
     }
 }

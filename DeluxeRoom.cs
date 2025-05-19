@@ -32,7 +32,10 @@ namespace Hotel_Reservation_System
 
         public override double Calculatetotalcost(int nonight)
         {
-            return nonight * PricePerNight-Discount* nonight * PricePerNight;
+            if (nonight > 3)
+                return nonight * PricePerNight - Discount * nonight * PricePerNight;
+            else
+                return nonight * PricePerNight - Discount;
         }
 
         public override void DisplayRoomServices()

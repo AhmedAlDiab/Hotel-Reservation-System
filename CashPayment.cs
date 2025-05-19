@@ -22,12 +22,12 @@ namespace Hotel_Reservation_System
         //Process Payment Method To Change Reservation Status From Pending to Confirmed After Payment
         public override void ProcessPayment(ref EReservationStatus ReservationStatus)
         {
-            if (ReservationStatus == EReservationStatus.Pending)
+            if (ReservationStatus != EReservationStatus.Pending)
             {
-                ReservationStatus = EReservationStatus.Confirmed;
-            }
-            else
                 throw new ArgumentException("Error In Payment Process");
+            }
+            
+            
         }
     }
 }
