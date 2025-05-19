@@ -24,21 +24,41 @@ namespace Hotel_Reservation_System
             InitializeComponent();
         }
 
-        //--------------------------------------------------
-        // ------------------ VALIDATION -------------------
-        //--------------------------------------------------
+        EPaymentMethod check_paymethod=EPaymentMethod.CreditCard;
         private void Submit_Click(object sender, RoutedEventArgs e)
         {
             string cardNumber = CreditCardNumber.Text.Trim();
             string cvv = Cvv.Text.Trim();
             string selectedCardType = (CreditCardType.SelectedItem as ComboBoxItem)?.Content.ToString();
             string selectedExpireDate = ExpireDate.SelectedItem?.ToString();
+            string selectedMethod = (PaymentMethodComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
 
             // Checker
             bool isValid = true;
+            //checker main to operate credit
+            bool op_cerdit = true;
+            //fill
+
+            if (string.IsNullOrEmpty(selectedMethod))
+            {
+                MessageBox.Show("Please choose a payment method.", "Input Error");
+                return;
+            }
+            else if (selectedMethod == "Cash")
+            {
+                MessageBox.Show("Payment method recorded as cash. Remember to pay before 12pm at the day of check-in!", "Success");
+                isValid = false;
+                check_paymethod = EPaymentMethod.Cash;
+                return;
+
+
+            }
+            //--------------------------------------------------
+            // ------------------ VALIDATION -------------------
+            //--------------------------------------------------
 
             //Submission Error If One Or More Field Has No Value
-            if (string.IsNullOrEmpty(cardNumber) || string.IsNullOrEmpty(cvv) || string.IsNullOrEmpty(selectedCardType) || string.IsNullOrEmpty(selectedExpireDate))
+            else if ((op_cerdit) && (string.IsNullOrEmpty(cardNumber) || string.IsNullOrEmpty(cvv) || string.IsNullOrEmpty(selectedCardType) || string.IsNullOrEmpty(selectedExpireDate)))
             {
                 MessageBox.Show("Please Fill all Required Fields Correctly.", "Submission Error");
                 return;
@@ -102,10 +122,12 @@ namespace Hotel_Reservation_System
                 MessageBox.Show("Payment Submitted Successfully!", "Successful Process");
             }
 
-          
+            Data.GetData();
+            var Res = Data.Reservations.FirstOrDefault(X => X.ReservationID == ActiveUser.CurrentReservationID);
+            var Cre = new CreditCardPayment();
+            DataBase.AddPayment(DateTime.Now, ActiveUser.CurrentReservationID, Res.TotalCost + Res.TotalCost * Cre.Tax, check_paymethod, DataBase.connectionString);
+
         }
-
-
 
         //ComboBox of ExpireDate Display Options From 06/25 To 06/35
         private void Window_Loaded(object sender, RoutedEventArgs e)

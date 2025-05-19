@@ -9,7 +9,7 @@ namespace Hotel_Reservation_System
     public class CreditCardPayment:Payment
     {
         //Field Tax for Bank Taxes
-        private double tax;
+        private double tax = 0.05;
 
 
         //Set & Get Property of tax
@@ -20,9 +20,8 @@ namespace Hotel_Reservation_System
                 if (value > 0)
                     tax = value;
                 else
-                {
-                    tax = 0;
-                    //throw new ArgumentException("Tax Must be Positive Number");
+                {                   
+                    throw new ArgumentException("Tax Must be Positive Number");
                 }
             }
             get
@@ -35,13 +34,14 @@ namespace Hotel_Reservation_System
         //Default Constructor
         public CreditCardPayment()
         {
-            tax=0;
+            Tax = 0.05;
         }
 
         //Parameterized Constructor 
         public CreditCardPayment(int paymentID,int reservationID, EPaymentMethod paymentMethod, DateTime paymentDate, double totalAmount, double tax) : base(paymentID,reservationID, paymentMethod, paymentDate, totalAmount)
         {
-            Tax = tax;
+            //Tax = tax;
+            Tax = 0.05;
         }
 
         //Process Payment Method To Change Reservation Status From Pending To Confirmed After Payment
