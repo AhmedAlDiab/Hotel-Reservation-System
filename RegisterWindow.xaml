@@ -10,9 +10,9 @@
         <ImageBrush ImageSource="Image/Wallpaper.jpg" Stretch="UniformToFill"/>
     </Window.Background>
     <Grid>
-        <Border  Width="650" Height="1080"
-HorizontalAlignment="Center" VerticalAlignment="Center"
-CornerRadius="15" Padding="20">
+        <Border Width="650" Height="780"
+            HorizontalAlignment="Center" VerticalAlignment="Center"
+            CornerRadius="15" Padding="20">
             <Border.Effect>
                 <DropShadowEffect Color="Black" BlurRadius="22" ShadowDepth="9" Opacity="0.2"/>
             </Border.Effect>
@@ -20,77 +20,81 @@ CornerRadius="15" Padding="20">
             <!-- Register form content inside -->
             <StackPanel>
                 <TextBlock FontFamily="Segoe UI" Text="Register" Foreground="Brown" 
-               FontSize="65" FontWeight="Bold"
-               Margin="0,30,0,30" 
-               HorizontalAlignment="Center"/>
+                       FontSize="45" FontWeight="Bold"
+                       Margin="0,20,0,20" 
+                       HorizontalAlignment="Center"/>
                 <TextBlock FontFamily="Segoe UI" 
-                            Text="Enter your credentials to register" 
-               FontSize="15" Margin="0 10 0 30" HorizontalAlignment="Center" Foreground="Brown"
-        />
-                <StackPanel Orientation="Vertical" Margin="0 0 0 30" HorizontalAlignment="Center"  >
-                    <Label Content="Fullname : " FontFamily="Segoe UI" FontSize="20"/>
-                    <TextBox x:Name="Fullname" FontFamily="Segoe UI" Width="372"
- BorderBrush="Brown" BorderThickness="0.5"
- Padding="5 0 0 0" FontSize="20" VerticalContentAlignment="Center" Height="40" />
+                       Text="Enter your credentials to register" 
+                       FontSize="13" Margin="0,5,0,20" HorizontalAlignment="Center" Foreground="Brown"/>
+
+                <StackPanel Orientation="Vertical" Margin="0,0,0,15" HorizontalAlignment="Center">
+                    <Label Content="Fullname:" FontFamily="Segoe UI" FontSize="16"/>
+                    <TextBox x:Name="Fullname" FontFamily="Segoe UI" Width="372" Height="34"
+                         BorderBrush="Brown" BorderThickness="0.5"
+                         Padding="3,0,0,0" FontSize="16" VerticalContentAlignment="Center"/>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" Margin="0 0 0 30" HorizontalAlignment="Center"  >
-                    <Label Content="Username : " FontFamily="Segoe UI" FontSize="20"/>
-                    <TextBox x:Name="Username" FontFamily="Segoe UI" Width="372"
-                 BorderBrush="Brown" BorderThickness="0.5"
-                 Padding="5 0 0 0" FontSize="20" VerticalContentAlignment="Center" Height="40" />
+
+                <StackPanel Orientation="Vertical" Margin="0,0,0,15" HorizontalAlignment="Center">
+                    <Label Content="Username:" FontFamily="Segoe UI" FontSize="16"/>
+                    <TextBox x:Name="Username" FontFamily="Segoe UI" Width="372" Height="34"
+                         BorderBrush="Brown" BorderThickness="0.5"
+                         Padding="3,0,0,0" FontSize="16" VerticalContentAlignment="Center"/>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" Margin="0 0 0 30" HorizontalAlignment="Center"  >
-                    <Label Content="Password :  " FontFamily="Segoe UI" FontSize="20"/>
-                    <PasswordBox x:Name="Password" FontFamily="Segoe UI" Width="372"
-                     BorderBrush="Brown" BorderThickness="0.5"
-                     Padding="5 0 0 0" FontSize="20" VerticalContentAlignment="Center" Height="40" />
+
+                <StackPanel Orientation="Vertical" Margin="0,0,0,15" HorizontalAlignment="Center">
+                    <Label Content="Password:" FontFamily="Segoe UI" FontSize="16"/>
+                    <PasswordBox x:Name="Password" FontFamily="Segoe UI" Width="372" Height="34"
+                             BorderBrush="Brown" BorderThickness="0.5"
+                             Padding="3,0,0,0" FontSize="16" VerticalContentAlignment="Center"/>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" Margin="0 0 0 30" HorizontalAlignment="Center"  >
-                    <Label Content="Confirm Password :  " FontFamily="Segoe UI" FontSize="20"/>
-                    <PasswordBox x:Name="ConfirmPassword" FontFamily="Segoe UI" Width="372"
-     BorderBrush="Brown" BorderThickness="0.5"
-     Padding="5 0 0 0" FontSize="20" VerticalContentAlignment="Center" Height="40" />
+
+                <StackPanel Orientation="Vertical" Margin="0,0,0,15" HorizontalAlignment="Center">
+                    <Label Content="Confirm Password:" FontFamily="Segoe UI" FontSize="16"/>
+                    <PasswordBox x:Name="ConfirmPassword" FontFamily="Segoe UI" Width="372" Height="34"
+                             BorderBrush="Brown" BorderThickness="0.5"
+                             Padding="3,0,0,0" FontSize="16" VerticalContentAlignment="Center"/>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" Margin="0 0 0 30" HorizontalAlignment="Center"   >
-                    <Label Content="Email : " FontFamily="Segoe UI" FontSize="20"/>
-                    <TextBox x:Name="Email" FontFamily="Segoe UI" Width="372"
- BorderBrush="Brown" BorderThickness="0.5"
- Padding="5 0 0 0" FontSize="20" VerticalContentAlignment="Center" Height="40" />
+
+                <StackPanel Orientation="Vertical" Margin="0,0,0,15" HorizontalAlignment="Center">
+                    <Label Content="Email:" FontFamily="Segoe UI" FontSize="16"/>
+                    <TextBox x:Name="Email" FontFamily="Segoe UI" Width="372" Height="34"
+                         BorderBrush="Brown" BorderThickness="0.5"
+                         Padding="3,0,0,0" FontSize="16" VerticalContentAlignment="Center"/>
                 </StackPanel>
-                <StackPanel Orientation="Vertical" Margin="0 0 0 30" HorizontalAlignment="Center"  >
-                    <Label Content="Phone Number : " FontFamily="Segoe UI" FontSize="20"/>
-                    <TextBox x:Name="PhoneNumber" FontFamily="Segoe UI" Width="372"
- BorderBrush="Brown" BorderThickness="0.5"
- Padding="5 0 0 0" FontSize="20" VerticalContentAlignment="Center" Height="40" />
+
+                <StackPanel Orientation="Vertical" Margin="0,0,0,25" HorizontalAlignment="Center">
+                    <Label Content="Phone Number:" FontFamily="Segoe UI" FontSize="16"/>
+                    <TextBox x:Name="PhoneNumber" FontFamily="Segoe UI" Width="372" Height="34"
+                         BorderBrush="Brown" BorderThickness="0.5"
+                         Padding="3,0,0,0" FontSize="16" VerticalContentAlignment="Center"/>
                 </StackPanel>
-                <Button x:Name="RegisterB" Content="Register" Width="180" Height="45" Foreground="White" FontSize="25" VerticalContentAlignment="Center"
-            Margin="0 10 0 10" Cursor="Hand" Click="RegisterB_Click"  >
+
+                <Button x:Name="RegisterB" Content="Register" Width="160" Height="38" Foreground="White" FontSize="18" VerticalContentAlignment="Center"
+                    Margin="0,5,0,20" Cursor="Hand" Click="RegisterB_Click">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="Brown" 
-                        BorderBrush="White"  
-                        BorderThickness="1" CornerRadius="8">
+                                BorderBrush="White"  
+                                BorderThickness="1" CornerRadius="8">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <StackPanel Orientation="Horizontal" Margin="0 30 0 0"  HorizontalAlignment="Center" >
-                    <Label Content="Already have an account?" FontSize="20" ></Label>
-                    <Button Content="Login" FontSize="20" Background="White" BorderBrush="White" x:Name="Rlogin"
-                            Click="Rlogin_Click"
-                            Foreground="Brown" Cursor="Hand">
+
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Center">
+                    <Label Content="Already have an account?" FontSize="16"/>
+                    <Button Content="Login" FontSize="16" Background="White" BorderBrush="White" x:Name="Rlogin"
+                        Click="Rlogin_Click"
+                        Foreground="Brown" Cursor="Hand">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
                 </StackPanel>
             </StackPanel>
         </Border>
-
     </Grid>
 </Window>
