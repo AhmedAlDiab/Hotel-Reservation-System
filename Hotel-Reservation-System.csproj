@@ -12,6 +12,7 @@
   <ItemGroup>
     <None Remove="Image\connectTOdata.png" />
     <None Remove="Image\main.jpg" />
+    <None Remove="Image\New Background.png" />
     <None Remove="Image\staff.png" />
     <None Remove="Image\staff_mangent.png" />
     <None Remove="Image\Wallpaper.jpg" />
@@ -30,6 +31,7 @@
   <ItemGroup>
     <Resource Include="Image\connectTOdata.png" />
     <Resource Include="Image\main.jpg" />
+    <Resource Include="Image\New Background.png" />
     <Resource Include="Image\staff.png" />
     <Resource Include="Image\staff_mangent.png" />
     <Resource Include="Image\Wallpaper.jpg" />

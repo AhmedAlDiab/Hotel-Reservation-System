@@ -8,15 +8,15 @@
         Title="ReservationManagementWindow" Height="793" Width="1536">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Image/main.jpg"/>
+            <ImageBrush ImageSource="/Image/New Background.png"/>
         </Grid.Background>
-        <Rectangle HorizontalAlignment="Center" Height="683" Stroke="Black" VerticalAlignment="Center" Width="1288" Fill="#C8FFFFFF"/>
+        <Rectangle HorizontalAlignment="Center" Height="683" Stroke="Black" VerticalAlignment="Center" Width="1288" Fill="#C8E8E7E4"/>
         <Label Foreground="Gold"  Content="Reservation Management" Margin="0,47,0,0" FontWeight="Bold" FontSize="43" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Elephant" Width="602" Height="79" HorizontalContentAlignment="Center" BorderBrush="Black">
             <Label.Effect>
                 <DropShadowEffect Opacity="0.495" ShadowDepth="4.5" Direction="-26" BlurRadius="1" RenderingBias="Performance"/>
             </Label.Effect>
         </Label>
-        <DataGrid x:Name="ReservationsList" ColumnHeaderHeight="30" AutoGenerateColumns="False" Margin="403,152,234,119" BorderBrush="#FFA79C4F" Background="#663D3D18" FontWeight="Bold" SelectionChanged="ReservationsList_SelectionChanged" >
+        <DataGrid x:Name="ReservationsList" ColumnHeaderHeight="30" AutoGenerateColumns="False" Margin="403,152,234,119" BorderBrush="#FFA79C4F" Background="#663D3D18" FontWeight="Bold"  >
             <DataGrid.Columns>
 
                 <DataGridTextColumn Header="Reservation ID" Width="100" />
