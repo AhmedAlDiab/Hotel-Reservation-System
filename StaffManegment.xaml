@@ -53,5 +53,7 @@ AlternatingRowBackground="#FAF5EF"
                 </ControlTemplate>
             </Button.Template>
         </Button>
+        <Frame x:Name="Contantadd" Navigated="Contantadd_Navigated" Height="300"  Width="400"> </Frame>
+
     </Grid>
 </UserControl>

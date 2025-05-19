@@ -45,6 +45,10 @@ namespace Hotel_Reservation_System
                 {
                     MessageBox.Show("Login successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     // Next window here
+                   STAFF sTAFF = new STAFF();
+                    sTAFF.Show();
+                    this.Close();
+                    
                 }
                 else
                 {
