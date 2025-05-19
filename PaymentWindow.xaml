@@ -13,30 +13,25 @@
             <ImageBrush ImageSource="/Image/main.jpg"/>
         </Grid.Background>
         <Rectangle Margin="230,10,222,10" Opacity="0.7" Stroke="White" Fill="White"/>
-        <Label Foreground="DarkGoldenrod" Content="Payment Page" Margin="0,18,0,0" FontFamily="Elephant" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#00000000" BorderBrush="Black" Panel.ZIndex="10" Height="44">
+        <Label Foreground="DarkGoldenrod" Content="Payment With Credit Card" Margin="0,18,0,0" FontFamily="Elephant" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#00000000" BorderBrush="Black" Panel.ZIndex="10" Height="44">
             <Label.Effect>
                 <DropShadowEffect Opacity="0.4" Color="#FF231D07" Direction="310" ShadowDepth="4" BlurRadius="10"/>
             </Label.Effect>
         </Label>
-        <TextBlock Text="Payment Method:" Margin="0,60,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold"/>
-        <ComboBox x:Name="PaymentMethodComboBox" Width="120" Margin="0,81,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="PaymentMethodComboBox_SelectionChanged">
-            <ComboBoxItem Content="Cash"/>
-            <ComboBoxItem Content="Credit"/>
-        </ComboBox>
-        <TextBlock HorizontalAlignment="Center" Height="21" Margin="0,116,0,0" TextWrapping="Wrap" Text="Credit Card Number  :" VerticalAlignment="Top" Width="198" FontWeight="Bold" TextAlignment="Center"/>
-        <TextBox x:Name="CreditCardNumber"  BorderThickness="0.7" BorderBrush="Black" HorizontalAlignment="Center" Margin="0,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Height="21" TextAlignment="Center"/>
-        <TextBlock HorizontalAlignment="Center" Height="21" Margin="0,169,0,0" TextWrapping="Wrap" Text="Credit Card Type :" VerticalAlignment="Top" Width="102" FontWeight="Bold" RenderTransformOrigin="0.63,0.373"/>
-        <ComboBox x:Name="CreditCardType" HorizontalAlignment="Center" Margin="0,195,0,0" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="22">
+        <TextBlock HorizontalAlignment="Center" Height="21" Margin="0,62,0,0" TextWrapping="Wrap" Text="Credit Card Number  :" VerticalAlignment="Top" Width="198" FontWeight="Bold" TextAlignment="Center"/>
+        <TextBox x:Name="CreditCardNumber"  BorderThickness="0.7" BorderBrush="Black" HorizontalAlignment="Center" Margin="0,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="198" Height="21" TextAlignment="Center"/>
+        <TextBlock HorizontalAlignment="Center" Height="21" Margin="0,118,0,0" TextWrapping="Wrap" Text="Credit Card Type :" VerticalAlignment="Top" Width="102" FontWeight="Bold" RenderTransformOrigin="0.63,0.373"/>
+        <ComboBox x:Name="CreditCardType" HorizontalAlignment="Center" Margin="0,139,0,0" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="22">
             <ComboBoxItem  Content="Visa"/>
             <ComboBoxItem  Content="Master Card"/>
             <ComboBoxItem  Content="American Express"/>
             <ComboBoxItem  Content="Meeza"/>
         </ComboBox>
-        <TextBlock HorizontalAlignment="Center" Height="16" TextWrapping="Wrap" Text="Expire Date (MM/YY) :" VerticalAlignment="Top" Width="130" FontWeight="Bold" Margin="0,224,0,0"/>
-        <ComboBox x:Name="ExpireDate"  HorizontalAlignment="Center" Margin="0,245,0,0" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="22"></ComboBox>
-        <TextBlock HorizontalAlignment="Center" Height="18" Margin="0,272,0,0" TextWrapping="Wrap" Text="CVV :" VerticalAlignment="Top" Width="34" FontWeight="Bold" RenderTransformOrigin="0.506,-0.235"/>
-        <TextBox x:Name="Cvv" BorderThickness="0.7" BorderBrush="Black" HorizontalAlignment="Center" Margin="0,295,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62" Height="21" RenderTransformOrigin="0.497,0.202" TextAlignment="Center"/>
-        <Button Click="Submit_Click"  BorderThickness="2" BorderBrush="Black" Background="#FFF3BE3A" Content="Submit" HorizontalAlignment="Center" Margin="0,365,0,0" VerticalAlignment="Top" Height="27" Width="130" FontSize="15" FontWeight="Bold" RenderTransformOrigin="0.477,1.439" >
+        <TextBlock HorizontalAlignment="Center" Height="16" TextWrapping="Wrap" Text="Expire Date (MM/YY) :" VerticalAlignment="Top" Width="130" FontWeight="Bold" Margin="0,176,0,0"/>
+        <ComboBox x:Name="ExpireDate"  HorizontalAlignment="Center" Margin="0,195,0,0" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="22"></ComboBox>
+        <TextBlock HorizontalAlignment="Center" Height="18" Margin="0,224,0,0" TextWrapping="Wrap" Text="CVV :" VerticalAlignment="Top" Width="34" FontWeight="Bold" RenderTransformOrigin="0.506,-0.235"/>
+        <TextBox x:Name="Cvv" BorderThickness="0.7" BorderBrush="Black" HorizontalAlignment="Center" Margin="0,242,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62" Height="21" RenderTransformOrigin="0.497,0.202" TextAlignment="Center"/>
+        <Button Click="Submit_Click"  BorderThickness="2" BorderBrush="Black" Background="#FFF3BE3A" Content="Submit" HorizontalAlignment="Center" Margin="0,325,0,0" VerticalAlignment="Top" Height="27" Width="130" FontSize="15" FontWeight="Bold" RenderTransformOrigin="0.477,1.439" >
             <Button.Effect>
                 <DropShadowEffect Color="#FF5F4B18" Direction="310" Opacity="0.5" ShadowDepth="0" BlurRadius="40"/>
             </Button.Effect>
