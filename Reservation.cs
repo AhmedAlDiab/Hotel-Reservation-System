@@ -16,6 +16,7 @@ namespace Hotel_Reservation_System
         private DateTime checkInDate;
         private DateTime checkOutDate;
         private double totalCost;
+        private int numberOfNights;
         private EReservationStatus reservationStatus;
 
         // Properties to access Data members
@@ -28,6 +29,20 @@ namespace Hotel_Reservation_System
                     reservationID = value;
                 else
                     reservationID = 0;
+            }
+        }
+        public int NumberOfNights
+        {
+            get { return numberOfNights; }
+            set
+            {
+                if (value > 0)
+                {
+                    numberOfNights = value;
+                } else
+                {
+                    throw new AggregateException("Number of nights must be greater than zero");
+                }
             }
         }
 
@@ -94,7 +109,7 @@ namespace Hotel_Reservation_System
                 }
             }
         }
-
+        
         public EReservationStatus ReservationStatus
         {
             get { return reservationStatus; }

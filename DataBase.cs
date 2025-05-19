@@ -51,15 +51,23 @@ namespace Hotel_Reservation_System
         public static bool LogIn(string username, string password, string connectionString)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                string query = "SELECT 1 FROM Users WHERE username = @username AND password = @password";
+            {                
+                string query = "SELECT userID FROM Users WHERE username = @username AND password = @password";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@password", password);
 
                 connection.Open();
                 var result = command.ExecuteScalar();
-                return result != null;
+
+                if (result != null)
+                {
+                    // Set the active user ID if login is successful
+                    ActiveUser.UserID = Convert.ToInt32(result);
+                    return true;
+                }
+
+                return false;
             }
         }
 
@@ -148,24 +156,23 @@ namespace Hotel_Reservation_System
         /// <param name="status"></param>
         /// <param name="connectionString"></param>
         /// <returns></returns>
-        public static bool AddReservation(int customerID, int roomID,
-                                DateTime checkInDate, DateTime checkOutDate,
-                                double totalCost, EReservationStatus status,
-                                string connectionString)
+        public static int AddReservation(int customerID, int roomID,
+                        DateTime checkInDate, DateTime checkOutDate,
+                        double totalCost, EReservationStatus status,
+                        string connectionString)
         {
             try
             {
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    // Removed reservationID from columns and values since it's auto-incremented
                     string query = @"INSERT INTO Reservations 
-                          (customerID, roomID, checkInDate, checkOutDate, totalCost, reservationStatus)
-                          VALUES 
-                          (@customerID, @roomID, @checkInDate, @checkOutDate, @totalCost, @reservationStatus)";
+                  (customerID, roomID, checkInDate, checkOutDate, totalCost, reservationStatus)
+                  VALUES 
+                  (@customerID, @roomID, @checkInDate, @checkOutDate, @totalCost, @reservationStatus);
+                  SELECT LAST_INSERT_ID();"; 
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
-                        // Removed reservationID parameter
                         command.Parameters.AddWithValue("@customerID", customerID);
                         command.Parameters.AddWithValue("@roomID", roomID);
                         command.Parameters.AddWithValue("@checkInDate", checkInDate);
@@ -175,21 +182,23 @@ namespace Hotel_Reservation_System
 
                         connection.Open();
 
-                        int rowsAffected = command.ExecuteNonQuery();
-                        return rowsAffected > 0;
+                        // ExecuteScalar returns the first column of the first row
+                        int newReservationId = Convert.ToInt32(command.ExecuteScalar());
+                        return newReservationId; // Returns the new ID if successful
                     }
-
                 }
             }
             catch (MySqlException ex)
-            {                
-                MessageBox.Show($"Database error adding reservation: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
+            {
+                MessageBox.Show($"Database error adding reservation: {ex.Message}", "Database Error",
+                               MessageBoxButton.OK, MessageBoxImage.Error);
+                return -1; // Return -1 to indicate failure
             }
             catch (Exception ex)
-            {                
-                MessageBox.Show($"Error adding reservation: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
+            {
+                MessageBox.Show($"Error adding reservation: {ex.Message}", "Error",
+                               MessageBoxButton.OK, MessageBoxImage.Error);
+                return -1; // Return -1 to indicate failure
             }
         }
         /// <summary>
