@@ -34,73 +34,100 @@ namespace Hotel_Reservation_System
             string selectedCardType = (CreditCardType.SelectedItem as ComboBoxItem)?.Content.ToString();
             string selectedExpireDate = ExpireDate.SelectedItem?.ToString();
 
-            // Checker
+            // Checker input validation
             bool isValid = true;
+            //checker for filling payment method
+            bool fill_PM=false;
+            //checker for cash or credit
+            bool isCredit=true;
 
-            //Submission Error If One Or More Field Has No Value
-            if (string.IsNullOrEmpty(cardNumber) || string.IsNullOrEmpty(cvv) || string.IsNullOrEmpty(selectedCardType) || string.IsNullOrEmpty(selectedExpireDate))
+            //choosing payment method
+            string selectedPaymentMethod = (PaymentMethodComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
+
+            if (!string.IsNullOrEmpty(selectedPaymentMethod))
             {
-                MessageBox.Show("Please Fill all Required Fields Correctly.", "Submission Error");
+                fill_PM = true;
+
+            }
+            if (!fill_PM)
+            {
+                MessageBox.Show("Please choose a payment method.", "Input Error");
                 return;
             }
-
-            //After Checking That All fields Has Value Then:
-
-
-            //---- 1st Check ----
-            // Credit Card Number: Must be 16 digits
-            if (cardNumber.Length != 16)
+            else if (fill_PM && selectedPaymentMethod == "Cash")
             {
-                MessageBox.Show("Credit Card Number Must Be Exactly 16 digits.", "Input Error");
-                isValid = false;
+                MessageBox.Show("Payment method recorded as cash. Remember to pay before check-in!", "Success");
+                return;
             }
-
-            //---- 2nd Check ----
-            //Credit Card Number: Must contain digits only
-            else if (!cardNumber.All(char.IsDigit))
+            else if (fill_PM && selectedPaymentMethod == "Credit")
             {
-                MessageBox.Show("Credit Card Number Must Contain Digits Only (No Letters or Symbols).", "Input Error");
-                isValid = false;
+
+                //Submission Error If One Or More Field Has No Value
+                if (string.IsNullOrEmpty(cardNumber) || string.IsNullOrEmpty(cvv) || string.IsNullOrEmpty(selectedCardType) || string.IsNullOrEmpty(selectedExpireDate))
+                {
+                    MessageBox.Show("Please Fill all Required Fields Correctly.", "Submission Error");
+                    return;
+                }
+
+                //After Checking That All fields Has Value Then:
+
+
+                //---- 1st Check ----
+                // Credit Card Number: Must be 16 digits
+                if (cardNumber.Length != 16)
+                {
+                    MessageBox.Show("Credit Card Number Must Be Exactly 16 digits.", "Input Error");
+                    isValid = false;
+                }
+
+                //---- 2nd Check ----
+                //Credit Card Number: Must contain digits only
+                else if (!cardNumber.All(char.IsDigit))
+                {
+                    MessageBox.Show("Credit Card Number Must Contain Digits Only (No Letters or Symbols).", "Input Error");
+                    isValid = false;
+                }
+
+                //---- 3rd Check ----
+                // CVV: Must be 3 digits 
+                else if (cvv.Length != 3)
+                {
+                    MessageBox.Show("CVV Must Be Exactly 3 Digits.", "Input Error");
+                    isValid = false;
+                }
+
+                //---- 4th Check ----
+                // CVV: Must be digits only 
+                else if (!cvv.All(char.IsDigit))
+                {
+                    MessageBox.Show("CVV Must Contain Digits Only (No Letters or Symbols).", "Input Error");
+                    isValid = false;
+                }
+
+                //---- 5th Check ----
+                // Card Type: Must be Choosen 
+                else if (string.IsNullOrEmpty(selectedCardType))
+                {
+                    MessageBox.Show("You Must Choose A Credit Card Type.", "Input Error");
+                    isValid = false;
+                }
+
+                //---- 6th Check ----
+                // Expire Date: Must be Choosen 
+                else if (string.IsNullOrEmpty(selectedExpireDate))
+                {
+                    MessageBox.Show("You Must Choose An Expiry Date.", "Input Error");
+                    isValid = false;
+                }
+
             }
-
-            //---- 3rd Check ----
-            // CVV: Must be 3 digits 
-            else if (cvv.Length != 3)
-            {
-                MessageBox.Show("CVV Must Be Exactly 3 Digits.", "Input Error");
-                isValid = false;
-            }
-
-            //---- 4th Check ----
-            // CVV: Must be digits only 
-            else if (!cvv.All(char.IsDigit))
-            {
-                MessageBox.Show("CVV Must Contain Digits Only (No Letters or Symbols).", "Input Error");
-                isValid = false;
-            }
-
-            //---- 5th Check ----
-            // Card Type: Must be Choosen 
-            else if (string.IsNullOrEmpty(selectedCardType))
-            {
-                MessageBox.Show("You Must Choose A Credit Card Type.", "Input Error");
-                isValid = false;
-            }
-
-            //---- 6th Check ----
-            // Expire Date: Must be Choosen 
-            else if (string.IsNullOrEmpty(selectedExpireDate))
-            {
-                MessageBox.Show("You Must Choose An Expiry Date.", "Input Error");
-                isValid = false;
-            }
-
-
             //Finally If All 6 Check Points ----> True Then: submitted successfully
             if (isValid)
             {
                 MessageBox.Show("Payment Submitted Successfully!", "Successful Process");
             }
+
+            
         }
 
 
@@ -123,6 +150,11 @@ namespace Hotel_Reservation_System
                     ExpireDate.Items.Add($"{formattedMonth}/{formattedYear}");
                 }
             }
+        }
+
+        private void PaymentMethodComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
