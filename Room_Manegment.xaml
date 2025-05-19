@@ -4,35 +4,92 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Hotel_Reservation_System"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <!--Resourcees-->
+    <UserControl.Resources>
+        <!--room type provider-->
+        <ObjectDataProvider x:Key="roomtypeValues" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:ERoomType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <!--Bed type provider-->
+        <ObjectDataProvider x:Key="EBedTypeValues" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:EBedType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <Style x:Key="HeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="DarkSlateBlue"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
 
+
+    <Grid>
+        <!--background-->
         <Grid.Background>
             <ImageBrush ImageSource="/Image/staff_mangent.png"/>
         </Grid.Background>
-        
+        <!--header-->
         <TextBlock Margin="317,70,254,0" TextWrapping="Wrap" Text="    Room Manegment " VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Foreground="#D4AF37" FontFamily="Elephant"/>
-        <DataGrid x:Name="roomGrid" AutoGenerateColumns="False" Height="250" Margin="199,101,136,99" ItemsSource="{Binding Rooms}" >
+        <!--Data grid (table)-->
+        <DataGrid x:Name="roomGrid" 
+                  SelectedItem="{Binding SelectedRoom}"
+                  AutoGenerateColumns="False" Height="250" Margin="199,101,115,99" ItemsSource="{Binding Rooms}" BorderBrush="Black">
+            ColumnHeaderStyle="{StaticResource HeaderStyle}"
+            <DataGrid.Background>
+                <SolidColorBrush Color="#663D3D18" Opacity="0.4"/>
+            </DataGrid.Background>
             <DataGrid.Columns>
+                <!--room id-->
                 <DataGridTextColumn Header=" Room ID" Binding="{Binding RoomID}" Width="60" />
-                <DataGridTextColumn Header=" Room Type" Binding="{Binding Roomtype}" Width="80" />
-                <DataGridTextColumn Header="Bed Type" Binding="{Binding Bedtype}" Width="60" />
+                <!--room type-->
+                <DataGridTemplateColumn Header="RoomType" Width="70">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Roomtype}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <ComboBox SelectedItem="{Binding Roomtype, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      ItemsSource="{Binding Source={StaticResource roomtypeValues}}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+                <!--Bed type-->
+
+                <DataGridTemplateColumn Header="BedType" Width="70">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Bedtype}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <ComboBox SelectedItem="{Binding Bedtype, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             ItemsSource="{Binding Source={StaticResource EBedTypeValues}}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+
                 <DataGridTextColumn Header=" Price" Binding="{Binding PricePerNight}" Width="50" />
                 <DataGridTextColumn Header="Availability" Binding="{Binding ISAvailable}" Width="70" />
                 <DataGridTextColumn Header="  Capacity" Binding="{Binding Capacity}" Width="80" />
                 <DataGridTextColumn Header=" Discount" Binding="{Binding Path=(local:DeluxeRoom.Discount),FallbackValue='-'}" Width="80" />
-
-
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="60,147,0,-147">
-            <Button Content="Add Standard Room" Click="AddStandard_Click" Margin="0,0,10,10" Height="30"/>
-            <Button Content="Add Deluxe Room" Click="AddDeluxe_Click" Margin="0,0,10,10" Height="37"/>
-            <Button Content="Delete Room"  Height="34" Click="Button_Click"/>
-        </StackPanel>
+        <Button Content="Add Standard" Background="#FFF0D129" BorderThickness="2" BorderBrush="Black" HorizontalAlignment="Left" Height="37" Margin="51,126,0,0" VerticalAlignment="Top" Width="104"  FontSize="14" FontWeight="Bold" Click="Button_Click"/>
 
+        <Button Content="Add Deluxe" Background="#FFF0D129" BorderThickness="2" BorderBrush="Black" HorizontalAlignment="Left" Height="37" 
+                 FontSize="14" FontWeight="Bold" Margin="51,210,0,0" VerticalAlignment="Top" Width="104" Click="Button_Click_2"/>
 
-
+        <Button Content="Remove" Background="#FFF0D129" BorderThickness="2" BorderBrush="Black" HorizontalAlignment="Left" Height="37" Margin="60,168,0,0"  FontSize="14" FontWeight="Bold" VerticalAlignment="Top" Width="86" Click="Button_Click_1"/>
+        <Frame x:Name="confirmaddroom" Navigated="confirmaddroom_Navigated" Height="375"  Width="300" Margin="282,38,218,38"></Frame>
     </Grid>
 </UserControl>

@@ -44,7 +44,7 @@ namespace Hotel_Reservation_System
                 if (loginSuccess)
                 {
                     MessageBox.Show("Login successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                    // Next window here
+                 
                 }
                 else
                 {
