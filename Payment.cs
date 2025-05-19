@@ -24,8 +24,8 @@ namespace Hotel_Reservation_System
                     paymentID = value;
                 else
                 {
-                    paymentID = 0;
-                    throw new ArgumentException("Payment ID Must be Greater than Zero");
+                    //paymentID = 0;
+                   throw new ArgumentException("Payment ID Must be Greater than Zero");
                     
                 }
             }
