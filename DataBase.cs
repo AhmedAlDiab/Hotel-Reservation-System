@@ -51,15 +51,23 @@ namespace Hotel_Reservation_System
         public static bool LogIn(string username, string password, string connectionString)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                string query = "SELECT 1 FROM Users WHERE username = @username AND password = @password";
+            {                
+                string query = "SELECT userID FROM Users WHERE username = @username AND password = @password";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@password", password);
 
                 connection.Open();
                 var result = command.ExecuteScalar();
-                return result != null;
+
+                if (result != null)
+                {
+                    // Set the active user ID if login is successful
+                    ActiveUser.ID = Convert.ToInt32(result);
+                    return true;
+                }
+
+                return false;
             }
         }
 
