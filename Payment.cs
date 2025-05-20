@@ -76,8 +76,8 @@ namespace Hotel_Reservation_System
                     totalAmount = value;
                 else
                 {
-                    totalAmount = 0;
-                    //throw new ArgumentException("Total Amount Must be Greater Than Zero");
+                    //totalAmount = 0;
+                    throw new ArgumentException("Total Amount Must be Greater Than Zero");
                 }
 
             }
