@@ -16,21 +16,8 @@
                 <DropShadowEffect Opacity="0.495" ShadowDepth="4.5" Direction="-26" BlurRadius="1" RenderingBias="Performance"/>
             </Label.Effect>
         </Label>
-        <DataGrid x:Name="ReservationsList" ColumnHeaderHeight="30" AutoGenerateColumns="False" Margin="403,164,234,106" BorderBrush="#FFA79C4F" Background="#663D3D18" FontWeight="Bold" ItemsSource="{Binding reservationViews}" >
-            <DataGrid.Columns>
-
-                <DataGridTextColumn Header="Reservation ID" Width="100" Binding="{Binding ReservationID}"/>
-                <DataGridTextColumn Header="Payment ID" Width="87" Binding="{Binding PaymentID}"/>
-                <DataGridTextColumn Header="Payment Date" Width="110" Binding="{Binding PaymentDate}" />
-                <DataGridTextColumn Header="Payment Method" Width="108" Binding="{Binding PaymentMethod}"/>
-                <DataGridTextColumn Header="Reservation Status" Width="110" Binding="{Binding ReservationStatus}" />
-                <DataGridTextColumn Header="Check In Date" Width="95" Binding="{Binding CheckInDate}" />
-                <DataGridTextColumn Header="Check Out Date" Width="105" Binding="{Binding CheckOutDate}"/>
-                <DataGridTextColumn Header="Room Type" Width="85" Binding="{Binding RoomType}"/>
-                <DataGridTextColumn Header="Capacity" Width="58" Binding="{Binding Capacity}"/>
-                <DataGridTextColumn Header="Total Price" Width="90" Binding="{Binding TotalPrice}"/>
-                <DataGridTextColumn Header="Discount" Binding="{Binding Discount}"/>
-            </DataGrid.Columns>
+        <DataGrid x:Name="Reservationname" ColumnHeaderHeight="30" AutoGenerateColumns="True" Margin="403,164,234,106" BorderBrush="#FFA79C4F" Background="#663D3D18" FontWeight="Bold" ItemsSource="{Binding reservationbinding}"  >
+           
         </DataGrid>
         <Button Content="Cancel" BorderThickness="2" BorderBrush="Black" Background="#FFF0D129" HorizontalAlignment="Left" Margin="205,431,0,0" VerticalAlignment="Top" Height="70" Width="162" FontSize="25" FontWeight="Bold" RenderTransformOrigin="0.526,0.189">
             <Button.Effect>

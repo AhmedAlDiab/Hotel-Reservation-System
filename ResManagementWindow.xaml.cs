@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,67 +20,27 @@ namespace Hotel_Reservation_System
     /// </summary>
     public partial class ResManagementWindow : Window
     {
+        public ObservableCollection<Reservation> reservationbinding = new ObservableCollection<Reservation>();
+
         public ResManagementWindow()
         {
             InitializeComponent();
-            LoadReservationsFromDatabase();
-        }
-        private void LoadReservationsFromDatabase()
-        {
-            try
+            foreach (var rs in Data.Reservations)
             {
-                List<ReservationDisplayInfo> reservationViews = new List<ReservationDisplayInfo>();
-
-                Data.GetData();
-
-                foreach (var reservation in Data.Reservations)
+                if (rs.ReservationID != ActiveUser.CurrentReservationID)
+                    continue;
+                if (rs != null)
                 {
-                    if (reservation.ReservationID != ActiveUser.CurrentReservationID)
-                        continue;
-                    var payment = Data.Payments.FirstOrDefault(p => p.ReservationID == reservation.ReservationID);
-                    if (payment != null)
-                    {
-                        var Room = Data.Rooms.FirstOrDefault(p => p.RoomID == reservation.RoomID);
-                        var Reservations =Data.Reservations.FirstOrDefault(p => p.ReservationStatus == reservation.ReservationStatus);
-                        reservationViews.Add(new ReservationDisplayInfo
-                        {
-                            ReservationID = reservation.ReservationID,
-                            PaymentID = payment.PaymentID,
-                            PaymentDate = payment.PaymentDate,
-                            PaymentMethod = payment.PaymentMethod.ToString(),
-                            ReservationStatus = reservation.ReservationStatus.ToString(),
-                            CheckInDate = reservation.CheckInDate,
-                            CheckOutDate = reservation.CheckOutDate,
-                            RoomType = Room.Roomtype.ToString(),
-                            Capacity = Room.Capacity,
-                            TotalPrice = payment.TotalAmount,
-                            Discount = Room is DeluxeRoom d ? d.Discount : 0
-                        });
-                    }
+                    reservationbinding.Add(rs);
                 }
+            }
+            Reservationname.ItemsSource = reservationbinding;
 
-                ReservationsList.ItemsSource = reservationViews;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading reservations: " + ex.Message);
-            }
         }
 
     }
-    public class ReservationDisplayInfo
-    {
-        public int ReservationID { get; set; }
-        public int PaymentID { get; set; }
-        public DateTime PaymentDate { get; set; }
-        public string ReservationStatus {get; set; }
-        public string PaymentMethod { get; set; }
-        public DateTime CheckInDate { get; set; }
-        public DateTime CheckOutDate { get; set; }
-        public string RoomType { get; set; }
-        public int Capacity { get; set; }
-        public double TotalPrice { get; set; }
-        public double Discount { get; set; }
-    }
 
-}
+    }
+    
+
+
