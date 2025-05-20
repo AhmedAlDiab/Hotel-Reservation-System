@@ -74,7 +74,7 @@ namespace Hotel_Reservation_System
 
             //---- 1st Check ----
             // Credit Card Number: Must be 16 digits
-            if (cardNumber.Length != 16)
+            else if (cardNumber.Length != 16)
             {
                 MessageBox.Show("Credit Card Number Must Be Exactly 16 digits.", "Input Error");
                 isValid = false;
