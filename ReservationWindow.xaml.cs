@@ -210,11 +210,11 @@ namespace Hotel_Reservation_System
             }
             try
             {
-                Reservation Res = Data.Reservations.FirstOrDefault(x => x.ReservationID == ActiveUser.CurrentReservationID);
-                reservationId = Res.BookRoom(ActiveUser.UserID, selectedRoom.RoomID, checkInDate, checkOutDate, totalCost, EReservationStatus.Pending);                    
+                Reservation Res = new Reservation();
+                reservationId = Res.BookRoom(ActiveUser.UserID, selectedRoom.RoomID, checkInDate, checkOutDate, totalCost, EReservationStatus.Pending);
+                ActiveUser.CurrentReservationID = reservationId;
                 if (reservationId != -1)
-                {
-                    ActiveUser.CurrentReservationID = reservationId;
+                {                    
                     var paymentWindow = new PaymentWindow();
                     paymentWindow.Show();
                     this.Close();
