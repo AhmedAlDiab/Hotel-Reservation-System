@@ -22,6 +22,7 @@ namespace Hotel_Reservation_System
         public LoginWindow()
         {
             InitializeComponent();
+            Data.GetData();
         }
         private void LoginB_Click(object sender, RoutedEventArgs e)
         {
@@ -43,13 +44,19 @@ namespace Hotel_Reservation_System
 
                 if (loginSuccess)
                 {
-                    MessageBox.Show("Login successful!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                    // Next window here
-                 
-                   STAFF sTAFF = new STAFF();
-                    sTAFF.Show();
-                    this.Close();                                       
-                    
+                    if (Data.Users.FirstOrDefault(u => u.UserID == ActiveUser.UserID).IsAdmin == true)
+                    {
+                        var staffWindow = new STAFF();
+                        staffWindow.Show();
+                        this.Hide();
+                    } else
+                    {
+                        var reservationWindow = new ReservationWindow();
+                        reservationWindow.Show();
+                        this.Hide();
+                    }
+
+
                 }
                 else
                 {

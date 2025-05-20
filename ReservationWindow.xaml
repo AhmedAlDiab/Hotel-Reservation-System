@@ -7,30 +7,32 @@
         mc:Ignorable="d"
         Title="ReservationWindow" Height="1080" Width="1920">
     <Window.Background>
-        <ImageBrush ImageSource="/Image/Wallpaper.jpg" Stretch="UniformToFill"/>
+        <ImageBrush ImageSource="/Image/New Background.png" Stretch="UniformToFill"/>
     </Window.Background>
-    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Width="934" Height="861">
+    <StackPanel Orientation="Vertical" VerticalAlignment="Center" Background="White" HorizontalAlignment="Center" Width="700" Height="664">
         <TextBlock Text="Reservation Page" 
-               FontWeight="Bold" TextAlignment="Center" Margin="0 15 0 50"
-               FontSize="40" Foreground="White"  />
-        <StackPanel Orientation="Horizontal" Margin="0 0 0 30" HorizontalAlignment="Center">
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="380" Margin="0 0 20 0">
-                <Label Content="Fullname" FontSize="15" Margin="0 0 0 5" ></Label>
-                <TextBox x:Name="Fullname" Height="35" VerticalContentAlignment="Center" FontSize="20" />
+           FontWeight="Bold" TextAlignment="Center" Margin="0 10 0 30"
+           FontSize="32" Foreground="White"  />
+
+        <StackPanel Orientation="Horizontal" Margin="0 0 0 20" HorizontalAlignment="Center">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="280" Margin="0 0 10 0">
+                <Label Content="Fullname" FontSize="14" Margin="0 0 0 5" />
+                <TextBox x:Name="Fullname" Height="30" VerticalContentAlignment="Center" FontSize="16" />
             </StackPanel>
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Right"  Width="380">
-                <Label Content="Email" FontSize="15" Margin="0 0 0 5" ></Label>
-                <TextBox x:Name="Email" Height="35" VerticalContentAlignment="Center" FontSize="20" />
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Width="280">
+                <Label Content="Email" FontSize="14" Margin="0 0 0 5" />
+                <TextBox x:Name="Email" Height="30" VerticalContentAlignment="Center" FontSize="16" />
             </StackPanel>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0 0 0 30" HorizontalAlignment="Center">
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="380" Margin="0 0 20 0">
-                <Label Content="Phone Number" FontSize="15" Margin="0 0 0 5" ></Label>
-                <TextBox x:Name="Phone" Height="35" VerticalContentAlignment="Center" FontSize="20" />
+
+        <StackPanel Orientation="Horizontal" Margin="0 0 0 20" HorizontalAlignment="Center">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="280" Margin="0 0 10 0">
+                <Label Content="Phone Number" FontSize="14" Margin="0 0 0 5" />
+                <TextBox x:Name="Phone" Height="30" VerticalContentAlignment="Center" FontSize="16" />
             </StackPanel>
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Right"   Width="380">
-                <Label Content="Number of Guests" FontSize="15" Margin="0 0 0 5" ></Label>
-                <ComboBox Width="380" Height="35" x:Name="numberOfGuests" FontSize="20" VerticalContentAlignment="Center" >
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Width="280">
+                <Label Content="Number of Guests" FontSize="14" Margin="0 0 0 5" />
+                <ComboBox Width="280" Height="30" x:Name="numberOfGuests" FontSize="16" VerticalContentAlignment="Center">
                     <ComboBoxItem Content="1"/>
                     <ComboBoxItem Content="2"/>
                     <ComboBoxItem Content="3"/>
@@ -38,107 +40,68 @@
                 </ComboBox>
             </StackPanel>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0 0 0 30" HorizontalAlignment="Center" >
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Left"  Width="380" Margin="0 0 20 0">
-                <Label Content="CheckIn Date" FontSize="15" Margin="0 0 0 10" HorizontalAlignment="Left" ></Label>
-                <StackPanel Orientation="Horizontal" Width="380" HorizontalAlignment="Left">
+
+        <StackPanel Orientation="Horizontal" Margin="0 0 0 20" HorizontalAlignment="Center">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="280" Margin="0 0 10 0">
+                <Label Content="CheckIn Date" FontSize="14" Margin="0 0 0 5" />
+                <StackPanel Orientation="Horizontal" Width="280" HorizontalAlignment="Left">
                     <Popup Name="CalendarPopup" PlacementTarget="{Binding ElementName=CheckInButton}" 
-                    Placement="Bottom" AllowsTransparency="True" 
-                       PopupAnimation="Fade"
-                       StaysOpen="False"  >
+                       Placement="Bottom" AllowsTransparency="True" PopupAnimation="Fade" StaysOpen="False">
                         <Border Background="White" BorderBrush="Gray" BorderThickness="1">
                             <Calendar Name="CheckInPopup" SelectedDatesChanged="CheckInPopup_SelectedDatesChanged"/>
                         </Border>
                     </Popup>
-                    <TextBox Name="DisplayCheckIn" 
-                         FontSize="15" VerticalContentAlignment="Center"
-                         Height="35" Margin="0 0 10 0" Width="320" />
-                    <Button Name="CheckInButton" Width="30"
-                        Background="Transparent"
-                        BorderBrush="Transparent"
-                        BorderThickness="0"
-                        Height="30" Click="CheckInButton_Click">
+                    <TextBox Name="DisplayCheckIn" FontSize="14" VerticalContentAlignment="Center" Height="30" Margin="0 0 5 0" Width="230" />
+                    <Button Name="CheckInButton" Width="25" Height="25" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Click="CheckInButton_Click">
                         <Image Source="/Image/calenderIcon.png" Stretch="Fill"/>
                     </Button>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Left"  Width="380">
-                <Label Content="CheckOut Date" FontSize="15" Margin="0 0 0 10" HorizontalAlignment="Left" ></Label>
-                <StackPanel Orientation="Horizontal" Width="380" HorizontalAlignment="Left">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="280">
+                <Label Content="CheckOut Date" FontSize="14" Margin="0 0 0 5" />
+                <StackPanel Orientation="Horizontal" Width="280" HorizontalAlignment="Left">
                     <Popup Name="Calendar2Popup" PlacementTarget="{Binding ElementName=CheckOutButton}" 
-                    Placement="Bottom" AllowsTransparency="True" 
-                       PopupAnimation="Fade" StaysOpen="False"  >
+                       Placement="Bottom" AllowsTransparency="True" PopupAnimation="Fade" StaysOpen="False">
                         <Border Background="White" BorderBrush="Gray" BorderThickness="1">
                             <Calendar Name="CheckOutPopup" SelectedDatesChanged="CheckOutPopup_SelectedDatesChanged"/>
                         </Border>
                     </Popup>
-                    <TextBox Name="DisplayCheckOut" Width="320"
-             FontSize="15" VerticalContentAlignment="Center"
-             Height="35" Margin="0 0 10 0" />
-                    <Button Name="CheckOutButton" Width="30"
-            Background="Transparent"
-            BorderBrush="Transparent"
-            BorderThickness="0"
-            Height="30" Click="CheckOutButton_Click" >
+                    <TextBox Name="DisplayCheckOut" Width="230" FontSize="14" VerticalContentAlignment="Center" Height="30" Margin="0 0 5 0" />
+                    <Button Name="CheckOutButton" Width="25" Height="25" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Click="CheckOutButton_Click">
                         <Image Source="/Image/calenderIcon.png" Stretch="Fill"/>
                     </Button>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal"   Margin="0 0 0 30"  HorizontalAlignment="Center">
-            <Label Content="Please select room type : " FontSize="20" FontWeight="Medium" Margin="0 0 20 0" />
-            <ComboBox Width="261" x:Name="roomType" FontSize="20" SelectionChanged="roomType_SelectionChanged" VerticalContentAlignment="Center" >
-                
-            </ComboBox>
+        <StackPanel Orientation="Horizontal" Margin="0 0 0 20" HorizontalAlignment="Center">
+            <Label Content="Please select room type:" FontSize="16" Margin="0 0 10 0" />
+            <ComboBox Width="200" x:Name="roomType" FontSize="16" VerticalContentAlignment="Center" SelectionChanged="roomType_SelectionChanged"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin=" 0 0 0 30" HorizontalAlignment="Center" >
-            <Label Content="Available rooms : " FontSize="20" FontWeight="Medium" Margin="0 0 20 0" />
-            <ComboBox Width="590" x:Name="roomsBox" FontSize="20" VerticalContentAlignment="Center" >
+
+        <StackPanel Orientation="Horizontal" Margin="0 0 0 20" HorizontalAlignment="Center">
+            <Label Content="Available rooms:" FontSize="16" Margin="0 0 10 0" />
+            <ComboBox Width="440" x:Name="roomsBox" FontSize="16" VerticalContentAlignment="Center" SelectionChanged="roomsBox_SelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal" >
-                            <TextBlock Text="Bed Type:" FontSize="20" FontWeight="Medium" Margin="0 0 10 0"/>
-                            <TextBlock Text="{Binding Bedtype}" FontSize="20" FontWeight="Medium" Margin="0 0 10 0" />
-                            <TextBlock Text="Meal Plan:" FontSize="20" FontWeight="Medium" Margin="0 0 10 0"/>
-                            <TextBlock Text="{Binding eMealPlan}" FontSize="20" FontWeight="Medium" Margin="0 0 10 0" />
-                            <TextBlock Text="P/N:" FontSize="20" FontWeight="Medium" Margin="0 0 10 0"/>
-                            <TextBlock Text="{Binding PricePerNight}" FontSize="20" FontWeight="Medium" Margin="0 0 10 0" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Bed Type:" FontSize="14" FontWeight="Medium" Margin="0 0 5 0"/>
+                            <TextBlock Text="{Binding Bedtype}" FontSize="14" Margin="0 0 5 0" />
+                            <TextBlock Text="Meal Plan:" FontSize="14" Margin="0 0 5 0"/>
+                            <TextBlock Text="{Binding eMealPlan}" FontSize="14" Margin="0 0 5 0" />
+                            <TextBlock Text="P/N:" FontSize="14" Margin="0 0 5 0"/>
+                            <TextBlock Text="{Binding PricePerNight}" FontSize="14" Margin="0 0 5 0" />
                         </StackPanel>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 20">
-            <Button x:Name="showNumberOfNights" Content="Show" HorizontalAlignment="Center" Width="140" Height="35" Foreground="White" FontSize="20" 
-         Cursor="Hand" Click="showNumberOfNights_Click" >
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 15">
+            <Button x:Name="showNumberOfNights" Content="Show" Width="120" Height="30" FontSize="16" Foreground="White" Cursor="Hand" Click="showNumberOfNights_Click">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="Brown" 
-        BorderBrush="White"  
-        BorderThickness="1" CornerRadius="8">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal"  Margin="0 0 0 30" HorizontalAlignment="Center" >
-            <TextBlock x:Name="DisplayNumberOfNights" Text="Number of nights is : " FontSize="25" FontWeight="DemiBold"
-           Width="800"
-           TextAlignment="Center" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-            <TextBlock Text="Total Cost is : " FontSize="25" FontWeight="SemiBold" Margin="0 0 0 60" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 20">
-            <Button x:Name="bookRoom" Content="Book" HorizontalAlignment="Center" Width="160" Height="45" Foreground="White" FontSize="20" 
-                        Cursor="Hand" Click="bookRoom_Click" >
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="Brown" 
-                            BorderBrush="White"  
-                                BorderThickness="1" CornerRadius="8">
+                        <Border Background="Brown" BorderBrush="White" BorderThickness="1" CornerRadius="6">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -146,5 +109,24 @@
             </Button>
         </StackPanel>
 
+        <StackPanel Orientation="Horizontal" Margin="0 0 0 15" HorizontalAlignment="Center">
+            <TextBlock x:Name="DisplayNumberOfNights" Text="Number of nights is:" FontSize="18" FontWeight="DemiBold" Width="600" TextAlignment="Center" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="Total Cost is:" FontSize="18" FontWeight="SemiBold" Margin="0 0 0 30" x:Name="displayTotalCost" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 10">
+            <Button x:Name="bookRoom" Content="Book" Width="140" Height="40" FontSize="16" Foreground="White" Cursor="Hand" Click="bookRoom_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="Brown" BorderBrush="White" BorderThickness="1" CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
     </StackPanel>
 </Window>

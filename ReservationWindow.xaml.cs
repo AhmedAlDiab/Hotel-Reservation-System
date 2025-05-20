@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
@@ -20,6 +21,18 @@ namespace Hotel_Reservation_System
     /// </summary>
     public partial class ReservationWindow : Window
     {
+        List<StandardRoom> standardRooms = new List<StandardRoom>();
+        List<DeluxeRoom> deluxeRooms = new List<DeluxeRoom>();
+        DateTime checkInDate;
+        DateTime checkOutDate;
+        int numberOfNights;
+        string fullname;
+        string email;
+        string phoneNumber;
+        double totalCost;
+        int roomId;
+        Room selectedRoom;
+        public int reservationId;
         private bool IsValidEmail(string email)
         {
             try
@@ -34,12 +47,11 @@ namespace Hotel_Reservation_System
                 return false;
             }
         }
-        List<StandardRoom> standardRooms = new List<StandardRoom>();
-        List<DeluxeRoom> deluxeRooms = new List<DeluxeRoom>();
         public ReservationWindow()
         {
             InitializeComponent();
             Data.GetData();
+            roomsBox.ItemsSource = Data.Rooms;
             for (int i = 0; i < Data.Rooms.Count; i++)
             {
                 if (Data.Rooms[i].Roomtype == ERoomType.Standard)
@@ -53,10 +65,6 @@ namespace Hotel_Reservation_System
             }
             roomType.ItemsSource = Enum.GetValues(typeof(ERoomType)).Cast<ERoomType>().ToList();
         }
-        DateTime checkInDate;
-        DateTime checkOutDate;
-        int numberOfNights;
-        
         private void CheckInPopup_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             if (CheckInPopup.SelectedDate.HasValue)
@@ -98,6 +106,12 @@ namespace Hotel_Reservation_System
 
             }
         }
+        
+        private void CheckOutButton_Click(object sender, RoutedEventArgs e)
+        {
+            Calendar2Popup.IsOpen = true;
+        }
+        
         private void roomType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (roomType.SelectedItem != null)
@@ -105,17 +119,27 @@ namespace Hotel_Reservation_System
                 ERoomType selectedRoomType = (ERoomType)roomType.SelectedItem;
                 if (selectedRoomType == ERoomType.Standard)
                 {
-                    roomType.ItemsSource = standardRooms;
+                    roomsBox.ItemsSource = standardRooms;
                 }
                 else if (selectedRoomType == ERoomType.Deluxe)
                 {
-                    roomType.ItemsSource = deluxeRooms;
+                    roomsBox.ItemsSource = deluxeRooms;
                 }
             }
         }
-        private void CheckOutButton_Click(object sender, RoutedEventArgs e)
+        private void roomsBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Calendar2Popup.IsOpen = true;
+            if (roomsBox.SelectedItem != null) {
+                Room selectedRoom = (Room)roomsBox.SelectedItem;
+                if (selectedRoom.Roomtype == ERoomType.Standard)
+                {
+                    this.selectedRoom = (StandardRoom)selectedRoom;
+                }
+                else if (selectedRoom.Roomtype == ERoomType.Deluxe)
+                {
+                    this.selectedRoom = (DeluxeRoom)selectedRoom;
+                }
+            }
         }
 
         private void showNumberOfNights_Click(object sender, RoutedEventArgs e)
@@ -123,7 +147,9 @@ namespace Hotel_Reservation_System
             if (checkInDate < checkOutDate)
             {
                 numberOfNights = (checkOutDate - checkInDate).Days;
+                totalCost = selectedRoom.Calculatetotalcost(numberOfNights);
                 DisplayNumberOfNights.Text = $"Number of nights is : {numberOfNights}";
+                displayTotalCost.Text = $"Total cost is : {totalCost}";
             }
             else
             {
@@ -131,11 +157,77 @@ namespace Hotel_Reservation_System
                 DisplayNumberOfNights.Text = $"Number of nights is : ";
                 return;
             }
+            
         }
 
         private void bookRoom_Click(object sender, RoutedEventArgs e)
         {
-
+            fullname = Fullname.Text.Trim();
+            email = Email.Text.Trim();
+            phoneNumber = Phone.Text.Trim();
+            if (string.IsNullOrEmpty(fullname) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(phoneNumber))
+            {
+                MessageBox.Show("Please enter all fields.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (numberOfGuests.SelectedItem == null)
+            {
+                MessageBox.Show("Please select number of guests.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (!IsValidEmail(email))
+            {
+                MessageBox.Show("Please enter a valid email address.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            bool isValidNumber = true;
+            for (int i = 0; i < phoneNumber.Length; i++)
+            {
+                if (!char.IsDigit(phoneNumber[i]))
+                {
+                    isValidNumber = false;
+                    break;
+                }
+            }
+            if (!isValidNumber)
+            {
+                MessageBox.Show("Phone number must contain only digits.", "Ivalid input", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(DisplayCheckIn.Text.Trim()) || string.IsNullOrEmpty(DisplayCheckOut.Text.Trim()))
+            {
+                MessageBox.Show("Please select check-in and check-out dates.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (roomType.SelectedItem == null)
+            {
+                MessageBox.Show("Please select room type.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (roomsBox.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a room.", "Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            try
+            {
+                reservationId = DataBase.AddReservation(ActiveUser.UserID, roomId, checkInDate, checkOutDate, totalCost, EReservationStatus.Pending, DataBase.connectionString);
+                if (reservationId != -1)
+                {
+                    ActiveUser.CurrentReservationID = reservationId;
+                    var paymentWindow = new PaymentWindow();
+                    paymentWindow.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to book the room. Please try again.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong while connecting to the database.\n" + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
     }
