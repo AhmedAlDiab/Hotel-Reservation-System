@@ -43,8 +43,8 @@ namespace Hotel_Reservation_System
                     reservationID = value;
                 else
                 {
-                    reservationID = 0;
-                    //throw new ArgumentException("Reservation ID Must be Greater than Zero");
+                    //reservationID = 0;
+                    throw new ArgumentException("Reservation ID Must be Greater than Zero");
 
                 }
             }
@@ -76,8 +76,8 @@ namespace Hotel_Reservation_System
                     totalAmount = value;
                 else
                 {
-                    totalAmount = 0;
-                    //throw new ArgumentException("Total Amount Must be Greater Than Zero");
+                    //totalAmount = 0;
+                    throw new ArgumentException("Total Amount Must be Greater Than Zero");
                 }
 
             }

@@ -120,13 +120,22 @@ namespace Hotel_Reservation_System
             if (isValid)
             {
                 MessageBox.Show("Payment Submitted Successfully!", "Successful Process");
+                
+                ResManagementWindow resWin = new ResManagementWindow();
+                resWin.Show();
+                this.Close();
             }
-
-            Data.GetData();
-            var Res = Data.Reservations.FirstOrDefault(X => X.ReservationID == ActiveUser.CurrentReservationID);
-            var Cre = new CreditCardPayment();
-            DataBase.AddPayment(DateTime.Now, ActiveUser.CurrentReservationID, Res.TotalCost + Res.TotalCost * Cre.Tax, check_paymethod, DataBase.connectionString);
-
+            try
+            {
+                Data.GetData();
+                var Res = Data.Reservations.FirstOrDefault(X => X.ReservationID == ActiveUser.CurrentReservationID);
+                var Cre = new CreditCardPayment();
+                DataBase.AddPayment(DateTime.Now, ActiveUser.CurrentReservationID, Res.TotalCost + Res.TotalCost * Cre.Tax, check_paymethod, DataBase.connectionString);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //ComboBox of ExpireDate Display Options From 06/25 To 06/35
