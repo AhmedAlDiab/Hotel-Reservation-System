@@ -211,30 +211,32 @@ namespace Hotel_Reservation_System
         /// <param name="bedType"></param>
         /// <param name="mealPlan"></param>
         /// <param name="connectionString"></param>
+        /// <param name="discount"></param>
         /// <returns></returns>
         public static bool AddRoom(ERoomType roomType, double pricePerNight, bool isAvailable,
-                         int capacity, EBedType bedType, EMealPlan mealPlan,
-                         string connectionString)
+                        int capacity, EBedType bedType, EMealPlan mealPlan,
+                        double discount, string connectionString)
         {
             try
             {
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    // Removed roomID from columns and values since it's auto-incremented
                     string query = @"INSERT INTO Rooms 
-                          (roomType, pricePerNight, isAvailable, capacity, bedType, mealPlans)
+                          (roomType, pricePerNight, isAvailable, capacity, 
+                           bedType, mealPlans, discount)
                           VALUES 
-                          (@roomType, @pricePerNight, @isAvailable, @capacity, @bedType, @mealPlans)";
+                          (@roomType, @pricePerNight, @isAvailable, @capacity, 
+                           @bedType, @mealPlans, @discount)";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
-                        // Removed roomID parameter
                         command.Parameters.AddWithValue("@roomType", (int)roomType);
                         command.Parameters.AddWithValue("@pricePerNight", pricePerNight);
                         command.Parameters.AddWithValue("@isAvailable", isAvailable ? 1 : 0);
                         command.Parameters.AddWithValue("@capacity", capacity);
                         command.Parameters.AddWithValue("@bedType", (int)bedType);
                         command.Parameters.AddWithValue("@mealPlans", (int)mealPlan);
+                        command.Parameters.AddWithValue("@discount", discount);
 
                         connection.Open();
                         int rowsAffected = command.ExecuteNonQuery();
@@ -244,12 +246,14 @@ namespace Hotel_Reservation_System
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show($"Database error adding room: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Database error adding room: {ex.Message}",
+                              "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error adding room: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Error adding room: {ex.Message}",
+                              "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
         }
