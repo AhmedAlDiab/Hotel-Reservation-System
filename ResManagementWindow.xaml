@@ -16,7 +16,7 @@
                 <DropShadowEffect Opacity="0.495" ShadowDepth="4.5" Direction="-26" BlurRadius="1" RenderingBias="Performance"/>
             </Label.Effect>
         </Label>
-        <DataGrid x:Name="ReservationsList" ColumnHeaderHeight="30" AutoGenerateColumns="False" Margin="403,164,234,106" BorderBrush="#FFA79C4F" Background="#663D3D18" FontWeight="Bold"  >
+        <DataGrid x:Name="ReservationsList" ColumnHeaderHeight="30" AutoGenerateColumns="False" Margin="403,164,234,106" BorderBrush="#FFA79C4F" Background="#663D3D18" FontWeight="Bold" ItemsSource="{Binding reservationViews}" >
             <DataGrid.Columns>
 
                 <DataGridTextColumn Header="Reservation ID" Width="100" Binding="{Binding ReservationID}"/>
