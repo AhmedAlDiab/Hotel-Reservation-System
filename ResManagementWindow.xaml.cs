@@ -25,9 +25,10 @@ namespace Hotel_Reservation_System
         public ResManagementWindow()
         {
             InitializeComponent();
+            Data.GetData();
             foreach (var rs in Data.Reservations)
             {
-                if (rs.ReservationID != ActiveUser.CurrentReservationID)
+                if (rs.PCustomer.UserID != ActiveUser.UserID)
                     continue;
                 if (rs != null)
                 {
