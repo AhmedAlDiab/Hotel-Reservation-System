@@ -18,9 +18,9 @@ namespace Hotel_Reservation_System
         /// <param name="capacity"></param>
         /// <param name="bedType"></param>
         /// <param name="mealPlan"></param>
-        public void AddRoom(ERoomType roomType,double pricePerNight,bool isAvailable,int capacity,EBedType bedType,EMealPlan mealPlan)
+        public void AddRoom(ERoomType roomType,double pricePerNight,bool isAvailable,int capacity,EBedType bedType,EMealPlan mealPlan, double discount)
         {                
-            DataBase.AddRoom(roomType,pricePerNight,isAvailable,capacity,bedType,mealPlan,DataBase.connectionString);
+            DataBase.AddRoom(roomType,pricePerNight,isAvailable,capacity,bedType,mealPlan,discount,DataBase.connectionString);
             Data.GetData();
         }        
         /// <summary>
