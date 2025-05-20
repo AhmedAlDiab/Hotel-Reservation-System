@@ -40,12 +40,14 @@ namespace Hotel_Reservation_System
                     if (payment != null)
                     {
                         var Room = Data.Rooms.FirstOrDefault(p => p.RoomID == reservation.RoomID);
+                        var Reservations =Data.Reservations.FirstOrDefault(p => p.ReservationStatus == reservation.ReservationStatus);
                         reservationViews.Add(new ReservationDisplayInfo
                         {
                             ReservationID = reservation.ReservationID,
                             PaymentID = payment.PaymentID,
                             PaymentDate = payment.PaymentDate,
                             PaymentMethod = payment.PaymentMethod.ToString(),
+                            ReservationStatus = reservation.ReservationStatus.ToString(),
                             CheckInDate = reservation.CheckInDate,
                             CheckOutDate = reservation.CheckOutDate,
                             RoomType = Room.Roomtype.ToString(),
@@ -70,6 +72,7 @@ namespace Hotel_Reservation_System
         public int ReservationID { get; set; }
         public int PaymentID { get; set; }
         public DateTime PaymentDate { get; set; }
+        public string ReservationStatus {get; set; }
         public string PaymentMethod { get; set; }
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }

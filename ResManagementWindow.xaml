@@ -23,6 +23,7 @@
                 <DataGridTextColumn Header="Payment ID" Width="87" Binding="{Binding PaymentID}"/>
                 <DataGridTextColumn Header="Payment Date" Width="110" Binding="{Binding PaymentDate}" />
                 <DataGridTextColumn Header="Payment Method" Width="108" Binding="{Binding PaymentMethod}"/>
+                <DataGridTextColumn Header="Reservation Status" Width="110" Binding="{Binding ReservationStatus}" />
                 <DataGridTextColumn Header="Check In Date" Width="95" Binding="{Binding CheckInDate}" />
                 <DataGridTextColumn Header="Check Out Date" Width="105" Binding="{Binding CheckOutDate}"/>
                 <DataGridTextColumn Header="Room Type" Width="85" Binding="{Binding RoomType}"/>
