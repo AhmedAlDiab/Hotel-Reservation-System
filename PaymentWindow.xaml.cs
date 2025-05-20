@@ -120,6 +120,10 @@ namespace Hotel_Reservation_System
             if (isValid)
             {
                 MessageBox.Show("Payment Submitted Successfully!", "Successful Process");
+                
+                ResManagementWindow resWin = new ResManagementWindow();
+                resWin.Show();
+                this.Close();
             }
             try
             {

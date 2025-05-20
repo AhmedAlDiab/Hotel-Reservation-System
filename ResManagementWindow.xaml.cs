@@ -22,6 +22,60 @@ namespace Hotel_Reservation_System
         public ResManagementWindow()
         {
             InitializeComponent();
+            LoadReservationsFromDatabase();
         }
+        private void LoadReservationsFromDatabase()
+        {
+            try
+            {
+                List<ReservationDisplayInfo> reservationViews = new List<ReservationDisplayInfo>();
+
+                Data.GetData();
+
+                foreach (var reservation in Data.Reservations)
+                {
+                    if (reservation.ReservationID != ActiveUser.CurrentReservationID)
+                        continue;
+                    var payment = Data.Payments.FirstOrDefault(p => p.ReservationID == reservation.ReservationID);
+                    if (payment != null)
+                    {
+                        reservationViews.Add(new ReservationDisplayInfo
+                        {
+                            ReservationID = reservation.ReservationID,
+                            PaymentID = payment.PaymentID,
+                            PaymentDate = payment.PaymentDate,
+                            PaymentMethod = payment.PaymentMethod.ToString(),
+                            CheckInDate = reservation.CheckInDate,
+                            CheckOutDate = reservation.CheckOutDate,
+                            RoomType = reservation.PRoom.Roomtype.ToString(),
+                            Capacity = reservation.PRoom.Capacity,
+                            TotalPrice = payment.TotalAmount,
+                            Discount = reservation.PRoom is DeluxeRoom d ? d.Discount : 0
+                        });
+                    }
+                }
+
+                ReservationsList.ItemsSource = reservationViews;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading reservations: " + ex.Message);
+            }
+        }
+
     }
+    public class ReservationDisplayInfo
+    {
+        public int ReservationID { get; set; }
+        public int PaymentID { get; set; }
+        public DateTime PaymentDate { get; set; }
+        public string PaymentMethod { get; set; }
+        public DateTime CheckInDate { get; set; }
+        public DateTime CheckOutDate { get; set; }
+        public string RoomType { get; set; }
+        public int Capacity { get; set; }
+        public double TotalPrice { get; set; }
+        public double Discount { get; set; }
+    }
+
 }
