@@ -43,8 +43,8 @@ namespace Hotel_Reservation_System
                     reservationID = value;
                 else
                 {
-                    reservationID = 0;
-                    //throw new ArgumentException("Reservation ID Must be Greater than Zero");
+                    //reservationID = 0;
+                    throw new ArgumentException("Reservation ID Must be Greater than Zero");
 
                 }
             }

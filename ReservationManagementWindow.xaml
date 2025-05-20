@@ -31,17 +31,7 @@
                 <DataGridTextColumn Header="Discount"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Pay Now" BorderThickness="2" BorderBrush="Black" Background="#FFF0D129" HorizontalAlignment="Left" Margin="186,241,0,0" VerticalAlignment="Top" Height="70" Width="162" FontWeight="Bold" FontSize="25">
-            <Button.Effect>
-                <DropShadowEffect Color="#FF5F4B18" Direction="310" Opacity="0.5" ShadowDepth="0" BlurRadius="40"/>
-            </Button.Effect>
-        </Button>
-        <Button Content="Export" BorderThickness="2" BorderBrush="Black" Background="#FFF0D129" HorizontalAlignment="Left" Margin="186,389,0,0" VerticalAlignment="Top" Height="70" Width="162" FontSize="25" FontWeight="Bold">
-            <Button.Effect>
-                <DropShadowEffect Color="#FF5F4B18" Direction="310" Opacity="0.5" ShadowDepth="0" BlurRadius="40"/>
-            </Button.Effect>
-        </Button>
-        <Button Content="Cancel" BorderThickness="2" BorderBrush="Black" Background="#FFF0D129" HorizontalAlignment="Left" Margin="186,539,0,0" VerticalAlignment="Top" Height="70" Width="162" FontSize="25" FontWeight="Bold">
+        <Button Content="Cancel" BorderThickness="2" BorderBrush="Black" Background="#FFF0D129" HorizontalAlignment="Left" Margin="175,0,0,0" VerticalAlignment="Center" Height="70" Width="162" FontSize="25" FontWeight="Bold">
             <Button.Effect>
                 <DropShadowEffect Color="#FF5F4B18" Direction="310" Opacity="0.5" ShadowDepth="0" BlurRadius="40"/>
             </Button.Effect>
