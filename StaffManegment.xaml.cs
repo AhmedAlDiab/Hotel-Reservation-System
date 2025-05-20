@@ -64,10 +64,9 @@ namespace Hotel_Reservation_System
                 if (selected.UserID != ActiveUser.UserID)
                 {
                     DataBase.DeleteUserByID(selected.UserID,DataBase.connectionString);
-                    staffs.Remove(selected);
-
+                    Data.Users.Remove(Data.Users.FirstOrDefault(a => a.UserID == selected.UserID));
+                    staffs.Remove(selected);                    
                 }
-
             }
         }
 

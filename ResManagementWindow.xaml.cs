@@ -39,6 +39,7 @@ namespace Hotel_Reservation_System
                     var payment = Data.Payments.FirstOrDefault(p => p.ReservationID == reservation.ReservationID);
                     if (payment != null)
                     {
+                        var Room = Data.Rooms.FirstOrDefault(p => p.RoomID == reservation.RoomID);
                         reservationViews.Add(new ReservationDisplayInfo
                         {
                             ReservationID = reservation.ReservationID,
@@ -47,10 +48,10 @@ namespace Hotel_Reservation_System
                             PaymentMethod = payment.PaymentMethod.ToString(),
                             CheckInDate = reservation.CheckInDate,
                             CheckOutDate = reservation.CheckOutDate,
-                            RoomType = reservation.PRoom.Roomtype.ToString(),
-                            Capacity = reservation.PRoom.Capacity,
+                            RoomType = Room.Roomtype.ToString(),
+                            Capacity = Room.Capacity,
                             TotalPrice = payment.TotalAmount,
-                            Discount = reservation.PRoom is DeluxeRoom d ? d.Discount : 0
+                            Discount = Room is DeluxeRoom d ? d.Discount : 0
                         });
                     }
                 }
