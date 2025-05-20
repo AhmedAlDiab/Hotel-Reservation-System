@@ -213,6 +213,7 @@ namespace Hotel_Reservation_System
                 Reservation Res = new Reservation();
                 reservationId = Res.BookRoom(ActiveUser.UserID, selectedRoom.RoomID, checkInDate, checkOutDate, totalCost, EReservationStatus.Pending);
                 ActiveUser.CurrentReservationID = reservationId;
+                Data.GetData();
                 if (reservationId != -1)
                 {                    
                     var paymentWindow = new PaymentWindow();
