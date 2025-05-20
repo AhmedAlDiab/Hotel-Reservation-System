@@ -7,44 +7,29 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
-        <ObjectDataProvider x:Key="roomtypeValues" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="local:ERoomType"/>
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
-    </UserControl.Resources>
 
 
-    <Grid>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <!-- DataGrid expands -->
+            <RowDefinition Height="Auto" />
+            <!-- Buttons resize minimally -->
+        </Grid.RowDefinitions>
         <Grid.Background>
             <ImageBrush ImageSource="/Image/staff_mangent.png"/>
         </Grid.Background>
         <TextBlock Margin="317,70,254,0" TextWrapping="Wrap" Text="    Room Manegment " VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Foreground="#D4AF37" FontFamily="Elephant"/>
-        <DataGrid x:Name="roomGrid" 
-                  SelectedItem="{Binding SelectedRoom}"
-                  AutoGenerateColumns="False" Height="250" Margin="199,101,134,99" ItemsSource="{Binding Rooms}">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header=" Room ID" Binding="{Binding RoomID}" Width="60" />
-                <DataGridTemplateColumn Header="RoomType" Width="120">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Roomtype}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                    <DataGridTemplateColumn.CellEditingTemplate>
-                        <DataTemplate>
-                            <ComboBox SelectedItem="{Binding Roomtype, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                      ItemsSource="{Binding Source={StaticResource roomtypeValues}}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellEditingTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Bed Type" Binding="{Binding Bedtype}" Width="60" />
-                <DataGridTextColumn Header=" Price" Binding="{Binding PricePerNight}" Width="50" />
-                <DataGridTextColumn Header="Availability" Binding="{Binding ISAvailable}" Width="70" />
-                <DataGridTextColumn Header="  Capacity" Binding="{Binding Capacity}" Width="80" />
-                <DataGridTextColumn Header=" Discount" Binding="{Binding Path=(local:DeluxeRoom.Discount),FallbackValue='-'}" Width="80" />
-            </DataGrid.Columns>
-        </DataGrid>
+        <!--data grid -->
+        <DataGrid x:Name="gridRoom" ItemsSource="{Binding rooms}" AutoGenerateColumns="True" 
+               CanUserAddRows="False" Margin="140,96,140,94"
+           Width="500" Height="240"
+           />
+        <Button Content="Add Room" HorizontalAlignment="Left" Margin="54,167,0,0" VerticalAlignment="Top"  BorderThickness="2" BorderBrush="Black" Background="#FFF3BE3A" FontWeight="Bold" RenderTransformOrigin="-0.256,0.381" Width="66" Height="27" Click="Button_Click" />
+        <Button Content="Remove" HorizontalAlignment="Left" Margin="54,215,0,0" VerticalAlignment="Top"  BorderThickness="2" BorderBrush="Black" Background="#FFF3BE3A" FontWeight="Bold" RenderTransformOrigin="-0.256,0.381" Width="66" Height="27" Click="Button_Click_1" />
+        <Button Content="Back" HorizontalAlignment="Left" Margin="54,56,0,0" VerticalAlignment="Top"  BorderThickness="2" BorderBrush="Black" Background="#FFF3BE3A" FontWeight="Bold" RenderTransformOrigin="-0.256,0.381" Width="66" Height="27" Click="Button_Click_2" />
+        <ContentControl x:Name="ADDROOMHost" Height="400" Width="250" />
+
     </Grid>
 </UserControl>

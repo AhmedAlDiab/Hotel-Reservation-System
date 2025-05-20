@@ -6,52 +6,29 @@
              xmlns:local="clr-namespace:Hotel_Reservation_System"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Width="900">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <!-- DataGrid expands -->
+            <RowDefinition Height="Auto" />
+            <!-- Buttons resize minimally -->
+        </Grid.RowDefinitions>
         <Grid.Background>
             <ImageBrush ImageSource="/Image/staff_mangent.png"/>
         </Grid.Background>
         <TextBlock Margin="317,70,254,0" TextWrapping="Wrap" Text="Staff Manegment" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Foreground="#D4AF37" FontFamily="Elephant" OpacityMask="#FFD4AF37" />
+        <!--data grid -->
+        <DataGrid x:Name="dataGrid" ItemsSource="{Binding staffs}" AutoGenerateColumns="True" 
+                      CanUserAddRows="False" Margin="140,96,140,94"
+                  Width="500" Height="240"
+                  />
+        <Button Content="Remove" HorizontalAlignment="Left" Margin="54,215,0,0" VerticalAlignment="Top"  BorderThickness="2" BorderBrush="Black" Background="#FFF3BE3A" FontWeight="Bold" RenderTransformOrigin="-0.256,0.381" Width="66" Height="27" Click="Button_Click_1"/>
+        <Button Content="Add Staff" HorizontalAlignment="Left" Margin="54,167,0,0" VerticalAlignment="Top"  BorderThickness="2" BorderBrush="Black" Background="#FFF3BE3A" FontWeight="Bold" RenderTransformOrigin="-0.256,0.381" Width="66" Height="27" Click="Button_Click"/>
+        
+        <Button Content="Back" HorizontalAlignment="Left" Margin="49,52,0,0" VerticalAlignment="Top"  BorderThickness="2" BorderBrush="Black" Background="#FFF3BE3A" FontWeight="Bold" RenderTransformOrigin="-0.256,0.381" Width="66" Height="27" Click="Button_Click_3" />
 
-        <DataGrid x:Name="staffmaneg" Height="201" Width="450" Background="#FFD4AF37" GridLinesVisibility="All"
-AlternatingRowBackground="#FAF5EF"
-   AutoGenerateColumns="True"
-   CanUserAddRows="True"
-   IsReadOnly="False"
-   CanUserDeleteRows="True"
-   SelectionMode="Single"
-                 
-   ItemsSource="{Binding VMstaffs}" SelectedItem="{Binding VMselectitem}" Margin="117,124,333,124" SelectionChanged="staffmaneg_SelectionChanged" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" Grid.IsSharedSizeScope="True">
-            
-        </DataGrid>
-        <Button Content="Remove" HorizontalAlignment="Left" Margin="594,151,0,0" VerticalAlignment="Top" FontSize="15" FontWeight="Heavy" Foreground="Gold" Width="90" Click="Remove" Height="42">
 
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border  CornerRadius="2" BorderBrush="#D4AF37" BorderThickness="2.5" Margin="0,0,7,7">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <Button Content="Add" HorizontalAlignment="Left" Margin="591,225,0,0" VerticalAlignment="Top" FontSize="15" FontWeight="Heavy" Foreground="Gold" Width="91" Click="add" Height="42">
+        <ContentControl x:Name="UserControlHost" Height="285" Width="250" />
 
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border  CornerRadius="2" BorderBrush="#D4AF37" BorderThickness="2.5" Margin="0,0,0,5">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
-        <Button Content="Back" HorizontalAlignment="Left" Margin="50,54,0,0" VerticalAlignment="Top" FontSize="15" FontWeight="Heavy" Foreground="Gold" Width="90" Click="Back" Height="42">
-
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Border  CornerRadius="2" BorderBrush="#D4AF37" BorderThickness="2.5" Margin="0,0,7,7">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                    </Border>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
     </Grid>
 </UserControl>

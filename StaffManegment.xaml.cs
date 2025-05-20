@@ -22,51 +22,60 @@ namespace Hotel_Reservation_System
     /// </summary>
     public partial class StaffManegment : UserControl
     {
-        ObservableCollection<Staff> staffs {  get; set; }= new ObservableCollection<Staff>();
+        private ADDSTAFF aDDSTAFF;
+        public static ObservableCollection<Staff>staffs = new ObservableCollection<Staff>();
         public StaffManegment()
         {
             InitializeComponent();
-            staffmaneg.ItemsSource = staffs;
+            staffs=new ObservableCollection<Staff>();
+            // calling rows of information of staffs
+            foreach (var usr in Data.Users)
+            {
+                if (usr.IsAdmin)
+                {
+                    StaffManegment.staffs.Add(usr as Staff);
+                }
+            }
+            // binding between staffs collection to data grid
+            dataGrid.ItemsSource=staffs;           
+
         }
 
-        private void Remove(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e) //add
         {
-            if (staffmaneg.SelectedItem is Staff selected)
+            // Here open user control to enter inputs of details of staff
+            if (aDDSTAFF == null)
+            {
+                aDDSTAFF = new ADDSTAFF();
+                aDDSTAFF.CloseRequested += () =>
+                {
+                    UserControlHost.Content = null;
+                    aDDSTAFF = null;
+                };
+            }
+
+            UserControlHost.Content = aDDSTAFF;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e) //remove
+        {
+            if (dataGrid.SelectedItem is Staff selected)
             {
                 staffs.Remove(selected);
+
             }
         }
 
-        private void add(object sender, RoutedEventArgs e)
+        
+        private void Button_Click_3(object sender, RoutedEventArgs e)//back
         {
-            try
+            STAFF sTAFF = new STAFF();
+            sTAFF.Show();
+            Window currentWindow = Window.GetWindow(this);
+            if (currentWindow != null)
             {
-                var newstaff = new Staff();
-
-                staffs.Add(newstaff);
-                staffmaneg.SelectedItem = newstaff;
-                staffmaneg.ScrollIntoView(newstaff);
-                staffmaneg.BeginEdit();
-                DataBase.AddUser(newstaff.Fullname, newstaff.PhoneNumber, newstaff.Email, newstaff.Username, newstaff.Password, newstaff.IsAdmin, DataBase.connectionString);
+                currentWindow.Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Fill cells");
-            }
-        }
-
-      
-
-        private void Back(object sender, RoutedEventArgs e)
-        {
-            STAFF staff = new STAFF();
-            staff.Show();
-            Window.GetWindow(this).Close();
-        }
-
-        private void staffmaneg_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

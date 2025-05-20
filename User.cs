@@ -10,7 +10,7 @@ namespace Hotel_Reservation_System
     /// <summary>
     /// Abstract base class representing a user in the hotel reservation system
     /// </summary>
-    public abstract class User : INotifyPropertyChanged
+    public abstract class User 
     {
         // Private fields for encapsulation
         private int userID;
@@ -32,12 +32,10 @@ namespace Hotel_Reservation_System
                 if (value > 0)
                 {
                     userID = value;
-                    OnPropertyChanged(nameof(userID));
                 }
                 else
                 {
                     userID = 0;
-                    OnPropertyChanged(nameof(userID));
 
                 }
             }
@@ -54,12 +52,10 @@ namespace Hotel_Reservation_System
                 if (!string.IsNullOrEmpty(value))
                 {
                     fullname = value;
-                    OnPropertyChanged(nameof(Fullname));
 
                 }
                 else
                 {
-                    OnPropertyChanged(nameof(Fullname));
 
                     throw new ArgumentException("Fullname cannot be empty");
                 }
@@ -77,12 +73,10 @@ namespace Hotel_Reservation_System
                 if (!string.IsNullOrEmpty(value))
                 {
                     phoneNumber = value;
-                    OnPropertyChanged(nameof(PhoneNumber));
 
                 }
                 else
                 {
-                    OnPropertyChanged(nameof(PhoneNumber));
 
                     throw new ArgumentException("Phone Number cannot be empty");
                 }
@@ -100,11 +94,9 @@ namespace Hotel_Reservation_System
                 if (!string.IsNullOrEmpty(value))
                 {
                     email = value;
-                    OnPropertyChanged(nameof(Email));
                 }
                 else
                 {
-                    OnPropertyChanged(nameof(Email));
 
                     throw new ArgumentException("Email cannot be empty");
                 }
@@ -122,11 +114,9 @@ namespace Hotel_Reservation_System
                 if (!string.IsNullOrEmpty(value))
                 {
                     username = value;
-                    OnPropertyChanged(nameof(Username));
                 }
                 else
                 {
-                    OnPropertyChanged(nameof(Username));
 
                     throw new ArgumentException("Username cannot be empty");
                 }
@@ -143,12 +133,10 @@ namespace Hotel_Reservation_System
                 if (value.Length >= 6)
                 {
                     password = value;
-                    OnPropertyChanged(nameof(Password));
 
                 }
                 else
                 {
-                    OnPropertyChanged(nameof(Password));
 
                     throw new ArgumentException("Password must be at least 6 characters long");
                 }
@@ -158,7 +146,6 @@ namespace Hotel_Reservation_System
         {
             get { return isAdmin; }
             set { isAdmin = value;
-                OnPropertyChanged(nameof(IsAdmin));
             }
         }
         /// <summary>
@@ -202,11 +189,6 @@ namespace Hotel_Reservation_System
         {
             // Example: Show user details in a form or message box
         }
-        // data binding 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string name)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
+       
     }
 }
