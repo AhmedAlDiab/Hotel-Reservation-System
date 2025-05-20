@@ -143,7 +143,7 @@ namespace Hotel_Reservation_System
 
         private void showNumberOfNights_Click(object sender, RoutedEventArgs e)
         {
-            if (checkInDate < checkOutDate)
+            if (checkInDate < checkOutDate && selectedRoom != null)
             {
                 numberOfNights = (checkOutDate - checkInDate).Days;
                 totalCost = selectedRoom.Calculatetotalcost(numberOfNights);
@@ -152,7 +152,7 @@ namespace Hotel_Reservation_System
             }
             else
             {
-                MessageBox.Show("Check-out date must be after check-in date.", "Invalid Dates", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Error", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 DisplayNumberOfNights.Text = $"Number of nights is : ";
                 return;
             }
