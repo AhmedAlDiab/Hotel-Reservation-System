@@ -5,32 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hotel_Reservation_System"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="890" Width="1707">
     <Grid>
         <!-- background -->
-		<Grid.Background>
-			<ImageBrush ImageSource="/Image/connectTOdata.png" Stretch="UniformToFill"/>
-		</Grid.Background>
-        
-        <TextBlock  HorizontalAlignment="Left" Margin="308,122,0,0" TextWrapping="Wrap" Text="Host Name:" VerticalAlignment="Top" FontSize="12" FontWeight="Heavy" Foreground="#4A4A4A"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Image/connectTOdata.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+
+        <TextBlock  HorizontalAlignment="Center" Margin="0,121,0,0" TextWrapping="Wrap" Text="Host Name:" VerticalAlignment="Top" FontSize="12" FontWeight="Heavy" Foreground="#4A4A4A" RenderTransformOrigin="0.652,0.723"/>
         <TextBox x:Name="Usernametxt" HorizontalAlignment="Center" Margin="0,142,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="188"   />
 
-        <TextBlock HorizontalAlignment="Left" Margin="306,160,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" FontSize="12" FontWeight="Heavy" Foreground="#4A4A4A"/>
-        <PasswordBox x:Name="passwordtxt" HorizontalAlignment="Center" VerticalAlignment="Top" Width="188" Height="20" Margin="0,178,0,0"/>
-        <TextBlock HorizontalAlignment="Left" Margin="307,198,0,0" TextWrapping="Wrap" Text="DataBase Name:" VerticalAlignment="Top" FontSize="12" FontWeight="Heavy" Foreground="#4A4A4A"/>
-        <TextBox x:Name="DBNametxt"  HorizontalAlignment="Center" Margin="0,216,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="188"  Height="20"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,244,0,0" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" FontSize="12" FontWeight="Heavy" Foreground="#4A4A4A"/>
+        <PasswordBox x:Name="passwordtxt" HorizontalAlignment="Center" VerticalAlignment="Top" Width="188" Height="20" Margin="0,265,0,0"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,203,0,0" TextWrapping="Wrap" Text="DataBase Name:" VerticalAlignment="Top" FontSize="12" FontWeight="Heavy" Foreground="#4A4A4A"/>
+        <TextBox x:Name="DBNametxt"  HorizontalAlignment="Center" Margin="0,219,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="188"  Height="20"/>
 
-        <TextBlock HorizontalAlignment="Left" Margin="305,274,0,0" TextWrapping="Wrap" Text="Username:" VerticalAlignment="Top" FontSize="12" FontWeight="Heavy" Foreground="#4A4A4A" RenderTransformOrigin="0.518,1.957"/>
-        <TextBox x:Name="Usertxt"  HorizontalAlignment="Center" Margin="0,292,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="188"  Height="20"/>
-        <TextBlock HorizontalAlignment="Left" Margin="307,236,0,0" TextWrapping="Wrap" Text="Port:" VerticalAlignment="Top" FontSize="12" FontWeight="Heavy" Foreground="#4A4A4A" RenderTransformOrigin="0.518,1.957"/>
-        <TextBox x:Name="porttxt"  HorizontalAlignment="Center" Margin="0,254,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="188"  Height="20"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,165,0,0" TextWrapping="Wrap" Text="Username:" VerticalAlignment="Top" FontSize="12" FontWeight="Heavy" Foreground="#4A4A4A" RenderTransformOrigin="0.518,1.957"/>
+        <TextBox x:Name="Usertxt"  HorizontalAlignment="Center" Margin="0,180,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="188"  Height="20"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,285,0,0" TextWrapping="Wrap" Text="Port:" VerticalAlignment="Top" FontSize="12" FontWeight="Heavy" Foreground="#4A4A4A" RenderTransformOrigin="0.518,1.957"/>
+        <TextBox x:Name="porttxt"  HorizontalAlignment="Center" Margin="0,306,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="188"  Height="20"/>
 
 
         <TextBlock HorizontalAlignment="Center" Margin="0,68,0,0" TextWrapping="Wrap" Text="Connect To Data" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Foreground="#D4AF37"/>
-        <Button Content="Connect" HorizontalAlignment="Left" Margin="342,319,0,0" VerticalAlignment="Top" Foreground="Gold" FontWeight="Bold" BorderThickness="2.5" FontSize="19" FontFamily="Elephant" Background="White" BorderBrush="#D4AF37" Width="100" Click="Button_Click"/>
+        <Button Content="Connect" HorizontalAlignment="Center" Margin="0,331,0,0" VerticalAlignment="Top" Foreground="Gold" FontWeight="Bold" BorderThickness="2.5" FontSize="19" FontFamily="Elephant" Background="White" BorderBrush="#D4AF37" Width="100" Click="Button_Click" Height="31"/>
 
 
-      
+
 
 
     </Grid>
