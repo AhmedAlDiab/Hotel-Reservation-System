@@ -127,6 +127,7 @@ namespace Hotel_Reservation_System
             {
                 MessageBox.Show("Payment Submitted Successfully!", "Successful Process");
                 
+
                 ResManagementWindow resWin = new ResManagementWindow();
                 resWin.Show();
                 this.Close();
@@ -135,6 +136,7 @@ namespace Hotel_Reservation_System
             {
                 Data.GetData();
                 var Res = Data.Reservations.FirstOrDefault(X => X.ReservationID == ActiveUser.CurrentReservationID);
+                Res.ReservationStatus=EReservationStatus.Confirmed;
                 var Cre = new CreditCardPayment();
                 DataBase.AddPayment(DateTime.Now, ActiveUser.CurrentReservationID, Res.TotalCost + Res.TotalCost * Cre.Tax, check_paymethod, DataBase.connectionString);
             }
