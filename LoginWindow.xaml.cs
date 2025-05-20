@@ -48,12 +48,12 @@ namespace Hotel_Reservation_System
                     {
                         var staffWindow = new STAFF();
                         staffWindow.Show();
-                        this.Hide();
+                        this.Close();
                     } else
                     {
                         var reservationWindow = new ReservationWindow();
                         reservationWindow.Show();
-                        this.Hide();
+                        this.Close();
                     }
 
 
