@@ -61,7 +61,12 @@ namespace Hotel_Reservation_System
         {
             if (dataGrid.SelectedItem is Staff selected)
             {
-                staffs.Remove(selected);
+                if (selected.UserID != ActiveUser.UserID)
+                {
+                    DataBase.DeleteUserByID(selected.UserID,DataBase.connectionString);
+                    staffs.Remove(selected);
+
+                }
 
             }
         }
