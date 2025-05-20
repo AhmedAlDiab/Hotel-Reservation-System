@@ -46,10 +46,15 @@ namespace Hotel_Reservation_System
             }
             else if (selectedMethod == "Cash")
             {
+                var Res = Data.Reservations.FirstOrDefault(X => X.ReservationID == ActiveUser.CurrentReservationID);
+
                 MessageBox.Show("Payment method recorded as cash. Remember to pay before 12pm at the day of check-in!", "Success");
+                Res.ReservationStatus = EReservationStatus.Pending;
                 isValid = false;
                 check_paymethod = EPaymentMethod.Cash;
-                return;
+                ResManagementWindow resWin = new ResManagementWindow();
+                resWin.Show();
+                this.Close();
 
 
             }
