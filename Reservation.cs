@@ -11,8 +11,8 @@ namespace Hotel_Reservation_System
     public class Reservation
     {
         private int reservationID;
-        private Customer customer;
-        private Room room;
+        private Customer customer = new Customer();
+        private int roomID;
         private DateTime checkInDate;
         private DateTime checkOutDate;
         private double totalCost;
@@ -61,18 +61,19 @@ namespace Hotel_Reservation_System
             }
         }
 
-        public Room PRoom
+        public int RoomID
         {
-            get { return room; }
-            set
+            get { return roomID; }
+            set 
             {
-                room.RoomID = value.RoomID;
-                room.Bedtype = value.Bedtype;
-                room.ISAvailable = value.ISAvailable;
-                room.Capacity = value.Capacity;
-                room.Roomtype = value.Roomtype;
-                room.PricePerNight = value.PricePerNight;
-                room.eMealPlan = value.eMealPlan;
+                if(value > 0)
+                {
+                    roomID = value;
+                }
+                else
+                {
+                    throw new Exception("Not Valid ID");
+                }
             }
         }
 
@@ -121,21 +122,21 @@ namespace Hotel_Reservation_System
         // Constructors With + Without
         public Reservation() {}
 
-        public Reservation(int reservationId, Customer customer, Room room, DateTime checkInDate, DateTime checkOutDate,
+        public Reservation(int reservationId, Customer customer, int roomID, DateTime checkInDate, DateTime checkOutDate,
             double totalCost, EReservationStatus reservationStatus)
         {
             ReservationID = reservationId;
             PCustomer = customer;
-            PRoom = room;
+            RoomID = roomID;
             CheckInDate = checkInDate;
             CheckOutDate = checkOutDate;
             TotalCost = totalCost;
             ReservationStatus = reservationStatus;
         }
 
-        public void BookRoom(int roomId)
+        public int BookRoom(int customerID,int roomID,DateTime checkInDate, DateTime checkOutDate,double totalCost, EReservationStatus status)
         {
-            // todo Implement needed
+            return DataBase.AddReservation(customerID, roomID, checkInDate, checkOutDate, totalCost, EReservationStatus.Pending, DataBase.connectionString);
         }
     }
 }

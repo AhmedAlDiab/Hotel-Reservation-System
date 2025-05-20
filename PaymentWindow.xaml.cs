@@ -73,6 +73,7 @@ namespace Hotel_Reservation_System
             {
                 MessageBox.Show("Credit Card Number Must Be Exactly 16 digits.", "Input Error");
                 isValid = false;
+                return;
             }
 
             //---- 2nd Check ----
@@ -81,6 +82,7 @@ namespace Hotel_Reservation_System
             {
                 MessageBox.Show("Credit Card Number Must Contain Digits Only (No Letters or Symbols).", "Input Error");
                 isValid = false;
+                return;
             }
 
             //---- 3rd Check ----
@@ -89,6 +91,7 @@ namespace Hotel_Reservation_System
             {
                 MessageBox.Show("CVV Must Be Exactly 3 Digits.", "Input Error");
                 isValid = false;
+                return;
             }
 
             //---- 4th Check ----
@@ -97,6 +100,7 @@ namespace Hotel_Reservation_System
             {
                 MessageBox.Show("CVV Must Contain Digits Only (No Letters or Symbols).", "Input Error");
                 isValid = false;
+                return;
             }
 
             //---- 5th Check ----
@@ -105,6 +109,7 @@ namespace Hotel_Reservation_System
             {
                 MessageBox.Show("You Must Choose A Credit Card Type.", "Input Error");
                 isValid = false;
+                return;
             }
 
             //---- 6th Check ----
@@ -113,6 +118,7 @@ namespace Hotel_Reservation_System
             {
                 MessageBox.Show("You Must Choose An Expiry Date.", "Input Error");
                 isValid = false;
+                return;
             }
 
 

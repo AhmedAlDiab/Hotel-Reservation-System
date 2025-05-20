@@ -445,7 +445,7 @@ namespace Hotel_Reservation_System
                                 {
                                     // Handle User/Customer
                                     int userId = reader.GetInt32("userID");
-                                    Customer customer = null;
+                                    Customer customer;
 
                                     var existingUser = Data.Users.FirstOrDefault(u => u.UserID == userId);
                                     if (existingUser != null)
@@ -537,7 +537,7 @@ namespace Hotel_Reservation_System
                                     {
                                         ReservationID = reader.GetInt32("reservationID"),
                                         PCustomer = customer,
-                                        PRoom = room,
+                                        RoomID = roomId,
                                         CheckInDate = reader.GetDateTime("checkInDate"),
                                         CheckOutDate = reader.GetDateTime("checkOutDate"),
                                         TotalCost = reader.GetDouble("totalCost"),
