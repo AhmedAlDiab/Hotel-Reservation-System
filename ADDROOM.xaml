@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="Hotel_Reservation_System.ADDROOM"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Hotel_Reservation_System"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="250">
+    <Grid Margin="10">
+        <Grid.Background>
+            <SolidColorBrush Color="#663D3D18" Opacity="0.4"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="0,0,0,5" HorizontalAlignment="Center">
+            <TextBlock Text="Room ID:" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBox x:Name="txtRoomID" BorderBrush="Black" SelectionBrush="#FFD70000" Width="150" HorizontalAlignment="Center"/>
+
+            <TextBlock Text="Capacity:" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBox Name="txtCapacity"  Width="150" HorizontalAlignment="Center" SelectionBrush="Black" BorderBrush="Black" />
+
+            <TextBlock Text="Price per Night:" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBox Name="txtPrice"  Width="150" HorizontalAlignment="Center"/>
+
+
+            <TextBlock Text="Room Type:" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <ComboBox Name="comboRoomType"  Width="150" HorizontalAlignment="Center" />
+
+            <TextBlock Text="Bed Type:" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <ComboBox Name="comboBedType"  Width="150" HorizontalAlignment="Center" />
+
+            <TextBlock Text="Meal Plan:" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <ComboBox Name="comboMealPlan" Width="150" HorizontalAlignment="Center" />
+
+            <TextBlock Text="Room:" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <ComboBox Name="comboRoomClass"  Width="150" HorizontalAlignment="Center">
+                <ComboBoxItem>Standard</ComboBoxItem>
+                <ComboBoxItem>Deluxe</ComboBoxItem>
+            </ComboBox>
+
+            <TextBlock Text="Discount (for Deluxe):" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBox Name="txtDiscount" Text="0"  Width="150" HorizontalAlignment="Center" />
+
+            <CheckBox Name="chkAvailable" Content="Is Available" Margin="0,5" FontWeight="Bold" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Top">
+            <Button Content="Confirm" Click="Button_Click" Margin="0,10,0,5" FontWeight="Bold" Background="#FFF3BE3A" BorderBrush="Black" Width="100"  />
+            <Button Content="Close" Click="Button_Click_1" FontWeight="Bold" Width="100" Background="#FFF3BE3A" BorderBrush="Black"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
