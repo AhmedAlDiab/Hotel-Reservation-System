@@ -211,7 +211,7 @@ namespace Hotel_Reservation_System
             try
             {
                 Reservation Res = new Reservation();
-                reservationId = Res.BookRoom(ActiveUser.UserID, selectedRoom.RoomID, checkInDate, checkOutDate, totalCost, EReservationStatus.Pending);
+                reservationId = Res.BookRoom(ActiveUser.UserID, selectedRoom.RoomID, checkInDate, checkOutDate, totalCost, numberOfNights,EReservationStatus.Pending);
                 ActiveUser.CurrentReservationID = reservationId;
                 Data.GetData();
                 if (reservationId != -1)

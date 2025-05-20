@@ -154,22 +154,25 @@ namespace Hotel_Reservation_System
         /// <param name="checkOutDate"></param>
         /// <param name="totalCost"></param>
         /// <param name="status"></param>
+        /// <param name="numberOfNights"></param>
         /// <param name="connectionString"></param>
         /// <returns></returns>
         public static int AddReservation(int customerID, int roomID,
-                        DateTime checkInDate, DateTime checkOutDate,
-                        double totalCost, EReservationStatus status,
-                        string connectionString)
+                DateTime checkInDate, DateTime checkOutDate,
+                double totalCost, EReservationStatus status,
+                int numberOfNights, string connectionString)
         {
             try
             {
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     string query = @"INSERT INTO Reservations 
-                  (customerID, roomID, checkInDate, checkOutDate, totalCost, reservationStatus)
+                  (customerID, roomID, checkInDate, checkOutDate, 
+                   totalCost, reservationStatus, numberOfNights)
                   VALUES 
-                  (@customerID, @roomID, @checkInDate, @checkOutDate, @totalCost, @reservationStatus);
-                  SELECT LAST_INSERT_ID();"; 
+                  (@customerID, @roomID, @checkInDate, @checkOutDate, 
+                   @totalCost, @reservationStatus, @numberOfNights);
+                  SELECT LAST_INSERT_ID();";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
@@ -179,26 +182,25 @@ namespace Hotel_Reservation_System
                         command.Parameters.AddWithValue("@checkOutDate", checkOutDate);
                         command.Parameters.AddWithValue("@totalCost", totalCost);
                         command.Parameters.AddWithValue("@reservationStatus", (int)status);
+                        command.Parameters.AddWithValue("@numberOfNights", numberOfNights);
 
                         connection.Open();
-
-                        // ExecuteScalar returns the first column of the first row
                         int newReservationId = Convert.ToInt32(command.ExecuteScalar());
-                        return newReservationId; // Returns the new ID if successful
+                        return newReservationId;
                     }
                 }
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show($"Database error adding reservation: {ex.Message}", "Database Error",
-                               MessageBoxButton.OK, MessageBoxImage.Error);
-                return -1; // Return -1 to indicate failure
+                MessageBox.Show($"Database error adding reservation: {ex.Message}",
+                              "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return -1;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error adding reservation: {ex.Message}", "Error",
-                               MessageBoxButton.OK, MessageBoxImage.Error);
-                return -1; // Return -1 to indicate failure
+                MessageBox.Show($"Error adding reservation: {ex.Message}",
+                              "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return -1;
             }
         }
         /// <summary>
@@ -412,6 +414,7 @@ namespace Hotel_Reservation_System
                     Reservations.checkOutDate,
                     Reservations.totalCost,
                     Reservations.reservationStatus,
+                    Reservations.numberOfNights,
 
                     Users.userID,
                     Users.fullName,
@@ -475,64 +478,7 @@ namespace Hotel_Reservation_System
                                     }
 
                                     // Handle Room (StandardRoom or DeluxeRoom)
-                                    int roomId = reader.GetInt32("roomID");
-                                    Room room = null;
-                                    ERoomType roomType = (ERoomType)reader.GetInt32("roomType");
-
-                                    var existingRoom = Data.Rooms.FirstOrDefault(r => r.RoomID == roomId);
-                                    if (existingRoom != null)
-                                    {
-                                        // Verify the existing room matches the expected type
-                                        bool typeMatches = (roomType == ERoomType.Standard && existingRoom is StandardRoom) ||
-                                                         (roomType == ERoomType.Deluxe && existingRoom is DeluxeRoom);
-
-                                        if (typeMatches)
-                                        {
-                                            room = existingRoom;
-                                        }
-                                        else
-                                        {
-                                            throw new InvalidOperationException(
-                                                $"Room type mismatch for room ID {roomId}. Expected {roomType} but found {existingRoom.GetType().Name}");
-                                        }
-                                    }
-                                    else
-                                    {
-                                        EBedType bedType = (EBedType)reader.GetInt32("bedType");
-                                        EMealPlan mealPlan = (EMealPlan)reader.GetInt32("mealPlans");
-
-                                        switch (roomType)
-                                        {
-                                            case ERoomType.Standard:
-                                                room = new StandardRoom(
-                                                    roomId,
-                                                    bedType,
-                                                    reader.GetBoolean("isAvailable"),
-                                                    reader.GetInt32("capacity"),
-                                                    reader.GetDouble("pricePerNight"),
-                                                    mealPlan,
-                                                    roomType
-                                                );
-                                                break;
-                                            case ERoomType.Deluxe:
-                                                room = new DeluxeRoom(
-                                                    roomId,
-                                                    bedType,
-                                                    reader.GetBoolean("isAvailable"),
-                                                    reader.GetInt32("capacity"),
-                                                    reader.GetDouble("pricePerNight"),
-                                                    mealPlan,
-                                                    roomType,
-                                                    reader.GetDouble("discount")
-                                                );
-                                                break;
-                                            default:
-                                                throw new InvalidOperationException("Unknown room type.");
-                                        }
-                                        Data.Rooms.Add(room);
-                                    }
-
-                                    // Create reservation
+                                    int roomId = reader.GetInt32("roomID");                                    
                                     var reservation = new Reservation
                                     {
                                         ReservationID = reader.GetInt32("reservationID"),
@@ -541,14 +487,16 @@ namespace Hotel_Reservation_System
                                         CheckInDate = reader.GetDateTime("checkInDate"),
                                         CheckOutDate = reader.GetDateTime("checkOutDate"),
                                         TotalCost = reader.GetDouble("totalCost"),
-                                        ReservationStatus = (EReservationStatus)reader.GetInt32("reservationStatus")
+                                        ReservationStatus = (EReservationStatus)reader.GetInt32("reservationStatus"),
+                                        NumberOfNights = reader.GetInt32("numberOfNights") // Added this line
                                     };
 
                                     reservations.Add(reservation);
                                 }
                                 catch (Exception ex)
                                 {
-                                    MessageBox.Show($"Error processing reservation row: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    MessageBox.Show($"Error processing reservation row: {ex.Message}",
+                                                  "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
                                 }
                             }
                         }
@@ -557,11 +505,13 @@ namespace Hotel_Reservation_System
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show($"Database error getting reservations: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Database error getting reservations: {ex.Message}",
+                              "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error getting reservations: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);                
+                MessageBox.Show($"Error getting reservations: {ex.Message}",
+                              "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             return reservations;
