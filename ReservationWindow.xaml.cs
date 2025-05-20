@@ -29,8 +29,7 @@ namespace Hotel_Reservation_System
         string fullname;
         string email;
         string phoneNumber;
-        double totalCost;
-        int roomId;
+        double totalCost;        
         Room selectedRoom;
         public int reservationId;
         private bool IsValidEmail(string email)
@@ -211,13 +210,14 @@ namespace Hotel_Reservation_System
             }
             try
             {
-                reservationId = DataBase.AddReservation(ActiveUser.UserID, roomId, checkInDate, checkOutDate, totalCost, EReservationStatus.Pending, DataBase.connectionString);
+                Reservation Res = Data.Reservations.FirstOrDefault(x => x.ReservationID == ActiveUser.CurrentReservationID);
+                reservationId = Res.BookRoom(ActiveUser.UserID, selectedRoom.RoomID, checkInDate, checkOutDate, totalCost, EReservationStatus.Pending);                    
                 if (reservationId != -1)
                 {
                     ActiveUser.CurrentReservationID = reservationId;
                     var paymentWindow = new PaymentWindow();
                     paymentWindow.Show();
-                    this.Hide();
+                    this.Close();
                 }
                 else
                 {
