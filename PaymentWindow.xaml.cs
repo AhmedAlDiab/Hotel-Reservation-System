@@ -46,12 +46,13 @@ namespace Hotel_Reservation_System
             }
             else if (selectedMethod == "Cash")
             {
-                var Res = Data.Reservations.FirstOrDefault(X => X.ReservationID == ActiveUser.CurrentReservationID);
-
-                MessageBox.Show("Payment method recorded as cash. Remember to pay before 12pm at the day of check-in!", "Success");
-                Res.ReservationStatus = EReservationStatus.Pending;
                 isValid = false;
+                Data.GetData();
+                var Res = Data.Reservations.FirstOrDefault(X => X.ReservationID == ActiveUser.CurrentReservationID);
+                Res.ReservationStatus = EReservationStatus.Pending;
                 check_paymethod = EPaymentMethod.Cash;
+                DataBase.UpdateReservationByID(ActiveUser.CurrentReservationID, Res.PCustomer.UserID, Res.RoomID, Res.CheckInDate, Res.CheckOutDate, Res.TotalCost, Res.ReservationStatus, DataBase.connectionString);
+                MessageBox.Show("Payment method recorded as cash. Remember to pay before 12pm at the day of check-in!", "Success");
                 ResManagementWindow resWin = new ResManagementWindow();
                 resWin.Show();
                 this.Close();
@@ -133,17 +134,20 @@ namespace Hotel_Reservation_System
                 MessageBox.Show("Payment Submitted Successfully!", "Successful Process");
                 
 
-                ResManagementWindow resWin = new ResManagementWindow();
-                resWin.Show();
-                this.Close();
+                
             }
             try
             {
                 Data.GetData();
                 var Res = Data.Reservations.FirstOrDefault(X => X.ReservationID == ActiveUser.CurrentReservationID);
-                Res.ReservationStatus=EReservationStatus.Confirmed;
+                Res.ReservationStatus = EReservationStatus.Confirmed;
+                DataBase.UpdateReservationByID(ActiveUser.CurrentReservationID, Res.PCustomer.UserID, Res.RoomID, Res.CheckInDate, Res.CheckOutDate, Res.TotalCost, Res.ReservationStatus, DataBase.connectionString);
                 var Cre = new CreditCardPayment();
                 DataBase.AddPayment(DateTime.Now, ActiveUser.CurrentReservationID, Res.TotalCost + Res.TotalCost * Cre.Tax, check_paymethod, DataBase.connectionString);
+
+                ResManagementWindow resWin = new ResManagementWindow();
+                resWin.Show();
+                this.Close();
             }
             catch (Exception ex)
             {

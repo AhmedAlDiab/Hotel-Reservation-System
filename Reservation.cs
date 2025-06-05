@@ -100,7 +100,7 @@ namespace Hotel_Reservation_System
             get { return totalCost; }
             set
             {
-                if (value > 0)
+                if (value >= 0)
                 {
                     totalCost = value;
                 }
@@ -120,7 +120,10 @@ namespace Hotel_Reservation_System
             }
         }
         // Constructors With + Without
-        public Reservation() {}
+        public Reservation() 
+        {
+            NumberOfNights = 1;
+        }
 
         public Reservation(int reservationId, Customer customer, int roomID, DateTime checkInDate, DateTime checkOutDate,
             double totalCost, EReservationStatus reservationStatus)
@@ -132,11 +135,12 @@ namespace Hotel_Reservation_System
             CheckOutDate = checkOutDate;
             TotalCost = totalCost;
             ReservationStatus = reservationStatus;
+            NumberOfNights = 1;
         }
 
-        public int BookRoom(int customerID,int roomID,DateTime checkInDate, DateTime checkOutDate,double totalCost, EReservationStatus status)
+        public int BookRoom(int customerID,int roomID,DateTime checkInDate, DateTime checkOutDate,double totalCost,int NofNights, EReservationStatus status)
         {
-            return DataBase.AddReservation(customerID, roomID, checkInDate, checkOutDate, totalCost, EReservationStatus.Pending, DataBase.connectionString);
+            return DataBase.AddReservation(customerID, roomID, checkInDate, checkOutDate, totalCost, EReservationStatus.Pending, NofNights,DataBase.connectionString);
         }
     }
 }
