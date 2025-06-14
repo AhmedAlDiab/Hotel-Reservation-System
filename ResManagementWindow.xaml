@@ -17,9 +17,9 @@
             </Label.Effect>
         </Label>
         <DataGrid x:Name="Reservationname" ColumnHeaderHeight="30" AutoGenerateColumns="True" Margin="403,164,234,106" BorderBrush="#FFA79C4F" Background="#663D3D18" FontWeight="Bold" ItemsSource="{Binding reservationbinding}"  >
-           
+
         </DataGrid>
-        <Button Content="Cancel" BorderThickness="2" BorderBrush="Black" Background="#FFF0D129" HorizontalAlignment="Left" Margin="205,431,0,0" VerticalAlignment="Top" Height="70" Width="162" FontSize="25" FontWeight="Bold" RenderTransformOrigin="0.526,0.189">
+        <Button Content="Add New&#xD;&#xA;Reservation" BorderThickness="2" BorderBrush="Black" Background="#FFF0D129" HorizontalAlignment="Left" Margin="205,431,0,0" VerticalAlignment="Top" Height="70" Width="162" FontSize="25" FontWeight="Bold" RenderTransformOrigin="0.526,0.189" Click="Button_Click">
             <Button.Effect>
                 <DropShadowEffect Color="#FF5F4B18" Direction="310" Opacity="0.5" ShadowDepth="0" BlurRadius="40"/>
             </Button.Effect>

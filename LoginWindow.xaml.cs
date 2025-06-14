@@ -51,8 +51,8 @@ namespace Hotel_Reservation_System
                         this.Close();
                     } else
                     {
-                        var reservationWindow = new ReservationWindow();
-                        reservationWindow.Show();
+                        var reservation_managementWindow = new ResManagementWindow();
+                        reservation_managementWindow.Show();
                         this.Close();
                     }
 

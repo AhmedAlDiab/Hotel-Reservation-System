@@ -39,6 +39,12 @@ namespace Hotel_Reservation_System
 
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var reservationWindow = new ReservationWindow();
+            reservationWindow.Show();
+            this.Close();
+        }
     }
 
 }
