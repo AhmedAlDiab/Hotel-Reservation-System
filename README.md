@@ -1,6 +1,6 @@
 # Hotel-Reservation-System
 # Overview
-The Hotel Reservation System is an object-oriented application that simulates core hotel operations, enabling customers to search, book, and pay for rooms while staff manages room availability and reservations. Built with Java, this project demonstrates key OOP principles: inheritance, polymorphism, abstraction, and encapsulation.
+The Hotel Reservation System is an object-oriented application that simulates core hotel operations, enabling customers to search, book, and pay for rooms while staff manages room availability and reservations. Built with C#, this project demonstrates key OOP principles: inheritance, polymorphism, abstraction, and encapsulation.
 
 # Key Features:
 
